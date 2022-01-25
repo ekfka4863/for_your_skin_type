@@ -36,7 +36,7 @@ public class InitDb {
         private final ItemRepository itemRepository;
 
         public void dbInit() throws IOException, ParseException {
-            //상대경로
+            //상대경로로지정해야함
             String path = "C:\\Users\\Yanglet\\Project\\foryourskintype\\foryourskintype\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
             FileReader reader = new FileReader(path);
             Object parse = new JSONParser().parse(reader);
