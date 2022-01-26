@@ -747,12 +747,35 @@ export default function SkinTypeTest () {
               </form>
             </div>
             <div className="test_submit_btn">
-              <button 
+            <button 
                 type="submit" 
                 onClick={() => {
                   if (!testValues.current.includes('')) {
                     setAnalyzeBtn(true); 
-                    console.log("결과 분석 버튼 누름!!", analizeBtn);
+                    // console.log("결과 분석 버튼 누름!!", analizeBtn);
+                    // console.log("결과 => ", skinTypeTitle);   // e.g. 지성 
+                    
+                    const url = 'http://localhost:9090/items/skintype';
+                    const asyncSkinTypePost = async () => {
+                      try {
+                        const response = await fetch(url, {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                          },
+                          body: JSON.stringify({
+                            brand: "drjart",
+                            skinType: skinTypeTitle
+                          })
+                        });
+                        const data = await response.json();
+                        console.log("POST request to server done!! No problem!");
+                        console.log(data);
+                      } catch(error) {
+                        console.log("POST request XXXXXX!!");
+                      }
+                    } 
+                    asyncSkinTypePost();
                   } else {
                     alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
                   }

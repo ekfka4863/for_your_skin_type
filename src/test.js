@@ -1,10 +1,10 @@
 import axios from "axios";
 
-axios.get('https://localhost:9090/url')
+axios.get('http://localhost:9090/url')
   .then((Response) => {console.log(Response.data)})
   .catch((Error) => {console.log(Error)})
 
-function TestDiv () {g
+function TestDiv () {
   return (
     <div>
       <button type="button">확인 버튼</button>
