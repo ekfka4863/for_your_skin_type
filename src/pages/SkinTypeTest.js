@@ -742,10 +742,7 @@ export default function SkinTypeTest () {
                             'Content-Type': 'application/json; charset=utf-8'
                           },
                           body: JSON.stringify({
-<<<<<<< HEAD
                             brand: "drjart",
-=======
->>>>>>> d0a04a7dca5a6c99bba3dc4ab03256f36286dd6c
                             skinType: skinTypeTitle
                           })
                         });
@@ -757,10 +754,7 @@ export default function SkinTypeTest () {
                       }
                     } 
                     asyncSkinTypePost();
-<<<<<<< HEAD
-=======
                     // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
->>>>>>> d0a04a7dca5a6c99bba3dc4ab03256f36286dd6c
                   } else {
                     alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
                   }
