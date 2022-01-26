@@ -331,28 +331,6 @@ export default function SkinTypeTest () {
         imageLink.push(each.imageLink);
         productLink.push(each.productLink);
         cardLen++;
-        // console.log(testInput4);  // 상관없음
-        // console.log(Number(each.price));  // -> 여러가지 숫자들 ...
-        // console.log(Number(testInput4));  // -> NaN ...
-        // console.log(Number(each.price) <= Number(testInput4) || each.price === "상관없음");
-        // console.log(each.price === "상관없음");
-        // if (testInput4 === "상관없음") {
-        //   skinTypes.push(each.skinType);
-        //   itemNames.push(each.name);
-        //   itemPrices.push(each.price);
-        //   itemFeatures.push(each.itemFeature);
-        //   imageLink.push(each.imageLink);
-        //   productLink.push(each.productLink);
-        //   cardLen++;
-        // } else if (Number(testInput4) !== NaN && Number(each.price) <= Number(testInput4)) {
-        //     skinTypes.push(each.skinType);
-        //     itemNames.push(each.name);
-        //     itemPrices.push(each.price);
-        //     itemFeatures.push(each.itemFeature);
-        //     imageLink.push(each.imageLink);
-        //     productLink.push(each.productLink);
-        //     cardLen++;
-        // }
       });
       break;
     case "복합성":
@@ -752,7 +730,30 @@ export default function SkinTypeTest () {
                 onClick={() => {
                   if (!testValues.current.includes('')) {
                     setAnalyzeBtn(true); 
-                    console.log("결과 분석 버튼 누름!!", analizeBtn);
+                    // console.log("결과 분석 버튼 누름!!", analizeBtn);
+                    // console.log("결과 => ", skinTypeTitle);   // e.g. 지성 
+                    
+                    const url = 'http://localhost:9090/items/skintype';
+                    const asyncSkinTypePost = async () => {
+                      try {
+                        const response = await fetch(url, {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json; charset=utf-8'
+                          },
+                          body: JSON.stringify({
+                            skinType: skinTypeTitle
+                          })
+                        });
+                        const data = await response.json();
+                        console.log("POST request to server done!! No problem!");
+                        console.log(data);
+                      } catch(error) {
+                        console.log("POST request XXXXXX!!");
+                      }
+                    } 
+                    asyncSkinTypePost();
+                    // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
                   } else {
                     alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
                   }
