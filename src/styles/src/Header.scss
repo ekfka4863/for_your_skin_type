@@ -11,6 +11,7 @@
   height: 80px;
   background-color: $white2;
   // background-color: #ea1;
+  border-bottom: 0.8px solid rgba(0, 0, 0, 0.3);
   .navigation {
     display: flex;
 
@@ -23,18 +24,23 @@
     .nav_bar_desktop {
       position: absolute;
       display: flex;
-      padding:0 100px;
-      width: 100%;
+      padding:0 10px;
+      width: 75%;
       justify-content: space-between;
       list-style: none;
       // background-color: red;
+      
       li {
         width: 200px;
         padding: 10px 15px;
         box-sizing: border-box;
+    
+    
+        // transition: width .3s ease;
         // background-color: #ae1;
         // outline: 1px solid #333;
         a {
+          position: relative;
           display: block;
           width: 100%;
           text-align: center;
@@ -46,9 +52,106 @@
           text-shadow: 7px 9px 4px rgba(0, 0, 0, 0.2);
           // background-color: #eea;
         }
+        a:after{
+          position: absolute;
+          content:"";
+          background-color: rgba(0, 0, 0, 0.6);
+          height:5px;
+          width:0;
+          left:0;
+          bottom:-4px ;
+          border-radius: 2px;
+          transition:0.7s;
+          margin-left: 20px;
+        }
+        a:hover:after{
+          width:80%;
+       
+        }
       }
     }
+
+    .desktop_log_img{
+      position: absolute;
+      right:150px; top:20px;
+      width:42px; height:42px;
+      filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
+    }
+    .desktop_cart_img{
+      position: absolute;
+      right:97px; top:20px;
+      width:42px; height:42px;
+      filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
+    }
+    
+    .desktop_home_img{
+      position: absolute;
+      right:40px; top:20px;
+      width:42px; height:42px;
+    }
   }
+}
+
+.LoginTap{
+  position: fixed;
+  display: flex;
+  text-align: center;
+  top:70px; right:70px;
+  width:170px;
+  height:50px;
+  background-color: rgb(216, 216, 216);
+  color:black;
+  border-radius: 15px;
+  li{
+    line-height:45px;
+    margin-left:23px;
+  }
+  .triangle{
+    position: fixed;
+    top:47px; right:155px;
+    z-index:999;
+    width:0px;height:0px;
+    border-top:15px solid transparent;
+    border-bottom:20px solid  rgb(216, 216, 216);
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+  }
+}
+.triangle{
+  position: fixed;
+  top:45px; right:155px;
+  z-index:999;
+  width:0px;height:0px;
+  border-top:15px solid transparent;
+  border-bottom:20px solid  rgb(216, 216, 216);
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+}
+
+.LogoutTap{
+  position: fixed;
+  display: flex;
+  text-align: center;
+  top:70px; right:70px;
+  width:170px;
+  height:50px;
+  background-color: rgb(216, 216, 216);
+  color:black;
+  border-radius: 15px;
+  li{
+    line-height:45px;
+    margin-left:13px;
+  }
+}
+.triangle{
+  position: fixed;
+  top:47px; right:155px;
+  z-index:999;
+  width:0px;height:0px;
+  border-top:15px solid transparent;
+  border-bottom:20px solid  rgb(216, 216, 216);
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
 }
 
 
@@ -72,25 +175,37 @@
       }
       .nav_open_btn {
         display: block;
-        position:absolute;
-        top:11%; right:5%;
 
-        img{
-          left:0; top:0;
-          width: 60px;
-          height: 60px;
+        .openbutton{
+          position:absolute;
+          width: 55px;
+          height: 55px;
+          top:11%; right:5%;
           }
+        .log_img{
+          position: absolute;
+          left:20px; top:15px;
+          width:40px; height:40px;
+
+        }
+        .cart_img{
+          position: absolute;
+          width:40px; height:40px;
+          left:70px; top:15px;
+        }
+
         }
       // 모달창
       .nav_bar{
         position: absolute;
         z-index: 99999;
 
-        button{
+        .close_button{
           img{
             position:absolute;
             margin:0 auto;
-            top:7%; left:46%;
+            width:50px; height: 50px;
+            top:7%; left:47.5%;
           }
         }
           
@@ -137,6 +252,15 @@
       
       }
     }
+    .desktop_log_img{
+      display: none;
+    }
+    .desktop_cart_img{
+      display: none;
+    }
+    .desktop_home_img{
+      display: none;
+    }
   }
 };
 
@@ -156,28 +280,41 @@
       .nav_open_btn {
         display: block;
         position:absolute;
-        top:40%; left:20%;
-        img{
+        top:40%; left:22%;
+        .openbutton{
           left:0; top:0;
           width: 60px;
           height: 60px;
+          }
+          .log_img{
+            position: absolute;
+            bottom:-250px; left:13px;
+            width:43px; height:43px;
+          }
+          .cart_img{
+            position: absolute;
+            bottom:-310px; left:10px;
+            width:43px; height: 43px;
           }
         }
       // 모달창
       .nav_bar{
         position: fixed;
-       z-index: 99999;
+        z-index: 99999;
 
-        button{
-          img{
+   
+          .close_button{
             position:absolute;
-            top:30px; left:100px;
+            top:40px; left:105px;
+            img{
+            width:50px; height: 50px;
+            }
           }
-        }
+        
           
         .home_img{
           position:absolute;
-          top:120px; left:5px;
+          top:130px; left:100px;
         }
 
         padding-top:200px;
@@ -216,6 +353,15 @@
           }
         }
       }
+    }
+    .desktop_log_img{
+      display: none;
+    }
+    .desktop_cart_img{
+      display: none;
+    }
+    .desktop_home_img{
+      display: none;
     }
   }
 };

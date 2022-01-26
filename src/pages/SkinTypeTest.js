@@ -13,7 +13,16 @@ import "../styles/src/SkinTypeTest.scss";
 // img
 import condition_checked from "../assets/img/laptop/condition_checked.png";
 
-function SkinTypeTest () {
+
+// api / mock data 
+import { recoms_sensitive } from "../assets/data/recoms_sensitive";
+import { recoms_complex } from "../assets/data/recoms_complex";
+import { recoms_dry } from "../assets/data/recoms_dry";
+import { recoms_oily } from "../assets/data/recoms_oily";
+
+
+
+export default function SkinTypeTest () {
   const [viewportWidth, setViewportWidth] = useState(document.documentElement.clientWidth);
   const [testInput1, setTestInput1] = useState();
   const [testInput2, setTestInput2] = useState();
@@ -21,7 +30,7 @@ function SkinTypeTest () {
   const [testInput4, setTestInput4] = useState();
   const [analizeBtn, setAnalyzeBtn] = useState(false);
   
-  const skinTypes = [
+  const skinTypeFormat = [
     { 
       skintype: "민감성",
       color: "#E60041"
@@ -36,37 +45,6 @@ function SkinTypeTest () {
       color: "#8ACECD"
     }
   ];   // 임의의 자료!
-  // 피부 타입: 
-  // const skintypes = [
-  //   {
-  //     skintype: "민감성",
-  //     problem: ["여드름", "주름", "홍조", "미백"],   // 피부 평소 고민 
-  //     essential: ["산뜻함", "흡수력", "성분"],   // 중요하게 생각하는 항목 
-  //     texture: ["크림형", "콧물형", "상관없음"],   // 원하는 제형
-  //     color: "#E60041"
-  //   },
-  //   {
-  //     skintype: "지성",
-  //     problem: ["여드름", "모공", "미백"],   // 피부 평소 고민 
-  //     essential: ["산뜻함", "흡수력", "성분"],   // 중요하게 생각하는 항목 
-  //     texture: ["물형", "콧물형", "상관없음"],   // 원하는 제형
-  //     color: "#FABD00"
-  //   },
-  //   {
-  //     skintype: "건성",
-  //     problem: ["주름", "미백"],   // 피부 평소 고민 
-  //     essential: ["수분감", "흡수력", "성분"],   // 중요하게 생각하는 항목 
-  //     texture: ["크림형", "콧물형", "상관없음"],   // 원하는 제형
-  //     color: "#A7CE59"
-  //   },
-  //   {
-  //     skintype: "복합성",
-  //     problem: ["여드름", "모공", "미백"],   // 피부 평소 고민 
-  //     essential: ["수분감", "산뜻함", "흡수력", "성분"],   // 중요하게 생각하는 항목 
-  //     texture: ["물형", "크림형", "콧물형", "상관없음"],   // 원하는 제형
-  //     color: "#8ACECD"
-  //   }
-  // ];
 
   
   // function 
@@ -90,7 +68,7 @@ function SkinTypeTest () {
   // test input 관련 변수랑 함수들
   // let testValues = useRef(['1', '2', '3', '4']);
   let testValues = useRef(['', '', '', '']);
-  console.log(testValues.current);  // (4) ['', '', '', ''] -> array
+  // console.log(testValues.current);  // (4) ['', '', '', ''] -> array
 
 
   const onClickInput1 = (e) => {
@@ -129,7 +107,7 @@ function SkinTypeTest () {
     testValues.current.splice(3, 1, e.target.previousSibling.value);
     setTestInput4(e.target.previousSibling.value);
   };
-
+  // console.log(testInput4, testValues.current[3]);   // -> 항상 같다!!
 
   let skinType = "";
 
@@ -173,7 +151,7 @@ function SkinTypeTest () {
         if (result.length !== 0) {
           possibility = result;
         } 
-        console.log(possibility);
+        // console.log(possibility);
         break;
       case "흡수력":
         possibility.forEach((value) => {
@@ -187,7 +165,7 @@ function SkinTypeTest () {
         if (result.length !== 0) {
           possibility = result;
         } 
-        console.log(possibility);
+        // console.log(possibility);
         break;
       case "산뜻함":
         possibility.forEach((value) => {
@@ -201,7 +179,7 @@ function SkinTypeTest () {
         if (result.length !== 0) {
           possibility = result;
         } 
-        console.log(possibility);
+        // console.log(possibility);
         break;
       case "성분":
         possibility.forEach((value) => {
@@ -215,18 +193,18 @@ function SkinTypeTest () {
         if (result.length !== 0) {
           possibility = result;
         }
-        console.log(possibility);
+        // console.log(possibility);
         break;
       default:
         possibility = ["복합성"];
         break;
     }
-    console.log("세번째 switch문 실행되기 전!!", possibility);
+    // console.log("세번째 switch문 실행되기 전!!", possibility);
 
     // Q-3   
     const result2 = [];
     if (possibility.length !== 1) {
-      console.log("세번째 switch문까지 실행됨!");
+      // console.log("세번째 switch문까지 실행됨!");
 
       switch (testValues.current[2]) {
         case "물형":
@@ -299,10 +277,8 @@ function SkinTypeTest () {
     if (possibility.length === 1) {
       skinType = possibility[0];
     } else {
-      console.log("에러에러!!! 타입이 여러개가 나옴!!");   // 이거 해결 해야함 
+      console.log("에러에러!!! 타입이 여러개가 나옴!!");   // 해결 완료!
       console.log(possibility);
-      // 이거 해결 .... ㅠㅠㅠ
-      // 랜덤으로 ...???????? 여러개의 타입중 하나를 암꺼나 골라 ...?? 
     }
 
     return skinType;
@@ -310,11 +286,10 @@ function SkinTypeTest () {
 
 
 
-  // 여기부터!!!
   let skinTypeTitle = "";
   let skinTypeBgColor = "";
   const skinTypeDetails = (skinType) => {
-    skinTypes.forEach((each, idx) => {
+    skinTypeFormat.forEach((each, idx) => {
       if (each.skintype === skinType) {
         skinTypeTitle = each.skintype;
         skinTypeBgColor = each.color;
@@ -329,7 +304,130 @@ function SkinTypeTest () {
     guessSkinType();
     skinTypeDetails(skinType);
   }
+  // console.log(skinType);
+
+  // 피부타입에 맞는 제품 display하는 함수 && 원하는 가격대의 제품 display 하기 
+  let cardLen = 0;
+  const skinTypes = []; 
+  const itemNames = []; 
+  const itemPrices = []; 
+  const itemFeatures = []; 
+  const imageLink = []; 
+  const productLink = []; 
+
+  // console.log(skinTypes);   // 지성 
+  // console.log("답 => ", recoms_oily[0].skinType);
+  // recoms_oily.forEach(each => console.log(each.skinType))
+
+
+  // 피부타입에 따라 카드 display && 가격대별로 필터링 ...   ---> 여기부터 다시!!!!
+  switch (skinType) {
+    case "민감성":
+      recoms_sensitive.forEach((each) => {
+        skinTypes.push(each.skinType);
+        itemNames.push(each.name);
+        itemPrices.push(each.price);
+        itemFeatures.push(each.itemFeature);
+        imageLink.push(each.imageLink);
+        productLink.push(each.productLink);
+        cardLen++;
+        // console.log(testInput4);  // 상관없음
+        // console.log(Number(each.price));  // -> 여러가지 숫자들 ...
+        // console.log(Number(testInput4));  // -> NaN ...
+        // console.log(Number(each.price) <= Number(testInput4) || each.price === "상관없음");
+        // console.log(each.price === "상관없음");
+        // if (testInput4 === "상관없음") {
+        //   skinTypes.push(each.skinType);
+        //   itemNames.push(each.name);
+        //   itemPrices.push(each.price);
+        //   itemFeatures.push(each.itemFeature);
+        //   imageLink.push(each.imageLink);
+        //   productLink.push(each.productLink);
+        //   cardLen++;
+        // } else if (Number(testInput4) !== NaN && Number(each.price) <= Number(testInput4)) {
+        //     skinTypes.push(each.skinType);
+        //     itemNames.push(each.name);
+        //     itemPrices.push(each.price);
+        //     itemFeatures.push(each.itemFeature);
+        //     imageLink.push(each.imageLink);
+        //     productLink.push(each.productLink);
+        //     cardLen++;
+        // }
+      });
+      break;
+    case "복합성":
+      recoms_complex.forEach((each) => {
+        skinTypes.push(each.skinType);
+        itemNames.push(each.name);
+        itemPrices.push(each.price);
+        itemFeatures.push(each.itemFeature);
+        imageLink.push(each.imageLink);
+        productLink.push(each.productLink);
+        cardLen++;
+      });
+      break;
+    case "지성":
+      recoms_oily.forEach((each) => {
+        skinTypes.push(each.skinType);
+        itemNames.push(each.name);
+        itemPrices.push(each.price);
+        itemFeatures.push(each.itemFeature);
+        imageLink.push(each.imageLink);
+        productLink.push(each.productLink);
+        cardLen++;
+      });
+      break;
+    case "건성":
+      recoms_dry.forEach((each) => {
+        skinTypes.push(each.skinType);
+        itemNames.push(each.name);
+        itemPrices.push(each.price);
+        itemFeatures.push(each.itemFeature);
+        imageLink.push(each.imageLink);
+        productLink.push(each.productLink);
+        cardLen++;
+      });
+      break;
+    default:
+      break;
+  }
+  // console.log("skinTypes => ", skinTypes);
+  // console.log("itemNames => ", productLink);
+
+
+  // 카드 렌더링 관련 state 및 함수들
+  const [cardController, setCardController] = useState(6);
+
+  const renderItemCard = () => {
+    const result = [];
+    for (let i = 0; i < cardController; i++) {
+      result.push(<Card 
+                    key={i} 
+                    skinTypes={skinTypes[i]} 
+                    itemNames={itemNames[i]}
+                    itemPrices={itemPrices[i]} 
+                    itemFeatures={itemFeatures[i]}
+                    imageLink={imageLink[i]}
+                    productLink={productLink[i]}
+                  />
+      );            
+    }
+    // console.log(result);
+    return result;
+  };
   
+    const onClickShowMoreCards = () => {
+      if (cardController <= cardLen - 6) {
+        setCardController(cardController + 6);
+      } else {
+        setCardController(cardLen);
+      }
+
+      if (cardController === cardLen) {
+        alert("더 많은 제품을 보시려면 해당 화장품 브랜드 사이트를 방문해주십시오. 감사합니다!");
+      } 
+    };    
+
 
   // 레이아웃 시작
   return (
@@ -575,7 +673,7 @@ function SkinTypeTest () {
             </div>
             <div className="test_question_4">
               <h4>
-                추천가격대
+                선호하는 가격대
                 <span className="blind">
                   가 있으신가요? 다음 4개의 보기 중 하나를 선택해주세요.
                 </span>
@@ -586,12 +684,12 @@ function SkinTypeTest () {
                     type="radio"
                     name="maximunPrice"
                     id="tenThousand"
-                    value="under_10000"
+                    value="10000"
                     onClick={onClickInput4}
                   />
                   <span 
                     onClick={onClickSpan4}
-                    style={(testInput4 === "under_10000") ? {backgroundImage: `url(${condition_checked})`} : null}
+                    style={(testInput4 === "10000") ? {backgroundImage: `url(${condition_checked})`} : null}
                   ></span>
                   <label htmlFor="tenThousand">
                     만원 &darr;
@@ -603,12 +701,12 @@ function SkinTypeTest () {
                     type="radio"
                     name="maximunPrice"
                     id="twentyThousand"
-                    value="under_20000"
+                    value="20000"
                     onClick={onClickInput4}
                   />
                   <span 
                     onClick={onClickSpan4}
-                    style={(testInput4 === "under_20000") ? {backgroundImage: `url(${condition_checked})`} : null}
+                    style={(testInput4 === "20000") ? {backgroundImage: `url(${condition_checked})`} : null}
                   ></span>
                   <label htmlFor="twentyThousand">
                     이만원 &darr;
@@ -620,12 +718,12 @@ function SkinTypeTest () {
                     type="radio"
                     name="maximunPrice"
                     id="thirtyThousand"
-                    value="under_30000"
+                    value="30000"
                     onClick={onClickInput4}
                   />
                   <span 
                     onClick={onClickSpan4}
-                    style={(testInput4 === "under_30000") ? {backgroundImage: `url(${condition_checked})`} : null}
+                    style={(testInput4 === "30000") ? {backgroundImage: `url(${condition_checked})`} : null}
                   ></span>
                   <label htmlFor="thirtyThousand">
                     삼만원 &darr;
@@ -675,16 +773,11 @@ function SkinTypeTest () {
               <p>{skinType} 피부 타입</p>
             </div>
             <div className="test_result_cards">
-              {/* Card.js 컴포넌트 여기다 불러오기... 얼마나 불러올지는 계속 체크... */}
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {/* Card.js 컴포넌트 여기다 불러오기... */}
+              {renderItemCard()}
             </div>
             <div className="test_result_more_btn">
-              <button type="button">&#43; 인기제품 더보기</button>
+              <button type="button" onClick={onClickShowMoreCards}>&#43; 관련 제품 더보기</button>
             </div>
           </section>
         }
@@ -703,4 +796,9 @@ function SkinTypeTest () {
 }
 
 
-export default SkinTypeTest;
+
+
+
+
+// localStorage.setItem();
+// localStorage.getItem();

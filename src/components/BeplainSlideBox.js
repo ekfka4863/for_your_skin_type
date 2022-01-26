@@ -4,6 +4,7 @@ import BtnSlide from './BtnSlide';
 
 export default function BeplainSlideBox () {
 
+
   const [slideindex, setSlideindex] = useState(1);
   // const numberRef = useRef(1);
 
@@ -53,7 +54,7 @@ const movepage = index => {
       {Array.from({length: 5}).map((item,index)=>{
         return(
           <div key={item} className = { slideindex === index+1 ? "slide_anim" : "slide_none"}>
-              <img src={process.env.PUBLIC_URL + `/img/Beplain_slide${index+1}.jpg`} alt='Seedmool_slide_imgs'></img>
+              <img src={process.env.PUBLIC_URL + `/img/Beplain_slide${index+1}.jpg`} alt='Sidmool_slide_imgs'></img>
           </div>
 
           

@@ -13,7 +13,7 @@ export default function Sidenavbar ({sidebar,setSidebar,closeSidebar}) {
   return( <>{ sidebar ?
       <div>
       <ul className="nav_bar" >
-      <button onClick={closeSidebar} >
+      <button onClick={closeSidebar} className="close_button">
        <img src={closebutton} alt="닫기버튼"></img>
       </button>
         <button className="home_img">
@@ -29,7 +29,7 @@ export default function Sidenavbar ({sidebar,setSidebar,closeSidebar}) {
               <Link to="/innisfree-bestsellers">Innisfree</Link>
             </li>
             <li>
-              <Link to="/seedmool-bestsellers">Seedmool</Link>
+              <Link to="/sidmool-bestsellers">Sidmool</Link>
             </li>
             <li>
               <Link to="/beplain-bestsellers">Beplain</Link>  
