@@ -4,7 +4,7 @@
 /* #viewBox - laptop, desktop */ 
 #viewBox {
   // padding-top: 80px;
-  
+   
   // 불투명한 막 
   .bgblack{
     position: absolute;
@@ -18,9 +18,7 @@
 
   
   // e.g. 마지막 인디케이터 묶음! 
-  .indicator {
-    bottom:10%; left:38%;
-  }
+
   // 인디케이터 
   .Indicator{
     position: absolute;
@@ -80,7 +78,7 @@
       
       // 인디케이터
     }
- 
+
   .slide_anim{
         opacity: 1;
         transition: opacity ease-in-out 1.5s;
@@ -132,13 +130,13 @@
   }// .innisfree_box
 
 
-  .seedmool_box {
+  .sidmool_box {
     position: relative;
     width: 100%;
     height: 100vh;
   
     .slider {
-      .Seedmool_slide{
+      .Sidmool_slide{
      
         img{
           position: absolute;
@@ -188,13 +186,25 @@
     line-height: 110px;
 
     button {
+      width: 100%;
+      // background-color: #31a;
       a {
+        transition: all 0.5s ease-in-out;
+
+        display: block;
+        width: 100%;
+        height: 100%;
         color: $white;
-        font-weight: 900;
+        font-weight: 800;
         font-size: 30px;
+        line-height: 100px;
+        // background-color: #fff;
       }
     }
   }// 테스트 버튼
+  .skin_type_test_btn:hover a {
+    transform: scale(1.1);
+  }
 }
 
 
@@ -276,6 +286,8 @@
           
           // 인디케이터
         }
+
+    
   }
 }
 
@@ -284,6 +296,7 @@
 /* #viewBox - tablet */ 
 @include tablet { 
   #viewBox {
+
      
     .skin_type_test_btn {
       position: fixed;
@@ -299,6 +312,88 @@
       text-align: center;
       line-height: 110px;
       }
+
+       // 슬라이더들
+    .dr_jart_box {
+    position: relative;
+    width:100vw;
+    height: 100vh;
+    // padding-top: 80px;
+  
+  
+    .slider {
+      .DrJart_slide{
+      img{
+          position: absolute;
+          width:100vw;
+          height:100vh;
+          
+          }
+        }
+      
+    
+      }
+  }// .dr_jart_box
+
+  .innisfree_box {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+      .slider {
+        .Innisfree_slide{
+       
+          img{
+            position: absolute;
+            width:100vw;
+            height:100vh;
+            
+            }
+          }
+       
+    }
+  }// .innisfree_box
+
+
+  .seedmool_box {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  
+    .slider {
+      .Seedmool_slide{
+     
+        img{
+          position: absolute;
+          width:100vw;
+          height:100vh;
+          
+          }
+        }
+    
+    }
+  }// .seedmool_box
+
+
+  .beplain_box {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    
+    .slider {
+      .Beplain_slide{
+     
+        img{
+          position: absolute;
+          width:100vw;
+          height:100vh;
+          
+          }
+        }
+   
+     }
+  }// .beplain_box
+
     
   }
 }

@@ -1,9 +1,6 @@
 @import "../common/mixin";
 
 #wrap {
-  // width: 100%;
-  // height: auto;
-  // min-height: 100vh;
   padding-top: 80px;
   // background-color: #eee;
 }
@@ -28,13 +25,14 @@
     .cards_inner {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: space-around;
 
       width: auto;
       max-width: 1140px;
       height: auto;
       min-height: 400px;
       margin: auto;
+      // background-color: #23a;
       // div {}
     }
     .cards_more_btn {

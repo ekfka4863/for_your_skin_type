@@ -11,9 +11,9 @@ import "../styles/src/BestSellers.scss";
 
 // api / mock data 
 import dataObj from "../assets/data/data_renewed";
-import { brand2 } from '../components/Card';
+import { brand3 } from '../components/Card';
 
-function InnisfreeBestSellers() {
+function SidmoolBestSellers() {
   let cardLen = 0;
   const skinTypes = []; 
   const itemNames = []; 
@@ -22,7 +22,7 @@ function InnisfreeBestSellers() {
   const imageLink = []; 
   const productLink = []; 
 
-  dataObj[brand2].forEach((each) => {
+  dataObj[brand3].forEach((each) => {
     skinTypes.push(each.skinType);
     itemNames.push(each.name);
     itemPrices.push(each.price);
@@ -33,7 +33,6 @@ function InnisfreeBestSellers() {
   });
 
   const [cardController, setCardController] = useState(6);
-  // console.log(cardController); // 6
 
   // reference:  https://codingbroker.tistory.com/123
   const renderItemCard = () => {
@@ -68,13 +67,19 @@ function InnisfreeBestSellers() {
   return (
     <div id="wrap">
       <Header />
-      {/* <div className="test">이니스프리 베스트셀러 들어올 페이지!!</div> */}
+      {/* <div className="test">시드물 베스트셀러 들어올 페이지!!</div> */}
       <div id="bestSellerBox">
-        <h2>Innisfree</h2>
+        <h2>Sidmool</h2>
         <h3>베스트셀러</h3>
         <div className="cards_area">
           <div className="cards_inner">
             {/* 여기에 Card.js 컴포넌트!! */}
+            {/* <Card 
+              skinTypes={skinTypes[0]} 
+              itemNames={itemNames[0]}
+              itemPrices={itemPrices[0]} 
+              itemFeatures={itemFeatures[0]}
+            />  */}
             {renderItemCard()}
           </div>
           <div className="cards_more_btn">
@@ -88,4 +93,4 @@ function InnisfreeBestSellers() {
 }
 
 
-export default InnisfreeBestSellers;
+export default SidmoolBestSellers;
