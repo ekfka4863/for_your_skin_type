@@ -12,6 +12,22 @@ import "../styles/src/BestSellers.scss";
 import dataObj from "../assets/data/data_renewed";
 import { brand1 } from '../components/Card';
 
+// API 
+const url = 'http://localhost:9090/items/drjart';
+
+const asyncDrjartGet = async () => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("GET request to server done!! No problem!");
+    console.log(data);
+  } catch(error) {
+    console.log("GET request XXXXXX!!");
+  }
+} 
+asyncDrjartGet();
+// reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
 
 function DrJartBestSellers() {
   let cardLen = 0;
