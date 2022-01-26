@@ -13,6 +13,24 @@ import "../styles/src/BestSellers.scss";
 import dataObj from "../assets/data/data_renewed";
 import { brand3 } from '../components/Card';
 
+// API 
+const url = 'http://localhost:9090/items/sidmool';
+
+const asyncSidmoolGet = async () => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("GET request to server done!! No problem!");
+    console.log(data);
+  } catch(error) {
+    console.log("GET request XXXXXX!!");
+  }
+} 
+asyncSidmoolGet();
+// reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+
+
 function SidmoolBestSellers() {
   let cardLen = 0;
   const skinTypes = []; 

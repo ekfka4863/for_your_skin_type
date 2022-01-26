@@ -13,6 +13,24 @@ import "../styles/src/BestSellers.scss";
 import dataObj from "../assets/data/data_renewed";
 import { brand4 } from '../components/Card';
 
+// API 
+const url = 'http://localhost:9090/items/beplain';
+
+const asyncBeplainGet = async () => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("GET request to server done!! No problem!");
+    console.log(data);
+  } catch(error) {
+    console.log("GET request XXXXXX!!");
+  }
+} 
+asyncBeplainGet();
+// reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+
+
 function BeplainBestSellers() {
   let cardLen = 0;
   const skinTypes = []; 

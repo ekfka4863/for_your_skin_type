@@ -331,28 +331,6 @@ export default function SkinTypeTest () {
         imageLink.push(each.imageLink);
         productLink.push(each.productLink);
         cardLen++;
-        // console.log(testInput4);  // 상관없음
-        // console.log(Number(each.price));  // -> 여러가지 숫자들 ...
-        // console.log(Number(testInput4));  // -> NaN ...
-        // console.log(Number(each.price) <= Number(testInput4) || each.price === "상관없음");
-        // console.log(each.price === "상관없음");
-        // if (testInput4 === "상관없음") {
-        //   skinTypes.push(each.skinType);
-        //   itemNames.push(each.name);
-        //   itemPrices.push(each.price);
-        //   itemFeatures.push(each.itemFeature);
-        //   imageLink.push(each.imageLink);
-        //   productLink.push(each.productLink);
-        //   cardLen++;
-        // } else if (Number(testInput4) !== NaN && Number(each.price) <= Number(testInput4)) {
-        //     skinTypes.push(each.skinType);
-        //     itemNames.push(each.name);
-        //     itemPrices.push(each.price);
-        //     itemFeatures.push(each.itemFeature);
-        //     imageLink.push(each.imageLink);
-        //     productLink.push(each.productLink);
-        //     cardLen++;
-        // }
       });
       break;
     case "복합성":
@@ -764,7 +742,10 @@ export default function SkinTypeTest () {
                             'Content-Type': 'application/json; charset=utf-8'
                           },
                           body: JSON.stringify({
+<<<<<<< HEAD
                             brand: "drjart",
+=======
+>>>>>>> d0a04a7dca5a6c99bba3dc4ab03256f36286dd6c
                             skinType: skinTypeTitle
                           })
                         });
@@ -776,6 +757,10 @@ export default function SkinTypeTest () {
                       }
                     } 
                     asyncSkinTypePost();
+<<<<<<< HEAD
+=======
+                    // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+>>>>>>> d0a04a7dca5a6c99bba3dc4ab03256f36286dd6c
                   } else {
                     alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
                   }
