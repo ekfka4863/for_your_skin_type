@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+<<<<<<< HEAD
 In the project directory, you can run:
 
 ### `npm start`
@@ -68,3 +69,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+### 도이
+안녕하세요 반갑습니다...ㅎㅎㅎ
+merge 잘 됬나요 ㅎㅎ 
+
+### ekfka4863
+- 안녕하세요! ekfka4863입니다!!! 
+
+
+### 이혜영
+- 안녕하세요!
+
+
+>>>>>>> upstream/main

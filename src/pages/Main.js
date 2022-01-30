@@ -10,7 +10,7 @@ import InnisfreeSlideBox from "../components/InnisfreeSlideBox";
 import SidmoolSlideBox from "../components/SidmoolSlideBox";
 import BeplainSlideBox from "../components/BeplainSlideBox";
 
-
+// 슬라이드 다시 하기...!!
 
 function Main () {
   return (

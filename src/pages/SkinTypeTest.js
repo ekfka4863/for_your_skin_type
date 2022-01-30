@@ -725,7 +725,7 @@ export default function SkinTypeTest () {
               </form>
             </div>
             <div className="test_submit_btn">
-            <button 
+              <button 
                 type="submit" 
                 onClick={() => {
                   if (!testValues.current.includes('')) {
@@ -742,7 +742,6 @@ export default function SkinTypeTest () {
                             'Content-Type': 'application/json; charset=utf-8'
                           },
                           body: JSON.stringify({
-                            brand: "drjart",
                             skinType: skinTypeTitle
                           })
                         });

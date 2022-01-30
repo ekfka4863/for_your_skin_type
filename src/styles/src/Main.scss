@@ -47,6 +47,9 @@
       filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
       }
     }
+    #Beplaindots{
+      bottom:-50%;
+    }
   
     .dots{
 
@@ -55,7 +58,7 @@
     display: flex;
     z-index: 99;
     filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-  
+   
       .filldot{
           width:15px; height: 15px;
           background-color: white;
@@ -75,6 +78,7 @@
         }
       
       }
+  
       
       // 인디케이터
     }
