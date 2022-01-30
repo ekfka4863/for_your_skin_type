@@ -1,12 +1,11 @@
 package com.project.foryourskintype.dto;
 
+import com.project.foryourskintype.domain.Item;
 import com.project.foryourskintype.domain.ItemFeature;
 import com.project.foryourskintype.domain.SkinType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Data
 @AllArgsConstructor
@@ -23,4 +22,16 @@ public class ItemDto {
     private ItemFeature itemFeature;
     private SkinType skinType;
 
+    public ItemDto(Item item) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.price = item.getPrice();
+        this.priceSign = item.getPriceSign();
+        this.brand = item.getBrand();
+        this.imageLink = item.getImageLink();
+        this.productLink = item.getProductLink();
+        this.websiteLink = item.getWebsiteLink();
+        this.itemFeature = item.getItemFeature();
+        this.skinType = item.getSkinType();
+    }
 }

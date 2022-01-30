@@ -1,11 +1,12 @@
 package com.project.foryourskintype.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @Setter
 public class LikedItem {
     @Id @GeneratedValue
     @Column(name = "likeditem_id")
@@ -18,4 +19,14 @@ public class LikedItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    //생성 메서드
+    public static LikedItem createLikedItem(Item item, Member member){
+        LikedItem likedItem = new LikedItem();
+        likedItem.setItem(item);
+        likedItem.setMember(member);
+        member.getLikedItems().add(likedItem);
+
+        return likedItem;
+    }
 }

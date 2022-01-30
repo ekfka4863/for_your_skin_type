@@ -1,17 +1,16 @@
 package com.project.foryourskintype.controller;
 
 import com.project.foryourskintype.domain.LikedItem;
-import com.project.foryourskintype.dto.LikedItemSaveRequest;
+import com.project.foryourskintype.domain.Member;
+import com.project.foryourskintype.dto.*;
 import com.project.foryourskintype.repository.LikedItemRepository;
+import com.project.foryourskintype.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Transactional
@@ -20,16 +19,35 @@ import java.util.Optional;
 public class LikedItemController {
 
     private final LikedItemRepository likedItemRepository;
+    private final MemberRepository memberRepository;
 
-    @PostMapping("items/favoritesAdd")
-    public void save(@RequestBody LikedItemSaveRequest likedItemSaveRequest){
-        //이부분에서 LikedItemRepository.findOneFetch를 사용해서 페치조인으로 엔티티를 다 가져와야 이게 실행될것같음
-        LikedItem findLikedItem = likedItemRepository.findOne(likedItemSaveRequest.getId()).get();
-        likedItemRepository.save(findLikedItem);
+    @GetMapping("items/favorites") //장바구니 조회 API
+    public Result readByMember() {
+        List<MemberWithLikedItem> collect = memberRepository.findWithLikedItems()
+                .stream()
+                .map(m -> new MemberWithLikedItem(m))
+                .collect(Collectors.toList());
+        return new Result(collect);
     }
 
-    @PostMapping("items/faveritesDelete")
-    public void delete(@RequestBody LikedItemSaveRequest likedItemSaveRequest){
+    @PostMapping("items/favorites")
+    public Result readLikedItemsByMember(@RequestBody LikedItemReadRequest likedItemReadRequest){
+        memberRepository.findWithLikedItems()
+                .stream()
+                .map(m -> new LikedItemDto(m))
+        return new Result(collect);
+    }
+
+    @PostMapping("items/favoritesAdd")
+    public Long save(@RequestBody LikedItemSaveRequest likedItemSaveRequest) {
+        LikedItem createLikedItem = LikedItem.createLikedItem(likedItemSaveRequest.getItem(),
+                likedItemSaveRequest.getMember());
+
+        return likedItemRepository.save(createLikedItem);
+    }
+
+    @PostMapping("items/favoritesDelete")
+    public void delete(@RequestBody LikedItemSaveRequest likedItemSaveRequest) {
         likedItemRepository.delete(likedItemSaveRequest.getId());
     }
 }
