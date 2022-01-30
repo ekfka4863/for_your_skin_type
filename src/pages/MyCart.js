@@ -10,7 +10,7 @@ import "../styles/src/MyCart.scss";
 
 
 // POST request 보내기 전 임의로 사용자 정하기 ... 
-export const user1 = {
+const user1 = {
   email: 'user1@gmail.com',
   password:'user1_password', 
   name: '박유저',

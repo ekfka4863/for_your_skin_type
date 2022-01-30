@@ -10,9 +10,11 @@ import home_img from "../assets/img/tablet/home_tablet.png";
 
 
 function Header() {
- 
+
   const [sidebar, setSidebar] = useState(false);
-  const [Login, setLogin] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [clicktap, setClicktap] = useState(false);
 
 
   const openSidebar = () =>{
@@ -59,21 +61,23 @@ function Header() {
             <span><img src={home_img} alt="홈이미지" className="desktop_home_img"></img></span>
             </Link>
 
-            <div>
-          
-            <Link to="/login-signup">
-                <button onClick={()=>setLogin(!Login)}>
-                <span><img src={user} alt="로그인이미지" className="desktop_log_img"></img></span>
-                </button>
-            </Link>
+            <div className="unb">
+              <Link to="/login-signup">
+              {/* <Link to="/test-mypage"> */}
+                  <button onClick={()=> {
+                    setClicktap(!clicktap); }}> 
+                  <span><img src={user} alt="로그인이미지" className="desktop_log_img"></img></span>
+                  </button>
+              </Link>
 
-            {/* { Login ? <LoginTap/> : <LogoutTap/> } */}
+              <Link to="/my-cart">
+              <img src={cart} alt="장바구니이미지" className="desktop_cart_img"></img>
+              </Link>
+
+              <LoginTap />
             </div>
 
-            <Link to="/my-cart">
-            <img src={cart} alt="장바구니이미지" className="desktop_cart_img"></img>
-            </Link>
-
+        {/* tablet */}
           <div className="nav_open_btn">
               <button onClick={openSidebar}>
               <span className="blind">메뉴바 열기버튼</span>
@@ -100,32 +104,36 @@ function Header() {
 
     </>
   )
+
+  function LoginTap() {
+    return(
+      <div className="LoginTapWrapper">
+        <ul className={(!clicktap) ? "LoginTap_none" : "LoginTap" }>
+          {
+              (!loggedIn) 
+            ? 
+              <>
+                <li><Link to="/login-signup">로그인</Link></li> 
+                <li><Link to="/login-signup">회원가입</Link></li> 
+              </>
+            :
+              <>
+                <li><Link to="/login-signup">마이페이지</Link></li> 
+                <li onClick={() => alert("정상적으로 로그아웃 되었습니다!")}>
+                {/* <li> */}
+                  <Link to="/login-signup">로그아웃</Link>
+                </li> 
+              </>
+          }
+        </ul>
+      </div>
+    )
+    
+  }
 }
 
-// function LoginTap() {
-//   return(
-//     <div>
-//       <div className="triangle"></div>
-//       <ul className="LoginTap">
-//         <li>로그인</li>
-//         <li>회원가입</li>
-//       </ul>
-//     </div>
-//   )
-  
-// }
-// function LogoutTap() {
-//   return(
-//     <div>
-//       <div className="triangle"></div>
-//       <ul className="LogoutTap">
-//         <li>로그아웃</li>
-//         <li>마이페이지</li>
-//       </ul>
-//     </div>
-//   )
-  
-// }
+
+
 
 
 export default Header;           
