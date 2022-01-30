@@ -796,10 +796,3 @@ export default function SkinTypeTest () {
   ) 
 }
 
-
-
-
-
-
-// localStorage.setItem();
-// localStorage.getItem();
