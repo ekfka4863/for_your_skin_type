@@ -50,4 +50,11 @@ public class JPAItemService implements ItemService{
                 .setParameter("skinType", skinType)
                 .getResultList();
     }
+
+    @Override
+    public List<Item> findSkinBrand(String brand) {
+        return em.createQuery("select i from Item i where i.brand=:brand", Item.class)
+                .setParameter("brnad", brand)
+                .getResultList();
+    }
 }

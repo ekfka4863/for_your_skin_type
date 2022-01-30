@@ -16,7 +16,7 @@ import go_to_test_btn from "../assets/img/laptop/go_to_test_btn.png";
 
 
 // sessionId가 있음에 따라 MyCart.js 페이지에서 signup api에서 보내기 ... 
-export let data;
+// export let data;
 
 
 
@@ -43,36 +43,45 @@ export default function LoginSignup() {
   const [userId, setUserId] = useState("");
   const [userPwLogin, setUserPwLogin] = useState("");
   
+  const url = 'http://localhost:9090/login';
+
   const submitToLogIn = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     // console.log({   // 확인용!
     //   userId, 
     //   userPwLogin
     // });
 
-    const response = await fetch('http://localhost:9090/login', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        userId: userId, 
-        userPwLogin: userPwLogin
-      })
-    });
+    try {
 
-    // const data = await response.json(); 
-    data = await response.json(); 
-    console.log("data / 세션 ID => ", data);
-    
-    // validate if session id exists... 
-    if (sessionStorage.getItem(data).sessionId !== "") {
-      setLoggedIn(true);
-      // ...
-    } else {
-      alert("아이디 또는 비밀번호를 확인해주세요!");
+      const response = await fetch(url, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify({
+          userId, 
+          userPwLogin
+        })
+      });
+      
+      // const data = await response.json(); 
+      const data = await response.json(); 
+      console.log("data / 세션 ID => ", data);
+
+      // validate if session id exists... 
+      // if (sessionStorage.getItem(data).sessionId !== "") {
+      //   setLoggedIn(true);
+      //   // ...
+      // } else {
+      //   alert("아이디 또는 비밀번호를 확인해주세요!");
+      // }
+      
+    } catch (error) {
+      console.log("POST request XXXXXX!! - LoginSignup.js ");
     }
+      
   };  // reference:  https://www.youtube.com/watch?v=OUP-urBy1k4
   
   
@@ -256,4 +265,4 @@ export default function LoginSignup() {
 };
 
 
-// 
+//

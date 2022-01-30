@@ -12,4 +12,5 @@ public interface ItemService {
     List<Item> findSiItem();
     List<Item> findBeItem();
     List<Item> findSkinTypeItem(SkinType skinType);
+    List<Item> findSkinBrand(String brand);
 }

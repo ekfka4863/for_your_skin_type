@@ -1,6 +1,7 @@
 package com.project.foryourskintype.repository;
 
 import com.project.foryourskintype.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,14 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 @Transactional
 public class JPAMemberRepository implements MemberRepository{
 
     private final EntityManager em;
-
-    public JPAMemberRepository(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public Long save(Member member) {
@@ -37,15 +35,32 @@ public class JPAMemberRepository implements MemberRepository{
                 .getResultList()
                 .stream()
                 .findAny();
-
     }
 
     @Override
-    @Transactional(readOnly = true)
+    public Optional<Member> findByEmail(String email) {
+        return em.createQuery("select m from Member m where m.email=:email", Member.class)
+                .setParameter("email", email)
+                .getResultList()
+                .stream()
+                .findAny();
+    }
+
+
+    @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
     }
+
+    @Override
+    public List<Member> findLikedItems() {
+        return em.createQuery("select m from Member m" +
+                " join fetch m.likedItems li" +
+                " join fetch li.item i", Member.class)
+                .getResultList();
+    }
+
 
     @Override
     public void delete(Long id) {

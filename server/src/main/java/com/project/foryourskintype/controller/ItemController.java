@@ -1,11 +1,11 @@
 package com.project.foryourskintype.controller;
 
 import com.project.foryourskintype.dto.ItemDto;
+import com.project.foryourskintype.dto.ReadItemBrandRequest;
 import com.project.foryourskintype.dto.ReadItemSkinTypeRequest;
+import com.project.foryourskintype.dto.Result;
 import com.project.foryourskintype.repository.ItemRepository;
 import com.project.foryourskintype.service.ItemService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
 
-    @GetMapping("/items") //상품 전체 조회 API
+    @GetMapping("items") //상품 전체 조회 API
     public Result readAll(){
         List<ItemDto> collect = itemRepository.findAll()
                 .stream()
@@ -37,11 +37,10 @@ public class ItemController {
                         m.getItemFeature(),
                         m.getSkinType()))
                 .collect(Collectors.toList());
-
         return new Result(collect);
     }
 
-    @GetMapping("/items/drjart") // drjart 상품조회 API
+    @GetMapping("items/drjart") // drjart 단순 상품조회 API
     public Result readDrjartItem(){
         List<ItemDto> collect = itemService.findDrItem()
                 .stream()
@@ -59,7 +58,7 @@ public class ItemController {
         return new Result((collect));
     }
 
-    @GetMapping("/items/innisfree") // innisfree 상품조회 API
+    @GetMapping("items/innisfree") // innisfree 단순 상품조회 API
     public Result readInnisfreeItem(){
         List<ItemDto> collect = itemService.findInItem()
                 .stream()
@@ -77,7 +76,7 @@ public class ItemController {
         return new Result((collect));
     }
 
-    @GetMapping("/items/sidmool") // sidmool 상품조회 API
+    @GetMapping("items/sidmool") // sidmool 단순 상품조회 API
     public Result readSidmoolItem(){
         List<ItemDto> collect = itemService.findSiItem()
                 .stream()
@@ -95,7 +94,7 @@ public class ItemController {
         return new Result((collect));
     }
 
-    @GetMapping("/items/beplain") // beplain 상품조회 API
+    @GetMapping("items/beplain") // beplain 단순 상품조회 API
     public Result readBeplainItem(){
         List<ItemDto> collect = itemService.findBeItem()
                 .stream()
@@ -113,7 +112,25 @@ public class ItemController {
         return new Result((collect));
     }
 
-    @PostMapping("/items/skintype") //브랜드와 스킨타입에 따른 조회 API
+    @PostMapping("items/brand") //브랜드에 따른 조회 API
+    public Result readForBrand(@RequestBody ReadItemBrandRequest readItemBrandRequest){
+        List<ItemDto> collect = itemService.findSkinBrand(readItemBrandRequest.getBrand())
+                .stream()
+                .map(m -> new ItemDto(m.getId(),
+                        m.getName(),
+                        m.getPrice(),
+                        m.getPriceSign(),
+                        m.getBrand(),
+                        m.getImageLink(),
+                        m.getProductLink(),
+                        m.getWebsiteLink(),
+                        m.getItemFeature(),
+                        m.getSkinType()))
+                .collect(Collectors.toList());
+        return new Result(collect);
+    }
+
+    @PostMapping("items/skintype") //스킨타입에 따른 조회 API
     public Result readForSkinType(@RequestBody ReadItemSkinTypeRequest readItemSkinTypeRequest){
         List<ItemDto> collect = itemService.findSkinTypeItem(readItemSkinTypeRequest.getSkinType())
                 .stream()
@@ -128,13 +145,7 @@ public class ItemController {
                         m.getItemFeature(),
                         m.getSkinType()))
                 .collect(Collectors.toList());
-
         return new Result(collect);
     }
 
-    @Data
-    @AllArgsConstructor
-    static class Result<T> { //API 확장성을 위해서 한번 감싸기위한 class
-        private T data;
-    }
 }

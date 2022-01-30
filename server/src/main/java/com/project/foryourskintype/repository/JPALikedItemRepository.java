@@ -1,6 +1,8 @@
 package com.project.foryourskintype.repository;
 
+import com.project.foryourskintype.domain.Item;
 import com.project.foryourskintype.domain.LikedItem;
+import com.project.foryourskintype.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +25,21 @@ public class JPALikedItemRepository implements LikedItemRepository{
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<LikedItem> findAll() {
         return em.createQuery("select l from LikedItem l", LikedItem.class)
                 .getResultList();
     }
 
     @Override
-    public Optional<LikedItem> findOne(Long id) {
+    public Optional<LikedItem> findById(Long id) {
         LikedItem findLikedItem = em.find(LikedItem.class, id);
         return Optional.ofNullable(findLikedItem);
     }
 
-    @Override  //해결해야함 페치조인으로 엔티티를 다 가져와야 할것같음
-    public Optional<LikedItem> findOneFetch(Long id) {
-        return Optional.empty();
+    @Override
+    public List<LikedItem> findAllByMember(String email) {
+        return em.createQuery("select l from LikedItem l join l.member m", LikedItem.class)
+                .getResultList();
     }
 
     @Override

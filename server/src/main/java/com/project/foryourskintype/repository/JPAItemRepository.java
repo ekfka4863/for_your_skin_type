@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 @Repository
 @Transactional
@@ -32,7 +31,6 @@ public class JPAItemRepository implements ItemRepository {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Item> findAll() {
         return em.createQuery("select i from Item i", Item.class)
                 .getResultList();

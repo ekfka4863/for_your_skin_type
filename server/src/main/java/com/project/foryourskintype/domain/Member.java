@@ -1,5 +1,7 @@
 package com.project.foryourskintype.domain;
 
+import com.project.foryourskintype.dto.MemberDto;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +19,33 @@ public class Member {
     private String name;
     private int age;
     private String gender;
+    @Column(unique = true)
     private String email;
     private String password;
     private String phoneNumber;
 
     @OneToMany(mappedBy = "member")
     private List<LikedItem> likedItems = new ArrayList<>();
+
+    public Member(String name, int age, String gender, String email, String password, String phoneNumber) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Member(Long id, String name, int age, String gender, String email, String password, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+
+    protected Member(){}
+
 }
