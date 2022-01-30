@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.get('http://localhost:9090/url')
+axios.get('https://localhost:8080/url')
   .then((Response) => {console.log(Response.data)})
   .catch((Error) => {console.log(Error)})
 

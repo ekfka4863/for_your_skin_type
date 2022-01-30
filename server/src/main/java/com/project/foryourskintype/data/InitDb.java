@@ -37,7 +37,7 @@ public class InitDb {
         public void dbInit() throws IOException, ParseException {
 
 //            String path = getClass().getResource("").getPath() + "itemdata.json";
-            String path = "C:\\Users\\Yanglet\\Project\\foryourskintype\\foryourskintype\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
+            String path = "/Users/dayepark/Documents/dev/for_your_skin_type/server/src/main/java/com/project/foryourskintype/data/itemdata.json";
             FileReader reader = new FileReader(path);
             Object parse = new JSONParser().parse(reader);
             JSONArray jsonList = (JSONArray) parse;

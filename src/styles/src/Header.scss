@@ -12,9 +12,9 @@
   background-color: $white2;
   // background-color: #ea1;
   border-bottom: 0.8px solid rgba(0, 0, 0, 0.3);
+  // h1 {}
   .navigation {
     display: flex;
-
     .nav_open_btn {
       display: none;
     }
@@ -29,16 +29,10 @@
       justify-content: space-between;
       list-style: none;
       // background-color: red;
-      
       li {
         width: 200px;
         padding: 10px 15px;
         box-sizing: border-box;
-    
-    
-        // transition: width .3s ease;
-        // background-color: #ae1;
-        // outline: 1px solid #333;
         a {
           position: relative;
           display: block;
@@ -63,95 +57,107 @@
           border-radius: 2px;
           transition:0.7s;
           margin-left: 20px;
+          border-radius:5px;
         }
         a:hover:after{
           width:80%;
-       
+          border-radius:5px;
         }
       }
+     
+ 
+
     }
 
-    .desktop_log_img{
-      position: absolute;
-      right:150px; top:20px;
-      width:42px; height:42px;
-      filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
-    }
-    .desktop_cart_img{
-      position: absolute;
-      right:97px; top:20px;
-      width:42px; height:42px;
-      filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
-    }
-    
     .desktop_home_img{
       position: absolute;
       right:40px; top:20px;
       width:42px; height:42px;
     }
+          // 홈버튼 따로 
+    .unb {
+            position: absolute;
+            right:90px; top:20px;
+          
+            .desktop_log_img{
+            
+              width:45px; height:45px;
+              filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
+            }
+            .desktop_cart_img{
+              // position: absolute;
+              // right:97px; top:20px;
+              width:45px; height:45px;
+              filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
+            }
+            // a {
+              button {
+                span {
+                  img {}
+                }
+              }
+            // }// a - router 
+    
+            // a {
+              img {}
+            // }// a - router 
+    
+            // LoginTap 시작부분 
+            .LoginTapWrapper {
+            position: relative;
+            left:-50px;
+              .LoginTap_none{
+                display: none;
+              }
+              .LoginTap {
+                background-color:rgb(156, 156, 156);
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 15px;
+                right: -28%;
+                width: auto;
+                height: auto;
+                text-align: center;
+                border-radius: 15px;
+                li {
+                  width: 90px;
+                  line-height: 50px;
+                  border-radius: 15px;
+                  font-size: 18px;
+                  font-weight: 500;
+                  color: #fff;
+                  // background-color: #ea1;
+                  a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                  }// a
+                }// li
+                li:first-child {
+                  position: relative;
+                  margin-bottom: 5px;
+                }
+                li:first-child::before {
+                  display: block;
+                  content: "";
+                  overflow: hidden;
+                  position: absolute;
+                  top: -20px; 
+                  right: 40%;
+                  // transform: translate(-50%);
+                  width: 15px;
+                  height: 20px;
+                  // background-color: #fff;
+                  background-color:rgb(156, 156, 156);
+                  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                }
+              }
+          
+            }// .LoginTapWrapper
+          }// .unb
+    
   }
-}
-
-.LoginTap{
-  position: fixed;
-  display: flex;
-  text-align: center;
-  top:70px; right:70px;
-  width:170px;
-  height:50px;
-  background-color: rgb(216, 216, 216);
-  color:black;
-  border-radius: 15px;
-  li{
-    line-height:45px;
-    margin-left:23px;
-  }
-  .triangle{
-    position: fixed;
-    top:47px; right:155px;
-    z-index:999;
-    width:0px;height:0px;
-    border-top:15px solid transparent;
-    border-bottom:20px solid  rgb(216, 216, 216);
-    border-right: 15px solid transparent;
-    border-left: 15px solid transparent;
-  }
-}
-.triangle{
-  position: fixed;
-  top:45px; right:155px;
-  z-index:999;
-  width:0px;height:0px;
-  border-top:15px solid transparent;
-  border-bottom:20px solid  rgb(216, 216, 216);
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-}
-
-.LogoutTap{
-  position: fixed;
-  display: flex;
-  text-align: center;
-  top:70px; right:70px;
-  width:170px;
-  height:50px;
-  background-color: rgb(216, 216, 216);
-  color:black;
-  border-radius: 15px;
-  li{
-    line-height:45px;
-    margin-left:13px;
-  }
-}
-.triangle{
-  position: fixed;
-  top:47px; right:155px;
-  z-index:999;
-  width:0px;height:0px;
-  border-top:15px solid transparent;
-  border-bottom:20px solid  rgb(216, 216, 216);
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
 }
 
 
@@ -264,6 +270,14 @@
   }
 };
 
+// .LoginTapWrapper {
+//   .LoginTap {
+//     li {}
+//   }
+// }
+
+
+
 /* #headBox - tablet */ 
 @include tablet {
   #headBox {
@@ -365,3 +379,9 @@
     }
   }
 };
+
+// .LoginTapWrapper {
+//   .LoginTap {
+//     li {}
+//   }
+// }

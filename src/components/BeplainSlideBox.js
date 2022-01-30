@@ -68,7 +68,7 @@ const movepage = index => {
     <BtnSlide moveSlide={nextSlide} derection={"next"}/>
     <BtnSlide moveSlide={prevSlide} derection={"prev"}/>
 
-    <div className="dots" id="Beplaindots">
+    <div id="Beplaindots" className="dots" >
       {Array.from({length: 5}).map((item, index) => (
         <div onClick={() => movepage(index + 1)}
           className={slideindex === index + 1 ? "filldot" : "emptydot"}></div>
