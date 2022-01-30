@@ -22,7 +22,7 @@ const asyncDrjartGet = async () => {
     console.log("GET request to server done!! No problem!");
     console.log(data);
   } catch(error) {
-    console.log("GET request XXXXXX!!");
+    console.log("GET request XXXXXX - 닥터자르트!!");
   }
 } 
 asyncDrjartGet();

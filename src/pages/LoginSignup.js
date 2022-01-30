@@ -1,10 +1,6 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
 
-// jwt 
-// import jwt from "jsonwebtoken";    
-// reference:  https://kdg-is.tistory.com/115?category=931778 
-
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
@@ -17,36 +13,10 @@ import "../styles/src/LoginSignup.scss";
 // img 
 import cart from "../assets/img/tablet/cart.png";
 import go_to_test_btn from "../assets/img/laptop/go_to_test_btn.png";
-// import go_to_test_btn from "../assets/img/tablet/go_to_test_btn.png";
 
 
-// // axios
-// import axios from "axios";
-
-// // axios.defaults.baseURL = "https://localhost____.com"; // 이거 체크하기!!
-// axios.defaults.withCredentials = true;
-
-// const onLogin = (email, password) => {
-//   const data = {
-//     email,
-//     password,
-//   };
-// 	axios.post('/login', data).then(response => {
-// 		const { accessToken } = response.data;
-
-// 		// API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-// 		axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
-// 		// accessToken을 localStorage, cookie 등에 저장하지 않는다!
-
-// 	}).catch(error => {
-// 		// ... 에러 처리
-// 	});
-// }; // reference:  https://velog.io/@yaytomato/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0
-
-
-
-
+// sessionId가 있음에 따라 MyCart.js 페이지에서 signup api에서 보내기 ... 
+export let data;
 
 
 
@@ -69,17 +39,17 @@ export default function LoginSignup() {
   }
 
 
-  // login logic 2 - reference:  https://www.youtube.com/watch?v=OUP-urBy1k4
+  // 로그인 로직
   const [userId, setUserId] = useState("");
-  const [userPw_login, setUserPw_login] = useState("");
+  const [userPwLogin, setUserPwLogin] = useState("");
   
   const submitToLogIn = async (e) => {
     e.preventDefault();
 
-    console.log({   // 확인용!
-      userId, 
-      userPw_login
-    });
+    // console.log({   // 확인용!
+    //   userId, 
+    //   userPwLogin
+    // });
 
     const response = await fetch('http://localhost:9090/login', {
       method: 'POST', 
@@ -87,13 +57,22 @@ export default function LoginSignup() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userId, 
-        userPw_login
+        userId: userId, 
+        userPwLogin: userPwLogin
       })
     });
 
-    const data = await response.json(); 
-    console.log(data);
+    // const data = await response.json(); 
+    data = await response.json(); 
+    console.log("data / 세션 ID => ", data);
+    
+    // validate if session id exists... 
+    if (sessionStorage.getItem(data).sessionId !== "") {
+      setLoggedIn(true);
+      // ...
+    } else {
+      alert("아이디 또는 비밀번호를 확인해주세요!");
+    }
   };  // reference:  https://www.youtube.com/watch?v=OUP-urBy1k4
   
   
@@ -197,7 +176,7 @@ export default function LoginSignup() {
                   <img src={require('../assets/img/laptop/user_pw.png')} alt="비밀번호 이미지"></img>
                 </li>
                 <li>
-                  <input type="password" id="userPW" placeholder="비밀번호를 입력하세요." onChange={e => setUserPw_login(e.target.value)} required></input>
+                  <input type="password" id="userPW" placeholder="비밀번호를 입력하세요." onChange={e => setUserPwLogin(e.target.value)} required></input>
                   <label for="userPW"></label>
                 </li>
               </ul>
@@ -218,7 +197,7 @@ export default function LoginSignup() {
                   <label for="userName">
                     <img src={require('../assets/img/laptop/user_name.png')} alt="비밀번호 이미지"></img>
                   </label>
-                  <input id="userName" type="text" placeholder="이름" onChange={e => setUserName(e.target.value)} required></input>
+                  <input id="userName" type="text" placeholder="이름" minLength={2} onChange={e => setUserName(e.target.value)} required></input>
                 </li>
                 <li className="gender_box">
                   <div className="man_box">

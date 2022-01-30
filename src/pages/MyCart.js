@@ -8,16 +8,28 @@ import Card from "../components/Card";
 
 import "../styles/src/MyCart.scss";
 
+import data from "../pages/LoginSignup"; 
+
+
 
 // POST request 보내기 전 임의로 사용자 정하기 ... 
 const user1 = {
+  id: 1,
   email: 'user1@gmail.com',
   password:'user1_password', 
   name: '박유저',
   gender: 'woman',
   phoneNumber: '01012345678',
-  loggedIn: true
+  sessionId: "~~~~",
 };
+
+
+// for signup api to bring data of certain user's favorite items
+// const url = 'http://localhost:9090/login';
+// import data from "../pages/LoginSignup"; 
+const sessionId = sessionStorage.getItem(data).sessionId;
+console.log("sessionId in MyCart.js => ", sessionId);
+
 
 // 상품을 장바구니에 추가하고 싶을 때 보내는 POST request
 if (user1.loggedIn === true) {
