@@ -24,13 +24,14 @@ const user1 = {
 };
 
 
-// for signup api to bring data of certain user's favorite items
-// const url = 'http://localhost:9090/login';
-// import data from "../pages/LoginSignup"; 
-console.log("data => ", data);
-// const sessionId = sessionStorage.getItem(data).sessionId;
-// console.log("sessionId in MyCart.js => ", sessionId);
-// 저희가 원하는 것: 세션아이디가 지금 로그인 된 아이디의 유저에게 있는지 확인하고, 
+// // for signup api to bring data of certain user's favorite items
+// // const url = 'http://localhost:9090/login';
+// // import data from "../pages/LoginSignup"; 
+// console.log("data => ", data);
+
+// // const sessionId = sessionStorage.getItem(data).sessionId;
+// // console.log("sessionId in MyCart.js => ", sessionId);
+// // 저희가 원하는 것: 세션아이디가 지금 로그인 된 아이디의 유저에게 있는지 확인하고, 
 
 
 // 상품을 장바구니에 추가하고 싶을 때 보내는 POST request

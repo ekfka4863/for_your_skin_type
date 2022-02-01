@@ -64,7 +64,7 @@ function Slider() {
   
   const activateIndicator = () => {
     const indicatorWrapper  = document.querySelectorAll('.indicator');
-    console.log(indicatorWrapper);
+    // console.log(indicatorWrapper);
     [...indicatorWrapper].forEach(
       (each) => {
         const currIndicator = [...each.children];
