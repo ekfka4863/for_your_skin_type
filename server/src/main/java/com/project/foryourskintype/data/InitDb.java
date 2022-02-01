@@ -42,15 +42,14 @@ public class InitDb {
 
         public void dbInit() throws IOException, ParseException {
 
-//            String path = getClass().getResource("").getPath() + "itemdata.json";
-            String path = "/Users/dayepark/Documents/dev/for_your_skin_type/server/src/main/java/com/project/foryourskintype/data/itemdata.json";
-            FileReader reader = new FileReader(path);
-            Object parse = new JSONParser().parse(reader);
-            JSONArray jsonList = (JSONArray) parse;
+            String path = new File("").getAbsolutePath()
+                    + "\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
+            JSONArray jsonList = (JSONArray) new JSONParser().parse(new FileReader(path));
 
-            for (Object o : jsonList) {
+            for (Object o : jsonList) { //상품정보 초기화
                 itemRepository.save(new Gson().fromJson(o.toString(), Item.class));
             }
+
             Member member1 = new Member("박유저",
                     20,
                     "woman",
@@ -66,10 +65,14 @@ public class InitDb {
 
 
             LikedItem likedItem1 = LikedItem.createLikedItem(itemRepository.findOne(3L).get(), member1);
-            LikedItem likedItem2 = LikedItem.createLikedItem(itemRepository.findOne(5L).get(), member2);
+            LikedItem likedItem2 = LikedItem.createLikedItem(itemRepository.findOne(5L).get(), member1);
+            LikedItem likedItem3 = LikedItem.createLikedItem(itemRepository.findOne(8L).get(), member2);
+            LikedItem likedItem4 = LikedItem.createLikedItem(itemRepository.findOne(14L).get(), member2);
 
             likedItemRepository.save(likedItem1);
             likedItemRepository.save(likedItem2);
+            likedItemRepository.save(likedItem3);
+            likedItemRepository.save(likedItem4);
             memberRepository.save(member1);
             memberRepository.save(member2);
         }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,26 @@ public class JPAMemberService implements MemberService {
 
 
     @Override
+    public Member findById(Long id) {
+        Optional<Member> findMember = memberRepository.findById(id);
+        return findMember.orElse(null);
+    }
+
+    @Override
+    public Member findByName(String name) {
+        Optional<Member> findMember = memberRepository.findByName(name);
+        return findMember.orElse(null);
+    }
+
+    @Override
+    public Member findByEmail(String email) {
+        Optional<Member> findMember = memberRepository.findByEmail(email);
+        return findMember.orElse(null);
+    }
+
+    @Override
     public Long join(Member member) {
-        validateDuplicateMember(member);
+        validateDuplicateMember(member); //중복회원인지(이메일이 같은지) 확인
         memberRepository.save(member);
         return member.getId();
     }
@@ -46,6 +65,21 @@ public class JPAMemberService implements MemberService {
             log.info("login fail");
             return 0; //로그인 실패
         }
+    }
+
+    @Override
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
+
+    @Override
+    public List<Member> findWithLikedItems() {
+        return memberRepository.findWithLikedItems();
+    }
+
+    @Override
+    public void delete(Long id) {
+        memberRepository.delete(id);
     }
 
     private boolean validateDuplicateMember(Member member) {

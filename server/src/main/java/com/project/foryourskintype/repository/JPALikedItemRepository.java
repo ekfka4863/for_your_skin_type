@@ -37,8 +37,12 @@ public class JPALikedItemRepository implements LikedItemRepository{
     }
 
     @Override
-    public List<LikedItem> findAllByMember(String email) {
-        return em.createQuery("select l from LikedItem l join l.member m", LikedItem.class)
+    public List<LikedItem> findAllByEmail(String email) {
+        return em.createQuery("select l from LikedItem l" +
+                " join fetch l.item i" +
+                " join fetch l.member m" +
+                " where l.member.email=:email", LikedItem.class)
+                .setParameter("email", email)
                 .getResultList();
     }
 

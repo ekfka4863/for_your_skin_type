@@ -4,7 +4,6 @@ import com.project.foryourskintype.dto.ItemDto;
 import com.project.foryourskintype.dto.ReadItemBrandRequest;
 import com.project.foryourskintype.dto.ReadItemSkinTypeRequest;
 import com.project.foryourskintype.dto.Result;
-import com.project.foryourskintype.repository.ItemRepository;
 import com.project.foryourskintype.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,23 +18,13 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ItemController {
 
-    private final ItemRepository itemRepository;
     private final ItemService itemService;
 
     @GetMapping("items") //상품 전체 조회 API
     public Result readAll(){
-        List<ItemDto> collect = itemRepository.findAll()
+        List<ItemDto> collect = itemService.findAll()
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result(collect);
     }
@@ -44,16 +33,7 @@ public class ItemController {
     public Result readDrjartItem(){
         List<ItemDto> collect = itemService.findDrItem()
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result((collect));
     }
@@ -62,16 +42,7 @@ public class ItemController {
     public Result readInnisfreeItem(){
         List<ItemDto> collect = itemService.findInItem()
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result((collect));
     }
@@ -80,16 +51,7 @@ public class ItemController {
     public Result readSidmoolItem(){
         List<ItemDto> collect = itemService.findSiItem()
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result((collect));
     }
@@ -98,16 +60,7 @@ public class ItemController {
     public Result readBeplainItem(){
         List<ItemDto> collect = itemService.findBeItem()
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result((collect));
     }
@@ -116,16 +69,7 @@ public class ItemController {
     public Result readForBrand(@RequestBody ReadItemBrandRequest readItemBrandRequest){
         List<ItemDto> collect = itemService.findSkinBrand(readItemBrandRequest.getBrand())
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result(collect);
     }
@@ -134,16 +78,7 @@ public class ItemController {
     public Result readForSkinType(@RequestBody ReadItemSkinTypeRequest readItemSkinTypeRequest){
         List<ItemDto> collect = itemService.findSkinTypeItem(readItemSkinTypeRequest.getSkinType())
                 .stream()
-                .map(m -> new ItemDto(m.getId(),
-                        m.getName(),
-                        m.getPrice(),
-                        m.getPriceSign(),
-                        m.getBrand(),
-                        m.getImageLink(),
-                        m.getProductLink(),
-                        m.getWebsiteLink(),
-                        m.getItemFeature(),
-                        m.getSkinType()))
+                .map(i -> new ItemDto(i))
                 .collect(Collectors.toList());
         return new Result(collect);
     }

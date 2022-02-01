@@ -1,11 +1,7 @@
 package com.project.foryourskintype.controller;
 
 import com.project.foryourskintype.domain.Member;
-import com.project.foryourskintype.dto.MemberDto;
-import com.project.foryourskintype.dto.MemberLoginRequest;
-import com.project.foryourskintype.dto.MemberLoginResponse;
-import com.project.foryourskintype.dto.Result;
-import com.project.foryourskintype.repository.MemberRepository;
+import com.project.foryourskintype.dto.*;
 import com.project.foryourskintype.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
@@ -24,12 +20,11 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:3000")
 public class MemberController {
 
-    private final MemberRepository memberRepository;
     private final MemberService memberService;
 
-    @GetMapping("members")
-    public Result readAll(){
-        List<MemberDto> collect = memberRepository.findAll()
+    @GetMapping("members/only")
+    public Result readAll(){ //모든 회원 정보 조회 API (장바구니 정보 미포함)
+        List<MemberDto> collect = memberService.findAll()
                 .stream()
                 .map(m -> new MemberDto(m))
                 .collect(Collectors.toList());
@@ -37,8 +32,17 @@ public class MemberController {
         return new Result(collect);
     }
 
+    @GetMapping("members") //모든 회원 정보 조회 API (장바구니 정보 포함)
+    public Result readByMember() {
+        List<MemberWithLikedItem> collect = memberService.findWithLikedItems()
+                .stream()
+                .map(m -> new MemberWithLikedItem(m))
+                .collect(Collectors.toList());
+        return new Result(collect);
+    }
 
-    @PostMapping("signup")
+
+    @PostMapping("signup") //회원가입 API
     public Long join(@RequestBody @Valid MemberDto memberDto, Errors errors){
         if(errors.hasErrors()){
             return null;
@@ -53,12 +57,12 @@ public class MemberController {
     }
 
 
-    @PostMapping("login")
+    @PostMapping("login") //로그인 API
     public Result login(@RequestBody MemberLoginRequest memberLoginRequest, HttpServletRequest request){
         //클라이언트랑 변수 맞춘것 Email, Password라고 보면됨
         int loginResult = memberService.Login(memberLoginRequest.getUserId(), memberLoginRequest.getUserPwLogin(), request);
         HttpSession session = request.getSession();
-        Member findMember = memberRepository.findByEmail(memberLoginRequest.getUserId()).get();
+        Member findMember = memberService.findByEmail(memberLoginRequest.getUserId());
 
         return new Result(new MemberLoginResponse(findMember,
                 session.getAttribute(memberLoginRequest.getUserId()).toString()));

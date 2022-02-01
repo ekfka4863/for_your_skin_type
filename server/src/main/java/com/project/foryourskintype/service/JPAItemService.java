@@ -2,12 +2,14 @@ package com.project.foryourskintype.service;
 
 import com.project.foryourskintype.domain.Item;
 import com.project.foryourskintype.domain.SkinType;
+import com.project.foryourskintype.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +17,27 @@ import java.util.List;
 public class JPAItemService implements ItemService{
 
     private final EntityManager em;
+    private final ItemRepository itemRepository;
+
+    @Override
+    public Long save(Item item) {
+        return itemRepository.save(item);
+    }
+
+    @Override
+    public List<Item> findAll() {
+        return itemRepository.findAll();
+    }
+
+    @Override
+    public Item findOne(Long id) {
+        return itemRepository.findOne(id).orElse(null);
+    }
+
+    @Override
+    public void delete(Long id) {
+        itemRepository.delete(id);
+    }
 
     @Override
     public List<Item> findDrItem() {
