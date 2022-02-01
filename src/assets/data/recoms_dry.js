@@ -1,0 +1,200 @@
+export const recoms_dry = [
+  {
+    "name": "시카페어 카밍 젤 크림",
+    "price": "35000",
+    "priceSign": "원",
+    "brand": "drjart",
+    "imageLink": "https://image.drjart.com/img/001/1641176153064.png",
+    "productLink": "https://www.drjart.co.kr/ko/prd/view/948?activeTopGnb=all",
+    "websiteLink": "https://www.drjart.co.kr/ko/main/index",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "시카페어 세럼 인 쿠션 파운데이션",
+    "price": "37000",
+    "priceSign": "원",
+    "brand": "drjart",
+    "imageLink": "https://image.drjart.com/img/001/1626751389890.png",
+    "productLink": "https://www.drjart.co.kr/ko/prd/view/1029?activeTopGnb=all",
+    "websiteLink": "https://www.drjart.co.kr/ko/main/index",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "시카페어 페이셜 카밍 미스트",
+    "price": "18000",
+    "priceSign": "원",
+    "brand": "drjart",
+    "imageLink": "https://image.drjart.com/img/001/1639903259282.png",
+    "productLink": "https://www.drjart.co.kr/ko/prd/view/889?activeTopGnb=all",
+    "websiteLink": "https://www.drjart.co.kr/ko/main/index",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "더마 코튼 패드 세트",
+    "price": "13500",
+    "priceSign": "원",
+    "brand": "drjart",
+    "imageLink": "https://image.drjart.com/img/001/1514957241897.png",
+    "productLink": "https://www.drjart.co.kr/ko/prd/view/512?activeTopGnb=all",
+    "websiteLink": "https://www.drjart.co.kr/ko/main/index",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "블랙티 앰플 [대용량] 50mL + 블랙티 크림 45mL",
+    "price": "85000",
+    "priceSign": "원",
+    "brand": "innisfree",
+    "imageLink": "https://images.innisfree.co.kr/upload/product/30646_l_S_250.jpg?T20220119224",
+    "productLink": "https://www.innisfree.com/kr/ko/ProductView.do?prdSeq=30646&catCd01=UA&catCd02=&tp=1",
+    "websiteLink": "https://www.innisfree.com/kr/ko/Main.do",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "트루 비타민C 20 앰플 15mL",
+    "price": "25000",
+    "priceSign": "원",
+    "brand": "innisfree",
+    "imageLink": "https://images.innisfree.co.kr/upload/product/26743_l_S_250.jpg?T20220119224",
+    "productLink": "https://www.innisfree.com/kr/ko/ProductView.do?prdSeq=26743&catCd01=UA&catCd02=&tp=1",
+    "websiteLink": "https://www.innisfree.com/kr/ko/Main.do",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "포레스트 안티에이징 올인원 에센스 2종 세트",
+    "price": "35000",
+    "priceSign": "원",
+    "brand": "innisfree",
+    "imageLink": "https://images.innisfree.co.kr/upload/product/26802_l_S_250.jpg?T20220119224",
+    "productLink": "https://www.innisfree.com/kr/ko/ProductView.do?prdSeq=26802&catCd01=UA&catCd02=&tp=1",
+    "websiteLink": "https://www.innisfree.com/kr/ko/Main.do",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "그린티 씨드 크림 [대용량] 100mL",
+    "price": "38000",
+    "priceSign": "원",
+    "brand": "innisfree",
+    "imageLink": "https://images.innisfree.co.kr/upload/product/30639_l_S_250.jpg?T20220119224",
+    "productLink": "https://www.innisfree.com/kr/ko/ProductView.do?prdSeq=30639&catCd01=UA&catCd02=&tp=1",
+    "websiteLink": "https://www.innisfree.com/kr/ko/Main.do",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "제주 왕벚꽃 톤업 크림 [단지타입/튜브타입] 50mL",
+    "price": "20000",
+    "priceSign": "원",
+    "brand": "innisfree",
+    "imageLink": "https://images.innisfree.co.kr/upload/product/20862_l_S_250.jpg?T20220119224",
+    "productLink": "https://www.innisfree.com/kr/ko/ProductView.do?prdSeq=20862&catCd01=UA&catCd02=&tp=1",
+    "websiteLink": "https://www.innisfree.com/kr/ko/Main.do",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "비자 시카 밤 40mL",
+    "price": "22000",
+    "priceSign": "원",
+    "brand": "innisfree",
+    "imageLink": "https://images.innisfree.co.kr/upload/product/13842_l_S_250.jpg?T20220119224",
+    "productLink": "https://www.innisfree.com/kr/ko/ProductView.do?prdSeq=13842&catCd01=UA&catCd02=&tp=1",
+    "websiteLink": "https://www.innisfree.com/kr/ko/Main.do",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  }, //여기까지 이니스
+  {
+    "name": "아크바이™ 스킨 500ml",
+    "price": "22600",
+    "priceSign": "원",
+    "brand": "sidmool",
+    "imageLink": "https://www.sidmool.com/shopimages/sidmool/0030110000283.jpg?1637303678",
+    "productLink": "https://www.sidmool.com/shop/shopdetail.html?branduid=77273&xcode=019&mcode=011&scode=&type=Y&sort=order&cur_code=019011&GfDT=Z2h3UQ%3D%3D",
+    "websiteLink": "http://www.sidmool.com/",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "[탄력을사랑하는시드물] 이데베논 탄력 수분 토너 128 ml",
+    "price": "31000",
+    "priceSign": "원",
+    "brand": "sidmool",
+    "imageLink": "https://www.sidmool.com/shopimages/sidmool/0030110000263.jpg?1626229091",
+    "productLink": "https://www.sidmool.com/shop/shopdetail.html?branduid=77251&xcode=019&mcode=011&scode=&type=Y&sort=order&cur_code=019011&GfDT=amp3Ug%3D%3D",
+    "websiteLink": "http://www.sidmool.com/",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "시드물 에키네시아 허브 스킨 150ml",
+    "price": "18600",
+    "priceSign": "원",
+    "brand": "sidmool",
+    "imageLink": "https://www.sidmool.com/shopimages/sidmool/0020110000023.jpg?1593665258",
+    "productLink": "https://www.sidmool.com/shop/shopdetail.html?branduid=77210&xcode=019&mcode=011&scode=&type=Y&sort=order&cur_code=019011&GfDT=bml7W1o%3D",
+    "websiteLink": "http://www.sidmool.com/",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "시드물 꿀 펩타이드 미스트 60ml",
+    "price": "8600",
+    "priceSign": "원",
+    "brand": "sidmool",
+    "imageLink": "https://www.sidmool.com/shopimages/sidmool/0010050000103.jpg?1487755606",
+    "productLink": "https://www.sidmool.com/shop/shopdetail.html?branduid=77130&xcode=019&mcode=011&scode=&type=Y&sort=order&cur_code=019011&GfDT=aWx3UFw%3D",
+    "websiteLink": "http://www.sidmool.com/",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "시드물 황금 동백 스킨 128ml",
+    "price": "49600",
+    "priceSign": "원",
+    "brand": "sidmool",
+    "imageLink": "https://www.sidmool.com/shopimages/sidmool/0010050000093.jpg?1615192414",
+    "productLink": "https://www.sidmool.com/shop/shopdetail.html?branduid=77028&xcode=019&mcode=011&scode=&type=Y&sort=order&cur_code=019011&GfDT=Zm53UFk%3D",
+    "websiteLink": "http://www.sidmool.com/",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "시카풀 앰플 30ml",
+    "price": "23000",
+    "priceSign": "원",
+    "brand": "beplain",
+    "imageLink": "https://beplain.co.kr/data/goods/18/10/44/1000000012/1000000012_main_072.jpg",
+    "productLink": "https://beplain.co.kr/goods/goods_view.php?goodsNo=1000000012",
+    "websiteLink": "https://beplain.co.kr",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "●설특가● 캐모마일 약산성 토너 150ml + 캐모마일 약산성 로션 150ml",
+    "price": "43000",
+    "priceSign": "원",
+    "brand": "beplain",
+    "imageLink": "https://beplain.co.kr/data/goods/21/06/22/1000000105/1000000105_main_070.jpg",
+    "productLink": "https://beplain.co.kr/goods/goods_view.php?goodsNo=1000000105",
+    "websiteLink": "https://beplain.co.kr",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+  {
+    "name": "[SET] 캐모마일 약산성 토너 190ml + 캐모마일 약산성 로션 150ml",
+    "price": "48000",
+    "priceSign": "원",
+    "brand": "beplain",
+    "imageLink": "https://beplain.co.kr/data/goods/20/08/33/1000000073/1000000073_main_037.jpg",
+    "productLink": "https://beplain.co.kr/goods/goods_view.php?goodsNo=1000000073",
+    "websiteLink": "https://beplain.co.kr",
+    "itemFeature": "크림형",
+    "skinType": "건성"
+  },
+];

@@ -1,0 +1,47 @@
+@import "./variable";
+
+// =======================================
+// Breakpoints
+$breakpoint-mobile: 320px;
+$breakpoint-tablet: 744px;
+$breakpoint-laptop: 1280px;
+$breakpoint-desktop: 1440px;
+
+
+
+// colors
+$white: #FFFFFF;
+$white2: #FDFEFF;
+$dark-gray: #444444;
+$light-gray: #CCCCCC;
+$light-gray-2: #F6F6F6;
+$transparent-bg: rgba(0, 0, 0, 0.35);
+// =======================================
+
+
+// =======================================
+// @mixin  
+@mixin mobile {
+  @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-laptop - 1px}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: #{$breakpoint-laptop}) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+

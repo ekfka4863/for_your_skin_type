@@ -1,0 +1,139 @@
+@import "../common/mixin";
+
+div.empty_cart {
+  margin: 30px auto 0;
+  font-weight: 400;
+  color: #666;
+}
+
+// ======================
+#wrap {
+  padding: 0;
+  margin: 0;
+}
+
+// ======================
+/* laptop, desktop */ 
+#myCartBox {
+  width: auto;
+  min-width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  .favorite_items_total_num {
+    position: relative;
+    h3 {
+      padding: 150px 0 100px 0;
+      font-size: 28px;
+      text-align: center;
+      color: $dark-gray;
+      text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+      // background-color: #ea1;
+    }
+    .total_num {
+      position: relative;
+      position: absolute;
+      top: 230px;
+      right: 180px;
+      color: $dark-gray;
+      font-size: 14px;
+    }
+    .total_num::before {
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translate(-50%);
+      display: block;
+      content: "";
+      overflow: hidden;
+      width: 95%;
+      height: 1px;
+      background-color: $dark-gray;
+    }
+  }
+  .favorite_items_area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: auto;
+    max-width: 1140px;
+    height: auto;
+    min-height: 400px;
+    margin: 60px auto;
+    margin-top: 0;
+    padding: 25px 35px;
+    border-radius: 15px;
+    background: rgba(204, 204, 204, 0.6);
+  }
+}
+
+
+
+
+/* mobile */ 
+@include mobile {
+  #myCartBox {
+    .favorite_items_total_num {
+      h3 {
+        font-size: 26px;
+      }
+      .total_num {
+        top: 240px;
+        right: 50%;
+        transform: translate(50%);
+      }
+    }
+    .favorite_items_area {
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      min-height: 900px;
+      border-radius: 5px;
+      div:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+
+
+/* tablet */ 
+@include tablet {
+  #wrap {
+    padding-left: 30px;
+  }
+
+  #myCartBox {
+    .favorite_items_total_num {
+      h3 {
+        font-size: 26px;
+        padding: 100px 0 70px 0;
+        // background-color: #ea1;
+      }
+      .total_num {
+        top: 150px;
+        right: 150px;
+      }
+    }
+    .favorite_items_area {
+      margin: auto;
+      padding: 30px;
+      padding-bottom: 0;
+      margin-bottom: 80px;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      
+      width: auto;
+      min-width: 500px;
+      max-width: 570px;
+      height: auto;
+      min-height: 600px;
+      border-radius: 10px;
+    }
+  }
+}
+
+
+
