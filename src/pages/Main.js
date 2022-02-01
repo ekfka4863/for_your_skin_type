@@ -5,10 +5,12 @@ import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
 import "../styles/src/Main.scss";
-import DaJartSlideBox from "../components/DrJartSlideBox";
-import InnisfreeSlideBox from "../components/InnisfreeSlideBox";
-import SidmoolSlideBox from "../components/SidmoolSlideBox";
-import BeplainSlideBox from "../components/BeplainSlideBox";
+// import DaJartSlideBox from "../components/DrJartSlideBox";
+// import InnisfreeSlideBox from "../components/InnisfreeSlideBox";
+// import SidmoolSlideBox from "../components/SidmoolSlideBox";
+// import BeplainSlideBox from "../components/BeplainSlideBox";
+
+import Slider from "../components/Slider";
 
 // 슬라이드 다시 하기...!!
 
@@ -28,35 +30,12 @@ function Main () {
           </button>
         </div>
 
-        <section className="dr_jart_box">
+        <section id="slideBox">
           <h3>
-            <span className="blind">닥터자르트 제품 보기</span>
+            <span className="blind">슬라이드로 제품보기</span>
           </h3>
-          <DaJartSlideBox/>
-          
-  
+          <Slider/>
         </section>
-        <section className="innisfree_box">
-          <h3>
-            <span className="blind">이니스프리 제품 보기</span>
-          </h3>
-        <InnisfreeSlideBox />
-        </section>
-        <section className="sidmool_box">
-          <h3>
-            <span className="blind">시드물 제품 보기</span>
-          </h3>
-        <SidmoolSlideBox/>
-
-        </section>
-        <section className="beplain_box">
-          <h3>
-            <span className="blind">비플레인 제품 보기</span>
-          </h3>
-          <BeplainSlideBox/>
-          
-        </section>
-
       </section>
 
       <Footer />

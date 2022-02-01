@@ -4,181 +4,12 @@
 /* #viewBox - laptop, desktop */ 
 #viewBox {
   // padding-top: 80px;
-   
-  // 불투명한 막 
-  .bgblack{
-    position: absolute;
-    z-index: 999;
-    width: 100vw;
-    height: 410.5vh;
-    left: 0px;
-    top: 0px;
-    background: rgba(0, 0, 0, 0.25);
-  }// 불투명한 막 
-
-  
-  // e.g. 마지막 인디케이터 묶음! 
-
-  // 인디케이터 
-  .Indicator{
-    position: absolute;
-    bottom:15%; left:45%;
-    
- 
-    .Left_button{
-    img{
-      position: absolute;
-      bottom:-20%; left:-49%;
-      width:25px;
-      height:40px;
-      z-index: 99;
-      filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-    }
-      }
-  
-    .Right_button{
-
-    img{
-      position: absolute;
-      bottom:-20%; right:-43%;
-      width:25px;
-      height:40px;
-      z-index: 99;
-      filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-      }
-    }
-    #Beplaindots{
-      bottom:-50%;
-    }
-  
-    .dots{
-
-    // position: absolute;
-    bottom:22%; right:44.5%;
-    display: flex;
-    z-index: 99;
-    filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-   
-      .filldot{
-          width:15px; height: 15px;
-          background-color: white;
-          border-radius:50%;
-          box-sizing: border-box;
-          z-index:1000;
-          margin-right:1em;
-        }
-
-      .emptydot{
-        width:15px; height: 15px;
-        border:2.3px solid #FFFFFF;
-        border-radius:50%;
-        box-sizing: border-box;
-        z-index:1000;
-        margin-right:1em;
-        }
-      
-      }
-  
-      
-      // 인디케이터
-    }
-
-  .slide_anim{
-        opacity: 1;
-        transition: opacity ease-in-out 1.5s;
-      }
-
-  .slide_none{
-    opacity: 0;
-      }
-        
-
-  // 슬라이더들
-  .dr_jart_box {
-    position: relative;
-    width:100vw;
-    height: 100vh;
-    // padding-top: 80px;
-  
-  
-    .slider {
-      .DrJart_slide{
-      img{
-          position: absolute;
-          width:100vw;
-          height:100vh;
-          
-          }
-        }
-      
-    
-      }
-  }// .dr_jart_box
-
-  .innisfree_box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-      .slider {
-        .Innisfree_slide{
-       
-          img{
-            position: absolute;
-            width:100vw;
-            height:100vh;
-            
-            }
-          }
-       
-    }
-  }// .innisfree_box
-
-
-  .sidmool_box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  
-    .slider {
-      .Sidmool_slide{
-     
-        img{
-          position: absolute;
-          width:100vw;
-          height:100vh;
-          
-          }
-        }
-    
-    }
-  }// .seedmool_box
-
-
-  .beplain_box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    
-    .slider {
-      .Beplain_slide{
-     
-        img{
-          position: absolute;
-          width:100vw;
-          height:100vh;
-          
-          }
-        }
-   
-     }
-  }// .beplain_box
-
 
   // 테스트 버튼
   .skin_type_test_btn {
     position: fixed;
     z-index: 9999;
-    top:10%; left: 50%;
+    top: 15%; left: 50%;
     transform: translate(-50%, 320%);
     width: 400px;
     height: 110px;
@@ -209,7 +40,9 @@
   .skin_type_test_btn:hover a {
     transform: scale(1.1);
   }
-}
+
+}// #viewBox
+
 
 
 
@@ -217,6 +50,8 @@
 /* #viewBox - mobile */ 
 @include mobile { 
   #viewBox {
+    padding-top: 70px;
+
     .skin_type_test_btn {
       position: fixed;
       z-index: 999;
@@ -230,69 +65,8 @@
       border-radius: 30px;
       text-align: center;
       line-height: 110px;
-      }
-
-    .Indicator{
-        position: absolute;
-        bottom:15%; left:40%;
-  
-    .Left_button{
-
-        img{
-          position: absolute;
-          bottom:-20%; left:-55%;
-          width:25px;
-          height:40px;
-          z-index: 99;
-          filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-        }
-          }
-      
-        .Right_button{
-    
-        img{
-          position: absolute;
-          bottom:-20%; right:-30%;
-          width:25px;
-          height:40px;
-          z-index: 99;
-          filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-          }
-        }
-      
-        .dots{
-    
-        // position: absolute;
-        bottom:22%; right:43%;
-        display: flex;
-        z-index: 99;
-        filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-      
-          .filldot{
-              width:15px; height: 15px;
-              background-color: white;
-              border-radius:50%;
-              box-sizing: border-box;
-              z-index:1000;
-              margin-right:1em;
-            }
-    
-          .emptydot{
-            width:15px; height: 15px;
-            border:2.3px solid #FFFFFF;
-            border-radius:50%;
-            box-sizing: border-box;
-            z-index:1000;
-            margin-right:1em;
-            }
-          
-          }
-          
-          // 인디케이터
-        }
-
-    
-  }
+    }
+  }// #viewBox
 }
 
 
@@ -300,8 +74,9 @@
 /* #viewBox - tablet */ 
 @include tablet { 
   #viewBox {
+    // padding-top: 80px;
+    padding-left: 100px;
 
-     
     .skin_type_test_btn {
       position: fixed;
       z-index: 999;
@@ -315,89 +90,6 @@
       border-radius: 30px;
       text-align: center;
       line-height: 110px;
-      }
-
-       // 슬라이더들
-    .dr_jart_box {
-    position: relative;
-    width:100vw;
-    height: 100vh;
-    // padding-top: 80px;
-  
-  
-    .slider {
-      .DrJart_slide{
-      img{
-          position: absolute;
-          width:100vw;
-          height:100vh;
-          
-          }
-        }
-      
-    
-      }
-  }// .dr_jart_box
-
-  .innisfree_box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-
-      .slider {
-        .Innisfree_slide{
-       
-          img{
-            position: absolute;
-            width:100vw;
-            height:100vh;
-            
-            }
-          }
-       
     }
-  }// .innisfree_box
-
-
-  .seedmool_box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  
-    .slider {
-      .Seedmool_slide{
-     
-        img{
-          position: absolute;
-          width:100vw;
-          height:100vh;
-          
-          }
-        }
-    
-    }
-  }// .seedmool_box
-
-
-  .beplain_box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    
-    .slider {
-      .Beplain_slide{
-     
-        img{
-          position: absolute;
-          width:100vw;
-          height:100vh;
-          
-          }
-        }
-   
-     }
-  }// .beplain_box
-
-    
-  }
+  }// #viewBox
 }

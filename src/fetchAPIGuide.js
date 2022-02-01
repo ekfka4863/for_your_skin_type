@@ -22,7 +22,7 @@
 
 
 // 로그인 할 때 -> http://localhost:9090/login
-// 로그아웃할 때 -> http://localhost:9090/logout
+// 로그아웃할 때 -> http://localhost:9090/logout -> not needed! 
 
 
 

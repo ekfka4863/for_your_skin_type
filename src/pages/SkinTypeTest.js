@@ -14,11 +14,12 @@ import "../styles/src/SkinTypeTest.scss";
 import condition_checked from "../assets/img/laptop/condition_checked.png";
 
 
+
 // api / mock data 
-import { recoms_sensitive } from "../assets/data/recoms_sensitive";
-import { recoms_complex } from "../assets/data/recoms_complex";
-import { recoms_dry } from "../assets/data/recoms_dry";
-import { recoms_oily } from "../assets/data/recoms_oily";
+// import { recoms_sensitive } from "../assets/data/recoms_sensitive";
+// import { recoms_complex } from "../assets/data/recoms_complex";
+// import { recoms_dry } from "../assets/data/recoms_dry";
+// import { recoms_oily } from "../assets/data/recoms_oily";
 
 
 
@@ -285,7 +286,6 @@ export default function SkinTypeTest () {
   }
 
 
-
   let skinTypeTitle = "";
   let skinTypeBgColor = "";
   const skinTypeDetails = (skinType) => {
@@ -304,9 +304,55 @@ export default function SkinTypeTest () {
     guessSkinType();
     skinTypeDetails(skinType);
   }
-  // console.log(skinType);
+  console.log("skinType => ", skinType);   // e.g. 복합성
 
+
+  
+  const dataArr = useRef([]);
+  console.log(dataArr);
+
+  const onSubmitTestResult = () => {
+    if (!testValues.current.includes('')) {
+      setAnalyzeBtn(true); 
+      // console.log("결과 분석 버튼 누름!!", analizeBtn);
+      // console.log("결과 => ", skinTypeTitle);   // e.g. 지성 
+      
+      const url = 'http://localhost:9090/items/skintype';
+      // console.log("skinType ==> ", skinType);
+      const asyncSkinTypePost = async () => {
+        try {
+          // console.log("skinType ==> ", skinType);
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({
+              // skinType: skinTypeTitle
+              skinType: skinType
+            })
+          });
+          const data = await response.json();
+          console.log("POST request to server done!! No problem! - 스킨타입테스트!!");
+          console.log("data => ", data);
+          dataArr = data;
+          console.log("dataArr.data => ", dataArr.data);
+        } catch(error) {
+          console.log("POST request XXXXXX!! - 스킨타입테스트!!");
+        }
+      } 
+      asyncSkinTypePost();
+      // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+    } else {
+      alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
+    }
+  };
+
+  // =========================
   // 피부타입에 맞는 제품 display하는 함수 && 원하는 가격대의 제품 display 하기 
+  // const dataArr = useRef([]);
+  // console.log(dataArr);
+  
   let cardLen = 0;
   const skinTypes = []; 
   const itemNames = []; 
@@ -320,54 +366,63 @@ export default function SkinTypeTest () {
   // recoms_oily.forEach(each => console.log(each.skinType))
 
 
-  // 피부타입에 따라 카드 display && 가격대별로 필터링 ...   ---> 여기부터 다시!!!!
-  switch (skinType) {
-    case "민감성":
-      recoms_sensitive.forEach((each) => {
-        skinTypes.push(each.skinType);
-        itemNames.push(each.name);
-        itemPrices.push(each.price);
-        itemFeatures.push(each.itemFeature);
-        imageLink.push(each.imageLink);
-        productLink.push(each.productLink);
-        cardLen++;
-      });
-      break;
-    case "복합성":
-      recoms_complex.forEach((each) => {
-        skinTypes.push(each.skinType);
-        itemNames.push(each.name);
-        itemPrices.push(each.price);
-        itemFeatures.push(each.itemFeature);
-        imageLink.push(each.imageLink);
-        productLink.push(each.productLink);
-        cardLen++;
-      });
-      break;
-    case "지성":
-      recoms_oily.forEach((each) => {
-        skinTypes.push(each.skinType);
-        itemNames.push(each.name);
-        itemPrices.push(each.price);
-        itemFeatures.push(each.itemFeature);
-        imageLink.push(each.imageLink);
-        productLink.push(each.productLink);
-        cardLen++;
-      });
-      break;
-    case "건성":
-      recoms_dry.forEach((each) => {
-        skinTypes.push(each.skinType);
-        itemNames.push(each.name);
-        itemPrices.push(each.price);
-        itemFeatures.push(each.itemFeature);
-        imageLink.push(each.imageLink);
-        productLink.push(each.productLink);
-        cardLen++;
-      });
-      break;
-    default:
-      break;
+  // 피부타입에 따라 카드 display 
+  if (dataArr.data !== undefined) {
+  console.log(dataArr);
+
+
+    switch (skinType) {
+      case "민감성":
+        dataArr.data.forEach((each) => {
+          skinTypes.push(each.skinType);
+          itemNames.push(each.name);
+          itemPrices.push(each.price);
+          itemFeatures.push(each.itemFeature);
+          imageLink.push(each.imageLink);
+          productLink.push(each.productLink);
+          cardLen++;
+        });
+        break;
+      case "복합성":
+        dataArr.data.forEach((each) => {
+          skinTypes.push(each.skinType);
+          itemNames.push(each.name);
+          itemPrices.push(each.price);
+          itemFeatures.push(each.itemFeature);
+          imageLink.push(each.imageLink);
+          productLink.push(each.productLink);
+          cardLen++;
+        });
+        break;
+      case "지성":
+        dataArr.data.forEach((each) => {
+          skinTypes.push(each.skinType);
+          itemNames.push(each.name);
+          itemPrices.push(each.price);
+          itemFeatures.push(each.itemFeature);
+          imageLink.push(each.imageLink);
+          productLink.push(each.productLink);
+          cardLen++;
+        });
+        break;
+      case "건성":
+        dataArr.data.forEach((each) => {
+          skinTypes.push(each.skinType);
+          itemNames.push(each.name);
+          itemPrices.push(each.price);
+          itemFeatures.push(each.itemFeature);
+          imageLink.push(each.imageLink);
+          productLink.push(each.productLink);
+          cardLen++;
+        });
+        break;
+      default:
+        break;
+    }
+  } else {
+    // console.log("dataArr.data === undefined", typeof dataArr.data);
+    // console.log("dataArr.data === undefined", dataArr.data);
+    console.log("dataArr.data === undefined", dataArr);
   }
   // console.log("skinTypes => ", skinTypes);
   // console.log("itemNames => ", productLink);
@@ -405,6 +460,8 @@ export default function SkinTypeTest () {
         alert("더 많은 제품을 보시려면 해당 화장품 브랜드 사이트를 방문해주십시오. 감사합니다!");
       } 
     };    
+    // =========================
+
 
 
   // 레이아웃 시작
@@ -727,38 +784,8 @@ export default function SkinTypeTest () {
             <div className="test_submit_btn">
               <button 
                 type="submit" 
-                onClick={() => {
-                  if (!testValues.current.includes('')) {
-                    setAnalyzeBtn(true); 
-                    // console.log("결과 분석 버튼 누름!!", analizeBtn);
-                    // console.log("결과 => ", skinTypeTitle);   // e.g. 지성 
-                    
-                    const url = 'http://localhost:9090/items/skintype';
-                    const asyncSkinTypePost = async () => {
-                      try {
-                        const response = await fetch(url, {
-                          method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/json; charset=utf-8'
-                          },
-                          body: JSON.stringify({
-                            skinType: skinTypeTitle
-                          })
-                        });
-                        const data = await response.json();
-                        console.log("POST request to server done!! No problem!");
-                        console.log(data);
-                      } catch(error) {
-                        console.log("POST request XXXXXX!!");
-                      }
-                    } 
-                    asyncSkinTypePost();
-                    // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
-                  } else {
-                    alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
-                  }
-                }
-              }>
+                onClick={onSubmitTestResult}
+              >
                 <span></span> 
                 <span>결과분석</span> 
               </button>

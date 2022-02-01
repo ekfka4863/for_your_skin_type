@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
@@ -9,29 +9,33 @@ import Card from "../components/Card";
 
 import "../styles/src/BestSellers.scss";
 
+
 // api / mock data 
-import dataObj from "../assets/data/data_renewed";
-import { brand4 } from '../components/Card';
-
-// API 
-const url = 'http://localhost:9090/items/beplain';
-
-const asyncBeplainGet = async () => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log("GET request to server done!! No problem!");
-    console.log(data);
-  } catch(error) {
-    console.log("GET request XXXXXX!!");
-  }
-} 
-asyncBeplainGet();
-// reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+// import dataObj from "../assets/data/data_renewed";
+// import { brand4 } from '../components/Card';
 
 
 
 function BeplainBestSellers() {
+  let dataArr = useRef([]);
+
+  // API 
+  const url = 'http://localhost:9090/items/beplain';
+
+  const asyncBeplainGet = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log("GET request to server done!! No problem! - 비플레인!!");
+      console.log(data);
+      dataArr = data;
+    } catch(error) {
+      console.log("GET request XXXXXX!! - 비플레인!!");
+    }
+  } 
+  asyncBeplainGet();
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
   let cardLen = 0;
   const skinTypes = []; 
   const itemNames = []; 
@@ -40,7 +44,9 @@ function BeplainBestSellers() {
   const imageLink = []; 
   const productLink = []; 
 
-  dataObj[brand4].forEach((each) => {
+  console.log(dataArr.data);
+  // console.log(Array.isArray(dataArr.data));   // true
+  dataArr.data.forEach((each) => {
     skinTypes.push(each.skinType);
     itemNames.push(each.name);
     itemPrices.push(each.price);
@@ -49,6 +55,16 @@ function BeplainBestSellers() {
     productLink.push(each.productLink);
     cardLen++;
   });
+
+  // dataObj[brand4].forEach((each) => {
+  //   skinTypes.push(each.skinType);
+  //   itemNames.push(each.name);
+  //   itemPrices.push(each.price);
+  //   itemFeatures.push(each.itemFeature);
+  //   imageLink.push(each.imageLink);
+  //   productLink.push(each.productLink);
+  //   cardLen++;
+  // });
 
 
   const [cardController, setCardController] = useState(6);

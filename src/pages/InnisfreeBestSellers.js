@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
@@ -13,24 +13,30 @@ import "../styles/src/BestSellers.scss";
 import dataObj from "../assets/data/data_renewed";
 import { brand2 } from '../components/Card';
 
-// API 
-const url = 'http://localhost:9090/items/innisfree';
 
-const asyncInnisfreeGet = async () => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log("GET request to server done!! No problem!");
-    console.log(data);
-  } catch(error) {
-    console.log("GET request XXXXXX!!");
-  }
-} 
-asyncInnisfreeGet();
-// reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
 
 
 function InnisfreeBestSellers() {
+  let dataArr = useRef([]);
+
+  // API 
+  const url = 'http://localhost:9090/items/innisfree';
+  const asyncInnisfreeGet = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log("GET request to server done!! No problem! - 이니스프리!!");
+      console.log(data);
+      dataArr = data;
+    } catch(error) {
+      console.log("GET request XXXXXX!! - 이니스프리!!");
+    }
+  } 
+  asyncInnisfreeGet();
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+
+
   let cardLen = 0;
   const skinTypes = []; 
   const itemNames = []; 
@@ -39,7 +45,9 @@ function InnisfreeBestSellers() {
   const imageLink = []; 
   const productLink = []; 
 
-  dataObj[brand2].forEach((each) => {
+  console.log(dataArr.data);
+  console.log(Array.isArray(dataArr.data));   // true
+  dataArr.data.forEach((each) => {
     skinTypes.push(each.skinType);
     itemNames.push(each.name);
     itemPrices.push(each.price);
@@ -48,6 +56,16 @@ function InnisfreeBestSellers() {
     productLink.push(each.productLink);
     cardLen++;
   });
+
+  // dataObj[brand2].forEach((each) => {
+  //   skinTypes.push(each.skinType);
+  //   itemNames.push(each.name);
+  //   itemPrices.push(each.price);
+  //   itemFeatures.push(each.itemFeature);
+  //   imageLink.push(each.imageLink);
+  //   productLink.push(each.productLink);
+  //   cardLen++;
+  // });
 
   const [cardController, setCardController] = useState(6);
   // console.log(cardController); // 6
