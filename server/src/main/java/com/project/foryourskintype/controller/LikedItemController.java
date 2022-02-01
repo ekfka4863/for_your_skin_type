@@ -1,10 +1,8 @@
 package com.project.foryourskintype.controller;
 
 import com.project.foryourskintype.domain.LikedItem;
-import com.project.foryourskintype.domain.Member;
 import com.project.foryourskintype.dto.*;
 import com.project.foryourskintype.repository.LikedItemRepository;
-import com.project.foryourskintype.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,26 +17,19 @@ import java.util.stream.Collectors;
 public class LikedItemController {
 
     private final LikedItemRepository likedItemRepository;
-    private final MemberRepository memberRepository;
 
-    @GetMapping("items/favorites") //장바구니 조회 API
-    public Result readByMember() {
-        List<MemberWithLikedItem> collect = memberRepository.findWithLikedItems()
-                .stream()
-                .map(m -> new MemberWithLikedItem(m))
-                .collect(Collectors.toList());
-        return new Result(collect);
-    }
-
-    @PostMapping("items/favorites")
+    @PostMapping("items/favorites") //회원(email -> 세션아이디)에 따른 장바구니 조회 API
     public Result readLikedItemsByMember(@RequestBody LikedItemReadRequest likedItemReadRequest){
-        memberRepository.findWithLikedItems()
+
+        List<LikedItemDto> collect = likedItemRepository.findAllByEmail(likedItemReadRequest.getEmail())
                 .stream()
-                .map(m -> new LikedItemDto(m))
+                .map(l -> new LikedItemDto(l))
+                .collect(Collectors.toList());
+
         return new Result(collect);
     }
 
-    @PostMapping("items/favoritesAdd")
+    @PostMapping("items/favoritesAdd") //장바구니 아이템 추가 API
     public Long save(@RequestBody LikedItemSaveRequest likedItemSaveRequest) {
         LikedItem createLikedItem = LikedItem.createLikedItem(likedItemSaveRequest.getItem(),
                 likedItemSaveRequest.getMember());
@@ -46,7 +37,7 @@ public class LikedItemController {
         return likedItemRepository.save(createLikedItem);
     }
 
-    @PostMapping("items/favoritesDelete")
+    @PostMapping("items/favoritesDelete") //장바구니 아이템 삭제 API
     public void delete(@RequestBody LikedItemSaveRequest likedItemSaveRequest) {
         likedItemRepository.delete(likedItemSaveRequest.getId());
     }
