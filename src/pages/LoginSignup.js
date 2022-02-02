@@ -15,23 +15,11 @@ import cart from "../assets/img/tablet/cart.png";
 import go_to_test_btn from "../assets/img/laptop/go_to_test_btn.png";
 
 
-// sessionId가 있음에 따라 MyCart.js 페이지에서 signup api에서 보내기 ... 
-// export let data;
 
-
-
-
-
-// 임의의 사용자 아이디 - 나중에 지우기!
-const userId = "박유저";
 
 export default function LoginSignup() {
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [loggedIn, setLoggedIn] = useState(true);
 
-  // 임의의 사용자 아이디
-  // const [userId, setUserId] = useState("");
-  // setUserId("박다람");
   const [tapbar, setTapbar] = useState(1);
 
   const toggle = (index) =>{
@@ -46,7 +34,7 @@ export default function LoginSignup() {
   const url = 'http://localhost:9090/login';
 
   const submitToLogIn = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(e.target.value);
 
     // console.log({   // 확인용!
@@ -66,17 +54,18 @@ export default function LoginSignup() {
         })
       });
       
-      // const data = await response.json(); 
       const data = await response.json(); 
-      console.log("data / 세션 ID => ", data);
+      // console.log("data / 세션 ID => ", data.data.sessionId);  // ____@___.com
 
-      // validate if session id exists... 
-      // if (sessionStorage.getItem(data).sessionId !== "") {
-      //   setLoggedIn(true);
-      //   // ...
-      // } else {
-      //   alert("아이디 또는 비밀번호를 확인해주세요!");
-      // }
+      // sesstionStorage setItem!
+      sessionStorage.setItem(data.data.sessionId, data.data.sessionId);
+      // console.log(sessionStorage.getItem(data.data.sessionId));
+
+
+      // validate if session id exists... - 로그인한 회원이 회원가입한 사용자인지 확인하기 
+      if (sessionStorage.getItem(data.data.sessionId) !== "" || sessionStorage.getItem(data.data.sessionId) !== null) {
+        setLoggedIn(true);
+      } 
 
     } catch (error) {
       console.log("POST request XXXXXX!! - LoginSignup.js ");
@@ -91,19 +80,19 @@ export default function LoginSignup() {
   const [userGenderMan, setUserGenderMan] = useState("man");
   const [userGenderWoman, setUserGenderWoman] = useState("woman");
   const [userEmail, setUserEmail] = useState("");
-  const [userPw_signup, setUserPw_signup] = useState("");
+  const [userPwSignup, setUserPwSignup] = useState("");
   const [userTel, setUserTel] = useState("");
 
   const submitToSignUp = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    console.log({   // 확인용!
-      userName, 
-      gender: (userGenderMan !== "") ? userGenderMan : userGenderWoman,
-      userEmail,
-      userPw_signup,
-      userTel
-    });
+    // console.log({   // 확인용!
+    //   userName, 
+    //   gender: (userGenderMan !== "") ? userGenderMan : userGenderWoman,
+    //   userEmail,
+    //   userPwSignup,
+    //   userTel
+    // });
 
     const response = await fetch('http://localhost:9090/signup', {
       method: 'POST', 
@@ -111,16 +100,17 @@ export default function LoginSignup() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userName, 
+        email: userEmail,
+        password: userPwSignup,
+        name: userName, 
         gender: (userGenderMan !== "") ? userGenderMan : userGenderWoman,
-        userEmail,
-        userPw_signup,
-        userTel
+        phoneNumber: userTel
       })
     });
 
     const data = await response.json(); 
     console.log(data);
+
   };
 
 
@@ -155,9 +145,10 @@ export default function LoginSignup() {
           (loggedIn) 
         ? 
           <>
+            {/* 확인하기!!! */}
             <LoggedInPage /> 
           </>
-        : 
+        :  
           <div className="LoginSignup_bind">
 
           <ul className="taps">
@@ -199,8 +190,8 @@ export default function LoginSignup() {
 
           {/* 회원가입박스 */}
           <div className={ tapbar === 2? 'Signup_box' : 'Content_none'} onClick={() => {toggle(2)}}>
-            <form>
-            {/* <form onSubmit={}> */}
+            {/* <form> */}
+            <form onSubmit={submitToSignUp}>
               <ul className="first_bundle">
                 <li className="Name_box">
                   <label for="userName">
@@ -237,7 +228,7 @@ export default function LoginSignup() {
                   <label for="userPw">
                     <img src={require('../assets/img/laptop/user_pw.png')} alt="비밀번호 이미지"></img>
                   </label>
-                  <input id="userPw" type="password" placeholder="비밀번호" required onChange={e => setUserPw_signup(e.target.value)}></input>
+                  <input id="userPw" type="password" placeholder="비밀번호" required onChange={e => setUserPwSignup(e.target.value)} maxLength={15}></input>
                 </li>
 
                 <li className="signup_tel_box">
@@ -265,4 +256,3 @@ export default function LoginSignup() {
 };
 
 
-// 

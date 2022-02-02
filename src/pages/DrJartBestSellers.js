@@ -1,80 +1,74 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
 import Card from "../components/Card";
 
 import "../styles/src/BestSellers.scss";
 
-// api / mock data 
-// import dataObj from "../assets/data/data_renewed";
-// import { brand1 } from '../components/Card';
-
+import axios from "axios";
 
 
 
 function DrJartBestSellers() {
-  let dataArr = useRef([]);
+  const [apiData, setApiData] = useState([]);
 
-  // API 
-  const url = 'http://localhost:9090/items/drjart';
+  const [dataArr, setDataArr] = useState([]);
 
-  const asyncDrjartGet = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log("GET request to server done!! No problem! - 닥터자르트!!");
-      console.log(data);
-      dataArr = data;
-      // console.log("dataArr => ", dataArr.data[0]);
-      console.log("dataArr => ", dataArr.data);
-      // console.log("dataArr => ", Array.isArray(dataArr.data));  // true
-    } catch(error) {
-      console.log("GET request XXXXXX - 닥터자르트!!");
-    }
-  } 
-  asyncDrjartGet();
-  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
-
-
-  console.log("dataArr ==> ", dataArr.current);   // [] ??
-  let cardLen = 0;
+  let cardLen = 0; 
   const skinTypes = []; 
   const itemNames = []; 
   const itemPrices = []; 
   const itemFeatures = []; 
   const imageLink = []; 
   const productLink = []; 
-
-
-  console.log(dataArr.data);
-  console.log(Array.isArray(dataArr.data));   // true
-  dataArr.data.forEach((each) => {
-    skinTypes.push(each.skinType);
-    itemNames.push(each.name);
-    itemPrices.push(each.price);
-    itemFeatures.push(each.itemFeature);
-    imageLink.push(each.imageLink);
-    productLink.push(each.productLink);
-    cardLen++;
-  });
-
-  // 원본 
-  // dataObj[brand1].forEach((each) => {
-  //   skinTypes.push(each.skinType);
-  //   itemNames.push(each.name);
-  //   itemPrices.push(each.price);
-  //   itemFeatures.push(each.itemFeature);
-  //   imageLink.push(each.imageLink);
-  //   productLink.push(each.productLink);
-  //   cardLen++;
-  // });
-
   const [cardController, setCardController] = useState(6);
 
+
+  // API 
+  const url = 'http://localhost:9090/items/drjart';
+
+  useEffect(() => {
+    const asyncDrjartGet = async () => {
+      try {
+        const response = await axios.get(url);
+        setApiData(response.data);
+        // console.log(response.data);
+        // console.log(apiData);  // []
+      } catch (error) {
+        console.log("GET request XXXXXX - 닥터자르트!!");
+      }
+    };
+
+    asyncDrjartGet();
+  }, []);
+
+  useEffect(() => {
+    setDataArr({...apiData});
+  }, [apiData]);
+  // console.log(apiData.data);
+
+  // console.log(apiData);
+  // console.log(dataArr.data);
+  // console.log(Array.isArray(apiData.data));
+
+  if (Array.isArray(dataArr.data)) {
+    dataArr.data.forEach(each => {
+      // console.log(each.skinType);
+      skinTypes.push(each.skinType);
+      itemNames.push(each.name);
+      itemPrices.push(each.price);
+      itemFeatures.push(each.itemFeature);
+      imageLink.push(each.imageLink);
+      productLink.push(each.productLink);
+      cardLen++;
+    });
+  }
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
   // reference:  https://codingbroker.tistory.com/123
+
+
   const renderItemCard = () => {
     const result = [];
     for (let i = 0; i < cardController; i++) {
@@ -92,9 +86,12 @@ function DrJartBestSellers() {
     return result;
   };
 
+  
   const onClickShowMoreCards = () => {
+    // console.log("cardLen => ", cardLen);
     if (cardController <= cardLen - 6) {
       setCardController(cardController + 6);
+      // console.log("cardLen => ", cardLen);
     } else {
       setCardController(cardLen);
     }
@@ -103,6 +100,7 @@ function DrJartBestSellers() {
       alert("더 많은 제품을 보시려면 해당 화장품 브랜드 사이트를 방문해주십시오. 감사합니다!");
     } 
   };
+
 
 
   return (
