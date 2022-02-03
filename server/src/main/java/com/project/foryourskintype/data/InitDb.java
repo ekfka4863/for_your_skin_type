@@ -42,8 +42,7 @@ public class InitDb {
 
         public void dbInit() throws IOException, ParseException {
 
-            String path = new File("").getAbsolutePath()
-                    + "\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
+            String path = "/Users/dayepark/Documents/dev/for_your_skin_type/server/src/main/java/com/project/foryourskintype/data/itemdata.json";
             System.out.println("path = " + path);
             JSONArray jsonList = (JSONArray) new JSONParser().parse(new FileReader(path));
 

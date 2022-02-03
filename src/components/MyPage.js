@@ -1,11 +1,59 @@
-import React from 'react';
+// import React, { useEffect,  } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
 
 import "../styles/src/Mypage.scss"
 
+let sessionId;
+
+if ((localStorage.getItem("authenticatedId") !== "loginFail")) {
+  sessionId = localStorage.getItem("authenticatedId");
+}
+
+// console.log(sessionId);   
+
+
+
 export default function MyPage() {
+  const [apiData, setApiData] = useState([]);
+
+  // const [dataArr, setDataArr] = useState([]);
+
+
+  // API 
+  const url = 'http://localhost:9090/items/mypage';
+  
+  useEffect(() => {
+    const asyncSessionIdPost = async () => {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify({
+            sessionId: sessionId
+          })
+        });
+        const data = await response.json();
+        setApiData(data.data);
+        console.log(apiData);
+      console.log("POST request to server done!! No problem! - 마이페이지!!");
+
+    } catch(error) {
+      console.log("POST request XXXXXX!! - 마이페이지!!");
+    }
+  } 
+  asyncSessionIdPost();
+}, [sessionId]);
+// reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+
+
+
+
   return (
   <>
     <Header />
