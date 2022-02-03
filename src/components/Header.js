@@ -10,6 +10,7 @@ import home_img from "../assets/img/tablet/home_tablet.png";
 
 import logInControler from "../pages/LoginSignup";
 
+// console.log(logInControler);
 
 function Header() {
   const scrollToTheTop = () => {
@@ -21,8 +22,9 @@ function Header() {
   // const [loggedIn, setLoggedIn] = useState(false);
   // let loggedIn = useRef(false);
   let loggedIn = false;
-  console.log(loggedIn);
-  console.log(logInControler);
+  // console.log(loggedIn);
+  // console.log(logInControler);
+  
   // loggedIn = logInControler;
   // console.log(loggedIn);
   // useEffect(() => {
