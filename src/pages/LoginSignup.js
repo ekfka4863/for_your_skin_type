@@ -12,6 +12,7 @@ import "../styles/src/LoginSignup.scss";
 
 // img 
 import cart from "../assets/img/tablet/cart.png";
+import myPage from "../assets/img/tablet/myPage.png";
 import go_to_test_btn from "../assets/img/laptop/go_to_test_btn.png";
 
 
@@ -22,6 +23,8 @@ export default function LoginSignup() {
   let loggedIn = useRef(false);
   // const [loggedIn, setLoggedIn] = useState(true);
   // const [loggedIn, setLoggedIn] = useState(false);
+
+  // let authenticatedId = useRef("");
 
   const [tapbar, setTapbar] = useState(1);
 
@@ -64,16 +67,27 @@ export default function LoginSignup() {
       // console.log(sessionStorage.getItem(data.data.sessionId));
 
 
+
       // validate if session id exists... - 로그인한 회원이 회원가입한 사용자인지 확인하기 
-      if (sessionStorage.getItem(data.data.sessionId) !== "" || sessionStorage.getItem(data.data.sessionId) !== null) {
-        logInControler = !logInControler;
-        loggedIn.current = logInControler;
-        console.log(loggedIn.current);       // false
-        console.log(logInControler);   // true
+      if (sessionStorage.getItem(data.data.sessionId) !== "" || sessionStorage.getItem(data.data.sessionId) !== null || sessionStorage.getItem(data.data.sessionId) !== "loginFail") {
+        // logInControler = !logInControler;
+        // loggedIn.current = logInControler;
+        // console.log(loggedIn.current);       // false
+        // console.log(logInControler);   // true
 
         sessionLatestId = sessionStorage.getItem(data.data.sessionId);
         console.log("sessionLatestId => ", sessionLatestId);
+
+        localStorage.setItem("authenticatedId", sessionLatestId);
       } 
+      
+      if (localStorage.getItem("authenticatedId") !== "loginFail") {
+        localStorage.getItem("authenticatedId");
+        logInControler = !logInControler;
+        loggedIn.current = logInControler;
+        console.log("loggedIn.current => ", loggedIn.current);       // false
+        console.log("logInControler => ", logInControler);   // true
+      }
 
     } catch (error) {
       console.log("POST request XXXXXX!! - LoginSignup.js ");
@@ -83,7 +97,8 @@ export default function LoginSignup() {
   
   useEffect(() => {
     console.log("loggedIn, logInControler => ", loggedIn.current, logInControler);
-  }, [loggedIn.current, logInControler]);
+    console.log("localStorage.getItem('authenticatedId') => ", localStorage.getItem("authenticatedId"));
+  }, [loggedIn.current, logInControler, localStorage.getItem("authenticatedId")]);
   
 
   // sign up logic 
@@ -129,14 +144,7 @@ export default function LoginSignup() {
   const LoggedInPage = () => {
     return (
       <div className="logged_in">
-        <span className="user_id_logged_in">
-          {
-            console.log("loggedIn.current, logInControler => ", loggedIn.current, logInControler)
-          }
-          {
-            (userId !== "") ? userId : sessionLatestId
-          } 
-        </span>
+        <span className="user_id_logged_in">{localStorage.getItem("authenticatedId")} </span>
         고객님, 로그인에 성공하셨습니다! <br />
         스킨 타입 테스트 및 장바구니 서비스를 이용해보세요!
         <ul>
@@ -150,6 +158,11 @@ export default function LoginSignup() {
               <img src={cart} alt="장바구니 바로가기 이미지 버튼" />
             </Link>
           </li>
+          <li>
+            <Link to="/my-page">
+              <img src={myPage} alt="마이페이지 바로가기 이미지 버튼" />
+            </Link>
+          </li>
         </ul>
       </div>
     )
@@ -160,12 +173,14 @@ export default function LoginSignup() {
       <Header />
       <div id="LoginSignup_wrap">
         {
-          console.log(loggedIn.current, logInControler)
+          // console.log(loggedIn.current, logInControler)
           // console.log(sessionLatestId)
           // console.log(userId)
+          console.log(localStorage.getItem("authenticatedId"))
         }
         {
-          (loggedIn.current === true) 
+          // (loggedIn.current === true) 
+          (localStorage.getItem("authenticatedId") !== "loginFail" && localStorage.getItem("authenticatedId") !== null)
         ? 
           <>
             {/* 확인하기!!! */}

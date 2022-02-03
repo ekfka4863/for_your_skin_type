@@ -89,11 +89,11 @@
     color: #444;
   }
   ul {
-    width: 180px;
+    width: 250px;
     margin: auto;
     padding-top: 30px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     li {
       // background-color: #d15;
       a {
@@ -106,6 +106,7 @@
     }
     // li:nth-child(1) {}
     // li:nth-child(2) {}
+    // li:nth-child(3) {s}
   }
 }
 
