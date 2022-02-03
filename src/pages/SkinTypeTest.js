@@ -31,6 +31,11 @@ function SkinTypeTest () {
   const [cardController, setCardController] = useState(6);
 
 
+  const [resultCopy, setResultCopy] = useState([]);
+  // let cardLenCopy = useRef(0);
+  let [cardLenCopy, setCardLenCopy] = useState(0);
+
+
   const [viewportWidth, setViewportWidth] = useState(document.documentElement.clientWidth);
   const [testInput1, setTestInput1] = useState();
   const [testInput2, setTestInput2] = useState();
@@ -71,49 +76,7 @@ function SkinTypeTest () {
 
 
 
-  // API 
-  const url = 'http://localhost:9090/items/skintype';
 
-  useEffect(() => {
-    const asyncSkinTypePost = async () => {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8'
-          },
-          body: JSON.stringify({
-            // skinType: skinTypeTitle
-            skinType: skinType
-          })
-        });
-        const data = await response.json();
-        setApiData(data.data);
-        console.log("data.data => ", data.data);
-        console.log("POST request to server done!! No problem! - 스킨타입테스트!!");
-  
-      } catch(error) {
-        console.log("POST request XXXXXX!! - 스킨타입테스트!!");
-      }
-    } 
-    asyncSkinTypePost();
-  }, []);
-  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
-
-  useEffect(() => {
-    setDataArr({...apiData});
-  }, [apiData]);
-  
-  // console.log(apiData.data);
-  // console.log(apiData);
-  // console.log(dataArr.data);
-  // console.log(Array.isArray(apiData.data));
-
-  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
-  // reference:  https://codingbroker.tistory.com/123
-
-
-  // =================================================================
   // test input 관련 변수랑 함수들
   // let testValues = useRef(['1', '2', '3', '4']);
   let testValues = useRef(['', '', '', '']);
@@ -357,60 +320,65 @@ function SkinTypeTest () {
 
 
   // =================================================================
-  // 카드 렌더링 관련 state 및 함수들
-  const renderItemCard = () => {
-    const result = [];
-    for (let i = 0; i < cardController; i++) {
-      result.push(<Card 
-                    key={i} 
-                    skinTypes={skinTypes[i]} 
-                    itemNames={itemNames[i]}
-                    itemPrices={itemPrices[i]} 
-                    itemFeatures={itemFeatures[i]}
-                    imageLink={imageLink[i]}
-                    productLink={productLink[i]}
-                  />
-      );            
-    }
-    return result;
-  };
-  
-  const onClickShowMoreCards = () => {
-    if (cardController <= cardLen - 6) {
-      setCardController(cardController + 6);
-    } else {
-      setCardController(cardLen);
-    }
+  // API 
+  const url = 'http://localhost:9090/items/skintype';
 
-    if (cardController === cardLen) {
-      alert("더 많은 제품을 보시려면 해당 화장품 브랜드 사이트를 방문해주십시오. 감사합니다!");
-    } 
-  }; 
-
-  // =========================
   useEffect(() => {
-    
-  }, []);
+    // console.log(skinType);
+    const asyncSkinTypePost = async () => {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify({
+            // skinType: skinTypeTitle
+            skinType: skinType
+          })
+        });
+        const data = await response.json();
+        setApiData(data.data);
+        // console.log("data.data 337번줄 => ", data.data);   // 정상적으로 출력!
+        console.log("POST request to server done!! No problem! - 스킨타입테스트!!");
+  
+      } catch(error) {
+        console.log("POST request XXXXXX!! - 스킨타입테스트!!");
+      }
+    } 
+    asyncSkinTypePost();
+  }, [skinType]);
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+  useEffect(() => {
+    setDataArr({...apiData});
+  }, [apiData]);
+  
+  // console.log("353번줄 apiData ==> ", apiData);  // 정상적으로 출력!
+
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+  // reference:  https://codingbroker.tistory.com/123
+
+
+  // =================================================================
 
   const onSubmitTestResult = () => {
+    // console.log("dataArr here 2 ===> ", dataArr); // 정상 출력!
     if (!testValues.current.includes('')) {
       setAnalyzeBtn(true); 
-      // console.log("결과 분석 버튼 누름!!", analizeBtn);
-      // console.log("결과 => ", skinTypeTitle);   // e.g. 지성 
-      
 
       // =========================
       // skin type test logic starts here!
       // =========================
       // 피부타입에 맞는 제품 display하는 함수 && 원하는 가격대의 제품 display 하기 
-      console.log("Array.isArray(dataArr.data) ===> ", Array.isArray(dataArr.data)); // false
-      
 
-      switch (skinType) {
-        case "민감성":
-          // if (Array.isArray(dataArr.data)) {}
-          if (Array.isArray(dataArr.data)) {
-            dataArr.data.forEach((each) => {
+      // console.log("406번줄 ==> Array.isArray(apiData) ===> ", Array.isArray(apiData));  // true
+      // console.log("407번줄 skinType => ", skinType);
+      if (Array.isArray(apiData)) {
+        // console.log('goooooooooooooood!');
+        switch (skinType) {
+          case "민감성":
+            apiData.forEach((each) => {
               skinTypes.push(each.skinType);
               itemNames.push(each.name);
               itemPrices.push(each.price);
@@ -419,11 +387,9 @@ function SkinTypeTest () {
               productLink.push(each.productLink);
               cardLen++;
             });
-          }
-          break;
-        case "복합성":
-          if (Array.isArray(dataArr.data)) {
-            dataArr.data.forEach((each) => {
+            break;
+          case "지성":
+            apiData.forEach((each) => {
               skinTypes.push(each.skinType);
               itemNames.push(each.name);
               itemPrices.push(each.price);
@@ -432,11 +398,9 @@ function SkinTypeTest () {
               productLink.push(each.productLink);
               cardLen++;
             });
-          }
-          break;
-        case "지성":
-          if (Array.isArray(dataArr.data)) {
-            dataArr.data.forEach((each) => {
+            break;
+          case "복합성":
+            apiData.forEach((each) => {
               skinTypes.push(each.skinType);
               itemNames.push(each.name);
               itemPrices.push(each.price);
@@ -445,11 +409,9 @@ function SkinTypeTest () {
               productLink.push(each.productLink);
               cardLen++;
             });
-          }
-          break;
-        case "건성":
-          if (Array.isArray(dataArr.data)) {
-            dataArr.data.forEach((each) => {
+            break;
+          case "건성":
+            apiData.forEach((each) => {
               skinTypes.push(each.skinType);
               itemNames.push(each.name);
               itemPrices.push(each.price);
@@ -458,20 +420,60 @@ function SkinTypeTest () {
               productLink.push(each.productLink);
               cardLen++;
             });
-          }
-          break;
-        default:
-          break;
+            break;
+          default:
+            break;
+        }// switch문
+
+        // console.log(skinTypes);
+        // console.log(itemNames);
+        // console.log(itemPrices);
+        // console.log(itemFeatures);
+        // console.log(imageLink);
+        // console.log(productLink);
+        // console.log(cardLen);
+
+        // renderItemCard(skinTypes, itemNames, itemPrices, itemFeatures, imageLink, productLink, cardLen);
+        // renderItemCard();
+
+        }// if (Array.isArray(dataArr.data)) 문
+
+      const result = [];
+      for (let i = 0; i < cardController; i++) {
+        result.push(<Card 
+                      key={i} 
+                      skinTypes={skinTypes[i]} 
+                      itemNames={itemNames[i]}
+                      itemPrices={itemPrices[i]} 
+                      itemFeatures={itemFeatures[i]}
+                      imageLink={imageLink[i]}
+                      productLink={productLink[i]}
+                    />
+        );            
       }
-      // =========================
-
-      renderItemCard();
-      // console.log("skinTypes => ", skinTypes);
+      // console.log(result);
+      setResultCopy(result);
+      // console.log(resultCopy);
+      console.log(cardLen);    // 25
+      // cardLenCopy = cardLen;   
+      setCardLenCopy(cardLen);
+      console.log(cardLenCopy); // 0
+      
+      
 
     } else {
       alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
     }
   };
+
+    // =================================================================
+  // 카드 렌더링 관련 state 및 함수들
+  const renderItemCard = () => {
+    const resultCopy2 = resultCopy;
+    // console.log(resultCopy, resultCopy2);
+    return resultCopy2;
+  };
+  // =================================================================
 
 
 
@@ -817,7 +819,9 @@ function SkinTypeTest () {
               {renderItemCard()}
             </div>
             <div className="test_result_more_btn">
-              <button type="button" onClick={onClickShowMoreCards}>&#43; 관련 제품 더보기</button>
+              <Link to="/dr-jart-bestsellers">
+                <span>&#43; 관련 제품 더보기</span>
+              </Link>
             </div>
           </section>
         }

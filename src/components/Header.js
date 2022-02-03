@@ -1,5 +1,5 @@
 import "../styles/src/Header.scss";
-import React,{useState} from "react";
+import React,{ useRef, useEffect, useState} from "react";
 import openbutton from "../assets/img/tablet/nav_bar_tablet.png";
 import Sidenavbar from "../pages/Sidenavbar";
 import user from "../assets/img/tablet/user.png";
@@ -8,12 +8,27 @@ import { Link } from "react-router-dom";
 import home_img from "../assets/img/tablet/home_tablet.png";
 
 
+import logInControler from "../pages/LoginSignup";
+
 
 function Header() {
+  const scrollToTheTop = () => {
+    window.scroll(0, 0);
+  };
 
   const [sidebar, setSidebar] = useState(false);
   // const [loggedIn, setLoggedIn] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // let loggedIn = useRef(false);
+  let loggedIn = false;
+  console.log(loggedIn);
+  console.log(logInControler);
+  // loggedIn = logInControler;
+  // console.log(loggedIn);
+  // useEffect(() => {
+    // setLoggedIn(logInControler);
+  // }, []);
+
   const [clicktap, setClicktap] = useState(false);
 
 
@@ -42,27 +57,27 @@ function Header() {
 
           <ul className="nav_bar_desktop" >
             <li>
-              <Link to="/dr-jart-bestsellers">Dr.Jart
+              <Link to="/dr-jart-bestsellers" onClick={scrollToTheTop}>Dr.Jart
               </Link> 
             </li>
             <li>
-              <Link to="/innisfree-bestsellers">Innisfree</Link>
+              <Link to="/innisfree-bestsellers" onClick={scrollToTheTop}>Innisfree</Link>
             </li>
             <li>
-              <Link to="/sidmool-bestsellers">Sidmool</Link>    
+              <Link to="/sidmool-bestsellers" onClick={scrollToTheTop}>Sidmool</Link>    
             </li>
             <li>
-              <Link to="/beplain-bestsellers">Beplain</Link>  
+              <Link to="/beplain-bestsellers" onClick={scrollToTheTop}>Beplain</Link>  
             </li>
             </ul>
           
-            <Link to="/">
+            <Link to="/" onClick={scrollToTheTop}>
             <span className="blind">메인 페이지 이동 버튼. 클릭시 메인 페이지로 이동.</span>
             <span><img src={home_img} alt="홈이미지" className="desktop_home_img"></img></span>
             </Link>
 
             <div className="unb">
-              <Link to="/login-signup">
+              <Link to="/login-signup" onClick={scrollToTheTop}>
               {/* <Link to="/test-mypage"> */}
                   <button onClick={()=> {
                     setClicktap(!clicktap); }}> 
@@ -70,7 +85,7 @@ function Header() {
                   </button>
               </Link>
 
-              <Link to="/my-cart">
+              <Link to="/my-cart" onClick={scrollToTheTop}>
               <img src={cart} alt="장바구니이미지" className="desktop_cart_img"></img>
               </Link>
 
@@ -83,10 +98,10 @@ function Header() {
               <span className="blind">메뉴바 열기버튼</span>
               <img className="openbutton"src={openbutton} alt="메뉴 열기 버튼" ></img>
               </button>
-              <Link to="/login-signup">
+              <Link to="/login-signup" onClick={scrollToTheTop}>
                 <span><img src={user} alt="로그인이미지" className="log_img"></img></span>
             </Link>
-            <Link to="/my-cart">
+            <Link to="/my-cart" onClick={scrollToTheTop}>
               <img src={cart} alt="장바구니이미지" className="cart_img"></img>
             </Link>
             
@@ -118,10 +133,10 @@ function Header() {
               </>
             :
               <>
-                <li><Link to="/login-signup">마이페이지</Link></li> 
+                <li><Link to="/login-signup" onClick={scrollToTheTop}>마이페이지</Link></li> 
                 <li onClick={() => alert("정상적으로 로그아웃 되었습니다!")}>
                 {/* <li> */}
-                  <Link to="/login-signup">로그아웃</Link>
+                  <Link to="/login-signup" onClick={scrollToTheTop}>로그아웃</Link>
                 </li> 
               </>
           }

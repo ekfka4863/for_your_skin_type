@@ -15,9 +15,10 @@ import cart from "../assets/img/tablet/cart.png";
 import go_to_test_btn from "../assets/img/laptop/go_to_test_btn.png";
 
 
-
+export let logInControler = false;
 
 export default function LoginSignup() {
+  // const [loggedIn, setLoggedIn] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
   const [tapbar, setTapbar] = useState(1);
@@ -65,6 +66,7 @@ export default function LoginSignup() {
       // validate if session id exists... - 로그인한 회원이 회원가입한 사용자인지 확인하기 
       if (sessionStorage.getItem(data.data.sessionId) !== "" || sessionStorage.getItem(data.data.sessionId) !== null) {
         setLoggedIn(true);
+        logInControler = !logInControler;
       } 
 
     } catch (error) {
