@@ -13,17 +13,29 @@ import "../styles/src/SkinTypeTest.scss";
 // img
 import condition_checked from "../assets/img/laptop/condition_checked.png";
 
+// import axios from "axios";
 
 
-// api / mock data 
-// import { recoms_sensitive } from "../assets/data/recoms_sensitive";
-// import { recoms_complex } from "../assets/data/recoms_complex";
-// import { recoms_dry } from "../assets/data/recoms_dry";
-// import { recoms_oily } from "../assets/data/recoms_oily";
+function SkinTypeTest () {
+  const [apiData, setApiData] = useState([]);
+
+  const [dataArr, setDataArr] = useState([]);
+
+  let cardLen = 0; 
+  const skinTypes = []; 
+  const itemNames = []; 
+  const itemPrices = []; 
+  const itemFeatures = []; 
+  const imageLink = []; 
+  const productLink = []; 
+  const [cardController, setCardController] = useState(6);
 
 
+  const [resultCopy, setResultCopy] = useState([]);
+  // let cardLenCopy = useRef(0);
+  let [cardLenCopy, setCardLenCopy] = useState(0);
 
-export default function SkinTypeTest () {
+
   const [viewportWidth, setViewportWidth] = useState(document.documentElement.clientWidth);
   const [testInput1, setTestInput1] = useState();
   const [testInput2, setTestInput2] = useState();
@@ -45,13 +57,11 @@ export default function SkinTypeTest () {
       skintype: "복합성",
       color: "#8ACECD"
     }
-  ];   // 임의의 자료!
+  ];  
 
   
   // function 
   // resize 된 뷰포트 크기에 따라 Header 컴포넌트 렌더링에 조건 걸기
-  
-  
   const resizeFunc = () => {
     setViewportWidth(document.documentElement.clientWidth);
   };
@@ -65,7 +75,8 @@ export default function SkinTypeTest () {
   // reference: https://db2dev.tistory.com/entry/React-resize-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%8B%A4%EB%A3%A8%EA%B8%B0
 
 
-  
+
+
   // test input 관련 변수랑 함수들
   // let testValues = useRef(['1', '2', '3', '4']);
   let testValues = useRef(['', '', '', '']);
@@ -108,7 +119,7 @@ export default function SkinTypeTest () {
     testValues.current.splice(3, 1, e.target.previousSibling.value);
     setTestInput4(e.target.previousSibling.value);
   };
-  // console.log(testInput4, testValues.current[3]);   // -> 항상 같다!!
+  // console.log(testInput4, testValues.current[3]);   // -> 항상 같은 값!!
 
   let skinType = "";
 
@@ -305,162 +316,165 @@ export default function SkinTypeTest () {
     skinTypeDetails(skinType);
   }
   console.log("skinType => ", skinType);   // e.g. 복합성
+  // =================================================================
 
 
+  // =================================================================
+  // API 
+  const url = 'http://localhost:9090/items/skintype';
+
+  useEffect(() => {
+    // console.log(skinType);
+    const asyncSkinTypePost = async () => {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify({
+            // skinType: skinTypeTitle
+            skinType: skinType
+          })
+        });
+        const data = await response.json();
+        setApiData(data.data);
+        // console.log("data.data 337번줄 => ", data.data);   // 정상적으로 출력!
+        console.log("POST request to server done!! No problem! - 스킨타입테스트!!");
   
-  const dataArr = useRef([]);
-  console.log(dataArr);
+      } catch(error) {
+        console.log("POST request XXXXXX!! - 스킨타입테스트!!");
+      }
+    } 
+    asyncSkinTypePost();
+  }, [skinType]);
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+  useEffect(() => {
+    setDataArr({...apiData});
+  }, [apiData]);
+  
+  // console.log("353번줄 apiData ==> ", apiData);  // 정상적으로 출력!
+
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+  // reference:  https://codingbroker.tistory.com/123
+
+
+  // =================================================================
 
   const onSubmitTestResult = () => {
+    // console.log("dataArr here 2 ===> ", dataArr); // 정상 출력!
     if (!testValues.current.includes('')) {
       setAnalyzeBtn(true); 
-      // console.log("결과 분석 버튼 누름!!", analizeBtn);
-      // console.log("결과 => ", skinTypeTitle);   // e.g. 지성 
+
+      // =========================
+      // skin type test logic starts here!
+      // =========================
+      // 피부타입에 맞는 제품 display하는 함수 && 원하는 가격대의 제품 display 하기 
+
+      // console.log("406번줄 ==> Array.isArray(apiData) ===> ", Array.isArray(apiData));  // true
+      // console.log("407번줄 skinType => ", skinType);
+      if (Array.isArray(apiData)) {
+        // console.log('goooooooooooooood!');
+        switch (skinType) {
+          case "민감성":
+            apiData.forEach((each) => {
+              skinTypes.push(each.skinType);
+              itemNames.push(each.name);
+              itemPrices.push(each.price);
+              itemFeatures.push(each.itemFeature);
+              imageLink.push(each.imageLink);
+              productLink.push(each.productLink);
+              cardLen++;
+            });
+            break;
+          case "지성":
+            apiData.forEach((each) => {
+              skinTypes.push(each.skinType);
+              itemNames.push(each.name);
+              itemPrices.push(each.price);
+              itemFeatures.push(each.itemFeature);
+              imageLink.push(each.imageLink);
+              productLink.push(each.productLink);
+              cardLen++;
+            });
+            break;
+          case "복합성":
+            apiData.forEach((each) => {
+              skinTypes.push(each.skinType);
+              itemNames.push(each.name);
+              itemPrices.push(each.price);
+              itemFeatures.push(each.itemFeature);
+              imageLink.push(each.imageLink);
+              productLink.push(each.productLink);
+              cardLen++;
+            });
+            break;
+          case "건성":
+            apiData.forEach((each) => {
+              skinTypes.push(each.skinType);
+              itemNames.push(each.name);
+              itemPrices.push(each.price);
+              itemFeatures.push(each.itemFeature);
+              imageLink.push(each.imageLink);
+              productLink.push(each.productLink);
+              cardLen++;
+            });
+            break;
+          default:
+            break;
+        }// switch문
+
+        // console.log(skinTypes);
+        // console.log(itemNames);
+        // console.log(itemPrices);
+        // console.log(itemFeatures);
+        // console.log(imageLink);
+        // console.log(productLink);
+        // console.log(cardLen);
+
+        // renderItemCard(skinTypes, itemNames, itemPrices, itemFeatures, imageLink, productLink, cardLen);
+        // renderItemCard();
+
+        }// if (Array.isArray(dataArr.data)) 문
+
+      const result = [];
+      for (let i = 0; i < cardController; i++) {
+        result.push(<Card 
+                      key={i} 
+                      skinTypes={skinTypes[i]} 
+                      itemNames={itemNames[i]}
+                      itemPrices={itemPrices[i]} 
+                      itemFeatures={itemFeatures[i]}
+                      imageLink={imageLink[i]}
+                      productLink={productLink[i]}
+                    />
+        );            
+      }
+      // console.log(result);
+      setResultCopy(result);
+      // console.log(resultCopy);
+      console.log(cardLen);    // 25
+      // cardLenCopy = cardLen;   
+      setCardLenCopy(cardLen);
+      console.log(cardLenCopy); // 0
       
-      const url = 'http://localhost:9090/items/skintype';
-      // console.log("skinType ==> ", skinType);
-      const asyncSkinTypePost = async () => {
-        try {
-          // console.log("skinType ==> ", skinType);
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({
-              // skinType: skinTypeTitle
-              skinType: skinType
-            })
-          });
-          const data = await response.json();
-          console.log("POST request to server done!! No problem! - 스킨타입테스트!!");
-          console.log("data => ", data);
-          dataArr = data;
-          console.log("dataArr.data => ", dataArr.data);
-        } catch(error) {
-          console.log("POST request XXXXXX!! - 스킨타입테스트!!");
-        }
-      } 
-      asyncSkinTypePost();
-      // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+      
+
     } else {
       alert("테스트 질문은 총 4개입니다. 결과분석을 하시려면 모든 질문에 답변하여 주세요.");
     }
   };
 
-  // =========================
-  // 피부타입에 맞는 제품 display하는 함수 && 원하는 가격대의 제품 display 하기 
-  // const dataArr = useRef([]);
-  // console.log(dataArr);
-  
-  let cardLen = 0;
-  const skinTypes = []; 
-  const itemNames = []; 
-  const itemPrices = []; 
-  const itemFeatures = []; 
-  const imageLink = []; 
-  const productLink = []; 
-
-  // console.log(skinTypes);   // 지성 
-  // console.log("답 => ", recoms_oily[0].skinType);
-  // recoms_oily.forEach(each => console.log(each.skinType))
-
-
-  // 피부타입에 따라 카드 display 
-  if (dataArr.data !== undefined) {
-  console.log(dataArr);
-
-
-    switch (skinType) {
-      case "민감성":
-        dataArr.data.forEach((each) => {
-          skinTypes.push(each.skinType);
-          itemNames.push(each.name);
-          itemPrices.push(each.price);
-          itemFeatures.push(each.itemFeature);
-          imageLink.push(each.imageLink);
-          productLink.push(each.productLink);
-          cardLen++;
-        });
-        break;
-      case "복합성":
-        dataArr.data.forEach((each) => {
-          skinTypes.push(each.skinType);
-          itemNames.push(each.name);
-          itemPrices.push(each.price);
-          itemFeatures.push(each.itemFeature);
-          imageLink.push(each.imageLink);
-          productLink.push(each.productLink);
-          cardLen++;
-        });
-        break;
-      case "지성":
-        dataArr.data.forEach((each) => {
-          skinTypes.push(each.skinType);
-          itemNames.push(each.name);
-          itemPrices.push(each.price);
-          itemFeatures.push(each.itemFeature);
-          imageLink.push(each.imageLink);
-          productLink.push(each.productLink);
-          cardLen++;
-        });
-        break;
-      case "건성":
-        dataArr.data.forEach((each) => {
-          skinTypes.push(each.skinType);
-          itemNames.push(each.name);
-          itemPrices.push(each.price);
-          itemFeatures.push(each.itemFeature);
-          imageLink.push(each.imageLink);
-          productLink.push(each.productLink);
-          cardLen++;
-        });
-        break;
-      default:
-        break;
-    }
-  } else {
-    // console.log("dataArr.data === undefined", typeof dataArr.data);
-    // console.log("dataArr.data === undefined", dataArr.data);
-    console.log("dataArr.data === undefined", dataArr);
-  }
-  // console.log("skinTypes => ", skinTypes);
-  // console.log("itemNames => ", productLink);
-
-
+    // =================================================================
   // 카드 렌더링 관련 state 및 함수들
-  const [cardController, setCardController] = useState(6);
-
   const renderItemCard = () => {
-    const result = [];
-    for (let i = 0; i < cardController; i++) {
-      result.push(<Card 
-                    key={i} 
-                    skinTypes={skinTypes[i]} 
-                    itemNames={itemNames[i]}
-                    itemPrices={itemPrices[i]} 
-                    itemFeatures={itemFeatures[i]}
-                    imageLink={imageLink[i]}
-                    productLink={productLink[i]}
-                  />
-      );            
-    }
-    // console.log(result);
-    return result;
+    const resultCopy2 = resultCopy;
+    // console.log(resultCopy, resultCopy2);
+    return resultCopy2;
   };
-  
-    const onClickShowMoreCards = () => {
-      if (cardController <= cardLen - 6) {
-        setCardController(cardController + 6);
-      } else {
-        setCardController(cardLen);
-      }
+  // =================================================================
 
-      if (cardController === cardLen) {
-        alert("더 많은 제품을 보시려면 해당 화장품 브랜드 사이트를 방문해주십시오. 감사합니다!");
-      } 
-    };    
-    // =========================
 
 
 
@@ -805,7 +819,9 @@ export default function SkinTypeTest () {
               {renderItemCard()}
             </div>
             <div className="test_result_more_btn">
-              <button type="button" onClick={onClickShowMoreCards}>&#43; 관련 제품 더보기</button>
+              <Link to="/dr-jart-bestsellers">
+                <span>&#43; 관련 제품 더보기</span>
+              </Link>
             </div>
           </section>
         }
@@ -823,3 +839,4 @@ export default function SkinTypeTest () {
   ) 
 }
 
+export default SkinTypeTest;

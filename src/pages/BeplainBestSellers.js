@@ -1,75 +1,69 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-// import { Link } from "react-router-dom";
 import Card from "../components/Card";
 
 import "../styles/src/BestSellers.scss";
 
-
-// api / mock data 
-// import dataObj from "../assets/data/data_renewed";
-// import { brand4 } from '../components/Card';
+import axios from "axios";
 
 
 
 function BeplainBestSellers() {
-  let dataArr = useRef([]);
+  const [apiData, setApiData] = useState([]);
 
-  // API 
-  const url = 'http://localhost:9090/items/beplain';
+  const [dataArr, setDataArr] = useState([]);
 
-  const asyncBeplainGet = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log("GET request to server done!! No problem! - 비플레인!!");
-      console.log(data);
-      dataArr = data;
-    } catch(error) {
-      console.log("GET request XXXXXX!! - 비플레인!!");
-    }
-  } 
-  asyncBeplainGet();
-  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
-
-  let cardLen = 0;
+  let cardLen = 0; 
   const skinTypes = []; 
   const itemNames = []; 
   const itemPrices = []; 
   const itemFeatures = []; 
   const imageLink = []; 
   const productLink = []; 
-
-  console.log(dataArr.data);
-  // console.log(Array.isArray(dataArr.data));   // true
-  dataArr.data.forEach((each) => {
-    skinTypes.push(each.skinType);
-    itemNames.push(each.name);
-    itemPrices.push(each.price);
-    itemFeatures.push(each.itemFeature);
-    imageLink.push(each.imageLink);
-    productLink.push(each.productLink);
-    cardLen++;
-  });
-
-  // dataObj[brand4].forEach((each) => {
-  //   skinTypes.push(each.skinType);
-  //   itemNames.push(each.name);
-  //   itemPrices.push(each.price);
-  //   itemFeatures.push(each.itemFeature);
-  //   imageLink.push(each.imageLink);
-  //   productLink.push(each.productLink);
-  //   cardLen++;
-  // });
-
-
   const [cardController, setCardController] = useState(6);
 
+
+  // API 
+  const url = 'http://localhost:9090/items/beplain';
+
+  useEffect(() => {
+    const asyncBeplainGet = async () => {
+      try {
+        const response = await axios.get(url);
+        setApiData(response.data);
+      } catch (error) {
+        console.log("GET request XXXXXX - 비플레인!!");
+      }
+    };
+
+    asyncBeplainGet();
+  }, []);
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
+
+  useEffect(() => {
+    setDataArr({...apiData});
+  }, [apiData]);
+
+  
+  if (Array.isArray(dataArr.data)) {
+    dataArr.data.forEach(each => {
+      // console.log(each.skinType);
+      skinTypes.push(each.skinType);
+      itemNames.push(each.name);
+      itemPrices.push(each.price);
+      itemFeatures.push(each.itemFeature);
+      imageLink.push(each.imageLink);
+      productLink.push(each.productLink);
+      cardLen++;
+    });
+  }
+  // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
   // reference:  https://codingbroker.tistory.com/123
+
+
   const renderItemCard = () => {
     const result = [];
     for (let i = 0; i < cardController; i++) {
@@ -87,6 +81,7 @@ function BeplainBestSellers() {
     return result;
   };
 
+  
   const onClickShowMoreCards = () => {
     if (cardController <= cardLen - 6) {
       setCardController(cardController + 6);

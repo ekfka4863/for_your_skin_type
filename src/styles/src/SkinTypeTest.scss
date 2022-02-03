@@ -255,16 +255,22 @@
       margin: auto;
       margin-top: 150px;
       // background-color: #ee1;
-      button {
-        position: relative;
-        width: 150px;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 20px;
-        text-align: center;
-        color: $dark-gray;
-        text-shadow: 7px 9px 4px rgba(0, 0, 0, 0.25);
-        // background-color: red;
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        span {
+          display: block;
+          position: relative;
+          width: 175px;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 30px;
+          text-align: center;
+          color: $dark-gray;
+          text-shadow: 7px 9px 4px rgba(0, 0, 0, 0.25);
+          // background-color: red;
+        }
       }
       button::before {
         display: block;
