@@ -34,8 +34,6 @@ function DrJartBestSellers() {
       try {
         const response = await axios.get(url);
         setApiData(response.data);
-        // console.log(response.data);
-        // console.log(apiData);  // []
       } catch (error) {
         console.log("GET request XXXXXX - 닥터자르트!!");
       }
@@ -47,15 +45,10 @@ function DrJartBestSellers() {
   useEffect(() => {
     setDataArr({...apiData});
   }, [apiData]);
-  // console.log(apiData.data);
 
-  // console.log(apiData);
-  // console.log(dataArr.data);
-  // console.log(Array.isArray(apiData.data));
 
   if (Array.isArray(dataArr.data)) {
     dataArr.data.forEach(each => {
-      // console.log(each.skinType);
       skinTypes.push(each.skinType);
       itemNames.push(each.name);
       itemPrices.push(each.price);
@@ -86,12 +79,10 @@ function DrJartBestSellers() {
     return result;
   };
 
-  
+
   const onClickShowMoreCards = () => {
-    // console.log("cardLen => ", cardLen);
     if (cardController <= cardLen - 6) {
       setCardController(cardController + 6);
-      // console.log("cardLen => ", cardLen);
     } else {
       setCardController(cardLen);
     }
@@ -123,6 +114,5 @@ function DrJartBestSellers() {
     </div>
   ) 
 }
-
 
 export default DrJartBestSellers;
