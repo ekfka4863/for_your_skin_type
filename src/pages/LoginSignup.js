@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{ useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -16,10 +16,12 @@ import go_to_test_btn from "../assets/img/laptop/go_to_test_btn.png";
 
 
 export let logInControler = false;
+let sessionLatestId = "";
 
 export default function LoginSignup() {
+  let loggedIn = useRef(false);
   // const [loggedIn, setLoggedIn] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   const [tapbar, setTapbar] = useState(1);
 
@@ -36,7 +38,6 @@ export default function LoginSignup() {
 
   const submitToLogIn = async (e) => {
     e.preventDefault();
-    console.log(e.target.value);
 
     // console.log({   // 확인용!
     //   userId, 
@@ -65,8 +66,13 @@ export default function LoginSignup() {
 
       // validate if session id exists... - 로그인한 회원이 회원가입한 사용자인지 확인하기 
       if (sessionStorage.getItem(data.data.sessionId) !== "" || sessionStorage.getItem(data.data.sessionId) !== null) {
-        setLoggedIn(true);
         logInControler = !logInControler;
+        loggedIn.current = logInControler;
+        console.log(loggedIn.current);       // false
+        console.log(logInControler);   // true
+
+        sessionLatestId = sessionStorage.getItem(data.data.sessionId);
+        console.log("sessionLatestId => ", sessionLatestId);
       } 
 
     } catch (error) {
@@ -75,6 +81,9 @@ export default function LoginSignup() {
       
   };  // reference:  https://www.youtube.com/watch?v=OUP-urBy1k4
   
+  useEffect(() => {
+    console.log("loggedIn, logInControler => ", loggedIn.current, logInControler);
+  }, [loggedIn.current, logInControler]);
   
 
   // sign up logic 
@@ -120,7 +129,14 @@ export default function LoginSignup() {
   const LoggedInPage = () => {
     return (
       <div className="logged_in">
-        <span className="user_id_logged_in">{userId} </span>
+        <span className="user_id_logged_in">
+          {
+            console.log("loggedIn.current, logInControler => ", loggedIn.current, logInControler)
+          }
+          {
+            (userId !== "") ? userId : sessionLatestId
+          } 
+        </span>
         고객님, 로그인에 성공하셨습니다! <br />
         스킨 타입 테스트 및 장바구니 서비스를 이용해보세요!
         <ul>
@@ -144,7 +160,12 @@ export default function LoginSignup() {
       <Header />
       <div id="LoginSignup_wrap">
         {
-          (loggedIn) 
+          console.log(loggedIn.current, logInControler)
+          // console.log(sessionLatestId)
+          // console.log(userId)
+        }
+        {
+          (loggedIn.current === true) 
         ? 
           <>
             {/* 확인하기!!! */}
@@ -178,7 +199,7 @@ export default function LoginSignup() {
                   <img src={require('../assets/img/laptop/user_pw.png')} alt="비밀번호 이미지"></img>
                 </li>
                 <li>
-                  <input type="password" id="userPW" placeholder="비밀번호를 입력하세요." onChange={e => setUserPwLogin(e.target.value)} required></input>
+                  <input type="password" id="userPW" placeholder="비밀번호를 입력하세요." onChange={e => setUserPwLogin(e.target.value)} required  autocomplete="off"></input>
                   <label for="userPW"></label>
                 </li>
               </ul>
@@ -230,7 +251,7 @@ export default function LoginSignup() {
                   <label for="userPw">
                     <img src={require('../assets/img/laptop/user_pw.png')} alt="비밀번호 이미지"></img>
                   </label>
-                  <input id="userPw" type="password" placeholder="비밀번호" required onChange={e => setUserPwSignup(e.target.value)} maxLength={15}></input>
+                  <input id="userPw" type="password" placeholder="비밀번호" required onChange={e => setUserPwSignup(e.target.value)} maxLength={15}  autocomplete="off"></input>
                 </li>
 
                 <li className="signup_tel_box">
