@@ -9,5 +9,5 @@ public class ForyourskintypeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ForyourskintypeApplication.class, args);
 	}
-  
+
 }

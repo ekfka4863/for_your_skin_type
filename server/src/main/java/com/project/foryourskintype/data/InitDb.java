@@ -41,11 +41,10 @@ public class InitDb {
         private final LikedItemRepository likedItemRepository;
 
         public void dbInit() throws IOException, ParseException {
-          String path = "/Users/dayepark/Documents/dev/for_your_skin_type/server/src/main/java/com/project/foryourskintype/data/itemdata.json";
 
-            // String path = new File("").getAbsolutePath()
-            //         + "\\server\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
-                    // + "\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
+            String path = new File("").getAbsolutePath()
+                    + "\\src\\main\\java\\com\\project\\foryourskintype\\data\\itemdata.json";
+            System.out.println("path = " + path);
             JSONArray jsonList = (JSONArray) new JSONParser().parse(new FileReader(path));
 
             for (Object o : jsonList) { //상품정보 초기화

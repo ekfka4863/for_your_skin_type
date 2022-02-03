@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +30,7 @@ public class JPAItemService implements ItemService{
 
     @Override
     public Item findOne(Long id) {
-        return itemRepository.findOne(id).orElse(null);
+        return itemRepository.findOne(id).orElse(Item.createNullItem());
     }
 
     @Override

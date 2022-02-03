@@ -13,6 +13,10 @@ public class MemberLoginResponse {
     private String name;
     private int age;
     private String gender;
+    private String email;
+    private String password;
+    private String phoneNumber;
+    private String sessionId;
 
     public MemberLoginResponse(Member member, String email) {
         this.id = member.getId();
@@ -24,9 +28,4 @@ public class MemberLoginResponse {
         this.phoneNumber = member.getPhoneNumber();
         this.sessionId = email;
     }
-
-    private String email;
-    private String password;
-    private String phoneNumber;
-    private String sessionId;
 }
