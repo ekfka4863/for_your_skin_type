@@ -23,7 +23,7 @@ export default function MyPage() {
 
 
   // API 
-  const url = 'http://localhost:9090/items/mypage';
+  const url = 'http://localhost:9090/mypage';
   
   useEffect(() => {
     const asyncSessionIdPost = async () => {
@@ -39,7 +39,7 @@ export default function MyPage() {
         });
         const data = await response.json();
         setApiData(data.data);
-        console.log(apiData);
+        console.log(apiData);   // 
       console.log("POST request to server done!! No problem! - 마이페이지!!");
 
     } catch(error) {
@@ -47,7 +47,8 @@ export default function MyPage() {
     }
   } 
   asyncSessionIdPost();
-}, [sessionId]);
+// }, [sessionId]);
+}, []);
 // reference:  https://stackoverflow.com/questions/50046841/proper-way-to-make-api-fetch-post-with-async-await
 
 
