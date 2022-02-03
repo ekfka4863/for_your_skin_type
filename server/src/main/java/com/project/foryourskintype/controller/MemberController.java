@@ -3,15 +3,12 @@ package com.project.foryourskintype.controller;
 import com.project.foryourskintype.domain.Member;
 import com.project.foryourskintype.dto.*;
 import com.project.foryourskintype.service.MemberService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import org.springframework.validation.Errors;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -64,4 +61,10 @@ public class MemberController {
 
         return new Result(new MemberLoginResponse(findMember, sessionId));
     }
+
+    @PostMapping("mypage")
+    public MemberDto readMyPage(@RequestBody String sessionId){
+        return new MemberDto(memberService.findByEmail(sessionId));
+    }
 }
+

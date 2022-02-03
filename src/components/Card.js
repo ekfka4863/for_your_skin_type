@@ -82,7 +82,7 @@ function Card ({ skinTypes, itemNames, itemPrices, itemFeatures, imageLink, prod
       </div>
       <div className="card_cover_part">
         <button type="button" className="go_to_shopping_btn" onClick={goToBuyProduct} >
-        {/* <button type="button" className="go_to_shopping_btn" onClick={location.href = {}}> */}
+        {/* <button type="button" className="go_9to_shopping_btn" onClick={location.href = {}}> */}
           <span className="cart_icon"></span>
           <span>바로구매</span>
         </button>
