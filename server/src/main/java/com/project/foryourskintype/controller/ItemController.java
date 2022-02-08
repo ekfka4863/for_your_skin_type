@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RestController
 @Transactional
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")
 public class ItemController {
 
     private final ItemService itemService;

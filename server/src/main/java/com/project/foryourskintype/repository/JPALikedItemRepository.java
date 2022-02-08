@@ -1,8 +1,6 @@
 package com.project.foryourskintype.repository;
 
-import com.project.foryourskintype.domain.Item;
 import com.project.foryourskintype.domain.LikedItem;
-import com.project.foryourskintype.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

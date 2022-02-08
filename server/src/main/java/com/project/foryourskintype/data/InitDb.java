@@ -11,14 +11,16 @@ import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Component
 @RequiredArgsConstructor
@@ -41,10 +43,10 @@ public class InitDb {
         private final LikedItemRepository likedItemRepository;
 
         public void dbInit() throws IOException, ParseException {
-
-            String path = "/Users/dayepark/Documents/dev/for_your_skin_type/server/src/main/java/com/project/foryourskintype/data/itemdata.json";
+            ClassPathResource resource = new ClassPathResource("data/itemdata.json");
+            Path path = Paths.get(resource.getURI());
             System.out.println("path = " + path);
-            JSONArray jsonList = (JSONArray) new JSONParser().parse(new FileReader(path));
+            JSONArray jsonList = (JSONArray) new JSONParser().parse(new FileReader(path.toString()));
 
             for (Object o : jsonList) { //상품정보 초기화
                 itemRepository.save(new Gson().fromJson(o.toString(), Item.class));
@@ -53,7 +55,7 @@ public class InitDb {
             Member member1 = new Member("박유저",
                     20,
                     "woman",
-                    "user1@gamil.com",
+                    "user1@gmail.com",
                     "user1_password",
                     "01012345678");
             Member member2 = new Member("양글렛",

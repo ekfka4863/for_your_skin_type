@@ -47,23 +47,22 @@ public class JPAMemberService implements MemberService {
     }
 
     @Override
-    public String Login(String email, String password, HttpServletRequest request) {
+    public int Login(String email, String password, HttpServletRequest request) {
         Optional<Member> member = memberRepository.findByEmail(email);
-        HttpSession session = request.getSession(); //세션을 만들기
 
         if (member.isPresent()) {
             if (member.get().getPassword().equals(password)) {
-                session.setAttribute(email, email); //로그인에 성공할 경우 세션 값 저장
+                request.getSession().setAttribute("key", email); //로그인에 성공할 경우 세션 값 저장
                 log.info("login success");
-                return session.getAttribute(email).toString(); //로그인 성공
+                return 1; //로그인 성공
 
             } else {
                 log.info("login fail");
-                return "loginFail"; //로그인 실패
+                return 0; //로그인 실패
             }
         } else {
             log.info("login fail");
-            return "loginFail"; //로그인 실패
+            return 0; //로그인 실패
         }
     }
 

@@ -23,7 +23,7 @@ export default function MyPage() {
 
 
   // API 
-  const url = 'http://localhost:9090/items/mypage';
+  const url = 'http://localhost:9090/mypage';
   
   useEffect(() => {
     const asyncSessionIdPost = async () => {
