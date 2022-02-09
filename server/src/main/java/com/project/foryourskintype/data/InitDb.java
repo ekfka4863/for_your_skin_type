@@ -26,7 +26,7 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 public class InitDb {
 
-  private final InitService initService;
+    private final InitService initService;
 
     @PostConstruct
     public void init() throws IOException, ParseException {
@@ -80,4 +80,3 @@ public class InitDb {
         }
     }
 }
-
