@@ -1,77 +1,6 @@
 @import "../common/mixin";
 
 
-/* HTML structure 
-=========================== */
-#LoginSignup_wrap {
-  .LoginSignup_bind {
-
-    .taps {   // 로그인 / 회원가입 탭메뉴
-      // li {}
-      li:first-child {}
-      li:last-child {}
-    }// .taps
-
-    div:nth-of-type(1) {  // 로그인 박스
-      form {
-        .Login_Id_box {
-          li:nth-child(1) {
-            img {}
-          }
-          li:nth-child(2) {
-            input {}
-            // label {}
-          }
-        }// .Login_Id_box
-        .Pw_Id_box {
-          li:nth-child(1) {
-            img {}
-          }
-          li:nth-child(2) {
-            input {}
-            // label {}
-          }
-        }// .Pw_Id_box
-        .Login_button {
-          // input {}
-        }// .Login_button
-      }// form
-    }// 로그인 박스
-
-    div:nth-of-type(2) {  // 회원가입 박스
-      form {
-        .first_bundle {
-          li {
-            img {}
-            input {}
-            label {}
-          }
-          // .Name_box {}
-          // .gender_box {}
-          // .woman_box {}
-        }// .first_bundle
-        .second_bundle {
-          li {
-            img {}
-            input {}
-            label {}
-          }
-          // .signup_email_box {}
-          // .signup_pw_box {}
-          // .signup_tel_box {}
-        }// .second_bundle
-        .signup_button {
-          // input {}
-        }// .signup_button
-      }// form
-    }// 회원가입 박스
-    
-  }// .LoginSignup_bind
-}// #LoginSignup_wrap
-
-/* ======================== */
-/* ======================== */
-
 .logged_in {
   width: 500px;
   height: 250px;
@@ -95,29 +24,22 @@
     display: flex;
     justify-content: space-between;
     li {
-      // background-color: #d15;
       a {
         display: block;
         width: 100%;
         height: 100%;
-        // background-color: #d15;
         // img {}
       }
     }
-    // li:nth-child(1) {}
-    // li:nth-child(2) {}
-    // li:nth-child(3) {s}
   }
 }
 
-/* laptop & desktop 
-=============================== */
+/* laptop & desktop */
 #LoginSignup_wrap {
   position: relative;
   width:100vw;
   height:100vh;
   margin-top:70px;
-  // background-color: #ea1;
 
   .LoginSignup_bind { 
     position: absolute;
@@ -126,7 +48,6 @@
     width:100vw;
     height:570px;
     filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
-    // background-color: #231;
 
     .taps {
       display: flex;
@@ -134,7 +55,6 @@
       top: 15px; 
       left: 27.5%;
       z-index: 99;
-      // background-color: #ea1;
       li {
         width:130px; 
         height:55px;
@@ -1015,9 +935,9 @@
       }
     }
   
-    .Content_none{
-      display: none;
-      }
+    // .Content_none{
+    //   display: none;
+    // }
     }
   }
   

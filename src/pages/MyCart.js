@@ -1,3 +1,4 @@
+import React, {Component} from 'react';
 import { useEffect, useState } from "react";
 
 // 공통 컴포넌트 임포트 

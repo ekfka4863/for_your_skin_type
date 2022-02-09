@@ -1,3 +1,5 @@
+import React, {Component} from 'react';
+
 import { useRef, useState } from "react";
 import "../styles/src/Card.scss";
 
