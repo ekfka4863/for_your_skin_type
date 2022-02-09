@@ -1,7 +1,5 @@
 package com.project.foryourskintype.domain;
 
-import com.project.foryourskintype.dto.MemberDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +7,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.project.foryourskintype.domain.ItemFeature.오일형;
-import static com.project.foryourskintype.domain.SkinType.복합성;
 
 @Entity
 @Getter
