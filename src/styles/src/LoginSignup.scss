@@ -41,7 +41,7 @@
   height:100vh;
   margin-top:70px;
 
-  .LoginSignup_bind { 
+  .LoginSignup_bind {
     position: absolute;
     margin:0 auto;
     top:15%; 
@@ -95,246 +95,249 @@
     }
   }// .Login_box & .Signup_box -> 공통
 
+  /* 로그인 박스 */ 
   .Login_box {
-    form {
-      padding-top:90px;
-      width:500px;
-      height:500px;
+    // form {
+    //   padding-top:90px;
+    //   width:500px;
+    //   height:500px;
 
-      .Login_Id_box,
-      .Pw_Id_box {
-        width:500px;
-        height: 100px;
-        border-radius:10px;
-        background-color:rgb(156, 156, 156);
-        display: flex;
-        img {
-          margin-left: 20px;
-        }
-        input {
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          cursor: pointer;
-        }
-        input::placeholder {
-          color:#eaeaea;
-          font-size: 15px;
-        }
-      }// .Login_Id_box & .Pw_Id_box -> 공통
+    //   .Login_Id_box,
+    //   .Pw_Id_box {
+    //     width:500px;
+    //     height: 100px;
+    //     border-radius:10px;
+    //     background-color:rgb(156, 156, 156);
+    //     display: flex;
+    //     img {
+    //       margin-left: 20px;
+    //     }
+    //     input {
+    //       outline:none;
+    //       border:none;
+    //       background-color:rgb(156, 156, 156);
+    //       cursor: pointer;
+    //     }
+    //     input::placeholder {
+    //       color:#eaeaea;
+    //       font-size: 15px;
+    //     }
+    //   }// .Login_Id_box & .Pw_Id_box -> 공통
 
-      .Login_Id_box {
-        padding-top: 25px;
-        margin-bottom: 20px;
-        // img {}
-        input {
-        padding-left: 10px;
-        padding-top: 20px;
-        }
-      }// .Login_Id_box
-      .Pw_Id_box {
-        padding-left: 10px;
-        padding-top: 20px;
-        // img {}
-        input {
-        padding-top: 23px;
-        padding-left:5px;
-        width:300px;
-        }
-      }// .Pw_Id_box
+    //   .Login_Id_box {
+    //     padding-top: 25px;
+    //     margin-bottom: 20px;
+    //     // img {}
+    //     input {
+    //     padding-left: 10px;
+    //     padding-top: 20px;
+    //     }
+    //   }// .Login_Id_box
+    //   .Pw_Id_box {
+    //     padding-left: 10px;
+    //     padding-top: 20px;
+    //     // img {}
+    //     input {
+    //     padding-top: 23px;
+    //     padding-left:5px;
+    //     width:300px;
+    //     }
+    //   }// .Pw_Id_box
 
-      .Login_button {
-        float:right;
-        padding-top: 40px;
-        input {
-          width:100px;
-          height:60px;
-          line-height: 60px;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          font:20px/65px "나눔고딕",sans-serif;
-          border-radius:10px;
-          cursor: pointer;
-        }// input
+    //   .Login_button {
+    //     float:right;
+    //     padding-top: 40px;
+    //     input {
+    //       width:100px;
+    //       height:60px;
+    //       line-height: 60px;
+    //       outline:none;
+    //       border:none;
+    //       background-color:rgb(156, 156, 156);
+    //       font:20px/65px "나눔고딕",sans-serif;
+    //       border-radius:10px;
+    //       cursor: pointer;
+    //     }// input
 
-        input:hover {
-          background-color:$dark-gray;
-          color: #fff;
-        }
-      }// .Login_button
-    }// form 
+    //     input:hover {
+    //       background-color:$dark-gray;
+    //       color: #fff;
+    //     }
+    //   }// .Login_button
+    // }// form 
   }// .Login_box
 
+  /* 회원가입 박스 */ 
   .Signup_box {
-    form {
-      padding-top:50px;
-      width:570px;
+    // form {
+    //   padding-top:50px;
+    //   width:570px;
 
-      .first_bundle,
-      .second_bundle {
-        li {
-          input {
-            text-indent: 10px;
-            line-height: 20px;
-            // background-color: #ea1;
-          }
-          input::placeholder {
-            color: #eaeaea;
-            font-size: 15px;
-          }
-        }
-      }
+    //   .first_bundle,
+    //   .second_bundle {
+    //     li {
+    //       input {
+    //         text-indent: 10px;
+    //         line-height: 20px;
+    //         // background-color: #ea1;
+    //       }
+    //       input::placeholder {
+    //         color: #eaeaea;
+    //         font-size: 15px;
+    //       }
+    //     }
+    //   }
 
-      .first_bundle{
-        display: flex;
-        li{
-          position: relative;
-          width:260px;
-          height:70px;
-          background-color:rgb(156, 156, 156);
-          border-radius:15px;
-          img{
-            margin-left:10px;
-          }
-          input{
-            cursor: pointer;
-          }
+    //   .first_bundle{
+    //     display: flex;
+    //     li{
+    //       position: relative;
+    //       width:260px;
+    //       height:70px;
+    //       background-color:rgb(156, 156, 156);
+    //       border-radius:15px;
+    //       img{
+    //         margin-left:10px;
+    //       }
+    //       input{
+    //         cursor: pointer;
+    //       }
 
-        }
-        .Name_box{
-          position: relative;
-          margin-right:50px;
-          input{
-            position: absolute;
-            margin-top:24px;
-            margin-left:10px;  
-            outline:none;
-            border:none;
-            background-color:rgb(156, 156, 156)     
-          }
-          img{
-            margin-top:9px;
-            width:50px;
-            height:50px;
-            }
-          }
+    //     }
+    //     .Name_box{
+    //       position: relative;
+    //       margin-right:50px;
+    //       input{
+    //         position: absolute;
+    //         margin-top:24px;
+    //         margin-left:10px;  
+    //         outline:none;
+    //         border:none;
+    //         background-color:rgb(156, 156, 156)     
+    //       }
+    //       img{
+    //         margin-top:9px;
+    //         width:50px;
+    //         height:50px;
+    //         }
+    //       }
 
-        .gender_box {
-          position: relative;
-          display: flex;
-          justify-content: space-between;
-          padding-top:10px;
-          // background-color: #fff;
-          .man_box {
-            margin-right: 10px;
-            // background-color: #1a3;
-          }
-          .man_box, 
-          .woman_box {
-            display: flex;
-            position: absolute;
-            width: 100px;
-            // background-color: #5a1;
-            label {
-              // width: 100%;
-              // height: 100%;
-              margin: auto;
-              // background-color: #13a;
-              img {
-                width: 45px;
-                height: 45px;
-                margin: auto;
-                // background-color: #81a;
+    //     .gender_box {
+    //       position: relative;
+    //       display: flex;
+    //       justify-content: space-between;
+    //       padding-top:10px;
+    //       // background-color: #fff;
+    //       .man_box {
+    //         margin-right: 10px;
+    //         // background-color: #1a3;
+    //       }
+    //       .man_box, 
+    //       .woman_box {
+    //         display: flex;
+    //         position: absolute;
+    //         width: 100px;
+    //         // background-color: #5a1;
+    //         label {
+    //           // width: 100%;
+    //           // height: 100%;
+    //           margin: auto;
+    //           // background-color: #13a;
+    //           img {
+    //             width: 45px;
+    //             height: 45px;
+    //             margin: auto;
+    //             // background-color: #81a;
                 
-              }
-            }// label
-            input {
-              width:30px;
-              height:30px;
-            }// input
-          }
-          .man_box{
-            left:20px;
-          }// .man_box
-          .woman_box{
-            left:120px;
-            input{
-              margin-left:-15px;
-            }
-            // img {}
-          }// .woman_box
-        }// .gender_box
-      }
+    //           }
+    //         }// label
+    //         input {
+    //           width:30px;
+    //           height:30px;
+    //         }// input
+    //       }
+    //       .man_box{
+    //         left:20px;
+    //       }// .man_box
+    //       .woman_box{
+    //         left:120px;
+    //         input{
+    //           margin-left:-15px;
+    //         }
+    //         // img {}
+    //       }// .woman_box
+    //     }// .gender_box
+    //   }
 
-      .second_bundle{
-        display: block;
-        position: relative;
+    //   .second_bundle{
+    //     display: block;
+    //     position: relative;
 
-        li{
-          width:570px;
-          height:70px;
-          background-color:rgb(156, 156, 156);
-          border-radius: 15px;
-          margin-top: 20px;
+    //     li{
+    //       width:570px;
+    //       height:70px;
+    //       background-color:rgb(156, 156, 156);
+    //       border-radius: 15px;
+    //       margin-top: 20px;
 
-        }
+    //     }
 
-        input{
-          position:absolute;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          margin-top:25px;
-          margin-left:10px;
-          cursor: pointer;
-        }
-        img{
-          margin-top:10px;
-          margin-left:10px;
-          width:42px;
-          height:42px;
-        }
+    //     input{
+    //       position:absolute;
+    //       outline:none;
+    //       border:none;
+    //       background-color:rgb(156, 156, 156);
+    //       margin-top:25px;
+    //       margin-left:10px;
+    //       cursor: pointer;
+    //     }
+    //     img{
+    //       margin-top:10px;
+    //       margin-left:10px;
+    //       width:42px;
+    //       height:42px;
+    //     }
 
-        .signup_tel_box{
-          img{
-            margin-top:15px;
-            width:40px;
-            height:40px;
-          }
-        }
+    //     .signup_tel_box{
+    //       img{
+    //         margin-top:15px;
+    //         width:40px;
+    //         height:40px;
+    //       }
+    //     }
 
       
-      }
+    //   }
 
-      .signup_button{
-        float: right;
-        margin-top: 15px;
-        input{
-        width:100px;
-        height:60px;
-        outline:none;
-        border:none;
-        background-color:rgb(156, 156, 156);
-        font:20px "나눔고딕",sans-serif;
-        border-radius:15px;
-        cursor: pointer;
-        }
-        input:hover{
-          background-color:$dark-gray;
-          color: #fff;
-        }
-      }
+    //   .signup_button{
+    //     float: right;
+    //     margin-top: 15px;
+    //     input{
+    //     width:100px;
+    //     height:60px;
+    //     outline:none;
+    //     border:none;
+    //     background-color:rgb(156, 156, 156);
+    //     font:20px "나눔고딕",sans-serif;
+    //     border-radius:15px;
+    //     cursor: pointer;
+    //     }
+    //     input:hover{
+    //       background-color:$dark-gray;
+    //       color: #fff;
+    //     }
+    //   }
 
 
-    }
+    // }
   }
 
   .Content_none{
     display: none;
-    }
-  }
-}
+  }// .Content_none
+
+  }// .LoginSignup_bind
+}// #LoginSignup_wrap
 
 
 
@@ -390,6 +393,7 @@
     }
   }
 
+  /* 로그인 박스 */ 
   .Login_box{
     position: absolute;
     display: block;
@@ -401,94 +405,92 @@
     background-color:rgb(236, 236, 236);
     border-radius:10px;
 
-    form{
-      padding-top:90px;
-      width:500px;
-      margin:0 auto;
-      height:500px;
-      .Login_Id_box{
-        margin-left:15px;
-        width:320px;
-        height:70px;
-        background-color:rgb(156, 156, 156);
-        display: flex;
-        margin-bottom: 20px;
-        border-radius:15px;
-        img{
-          margin-left: 20px;
-          margin-top:-10px;
-          width:42px;
-          height:42px;
-        }
-        input{
-        padding-left:10px;
-        padding-top: 5px;
-        outline:none;
-        border:none;
-        background-color:rgb(156, 156, 156);
-        cursor: pointer;
-        }
-        input::placeholder{
-          color:#eaeaea;
-          font-size:17px;
-        }
-      }
-      .Pw_Id_box{
-        padding-top: 20px;
-        margin-left:15px;
-        width:320px;
-        height:70px;
-        background-color:rgb(156, 156, 156);
-        display: flex;
-        border-radius:10px;
-        img{
-          width:45px;
-          height:45px;
-          margin-left:10px;
-          margin-top:-10px;
-        }
-        input{
-        padding-top: 11px;
-        padding-left:5px;
-        width:200px;
-        outline:none;
-        border:none;
-        background-color:rgb(156, 156, 156);
-        cursor: pointer;
-        }
-        input::placeholder{
-          color:#eaeaea;
-          font-size:17px;
-        }
-      }
-      .Login_button{
-        position: absolute;
-        left:210px;
-        padding-top:80px;
-        input{
-          width:100px;
-          height:60px;
-          margin:0 auto;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          font:20px/60px "나눔고딕",sans-serif;
-          border-radius:15px;
-          cursor: pointer;
-          }
+    // form {
+    //   padding-top:90px;
+    //   width:500px;
+    //   margin:0 auto;
+    //   height:500px;
+    //   .Login_Id_box{
+    //     margin-left:15px;
+    //     width:320px;
+    //     height:70px;
+    //     background-color:rgb(156, 156, 156);
+    //     display: flex;
+    //     margin-bottom: 20px;
+    //     border-radius:15px;
+    //     img{
+    //       margin-left: 20px;
+    //       margin-top:-10px;
+    //       width:42px;
+    //       height:42px;
+    //     }
+    //     input{
+    //     padding-left:10px;
+    //     padding-top: 5px;
+    //     outline:none;
+    //     border:none;
+    //     background-color:rgb(156, 156, 156);
+    //     cursor: pointer;
+    //     }
+    //     input::placeholder{
+    //       color:#eaeaea;
+    //       font-size:17px;
+    //     }
+    //   }
+    //   .Pw_Id_box{
+    //     padding-top: 20px;
+    //     margin-left:15px;
+    //     width:320px;
+    //     height:70px;
+    //     background-color:rgb(156, 156, 156);
+    //     display: flex;
+    //     border-radius:10px;
+    //     img{
+    //       width:45px;
+    //       height:45px;
+    //       margin-left:10px;
+    //       margin-top:-10px;
+    //     }
+    //     input{
+    //     padding-top: 11px;
+    //     padding-left:5px;
+    //     width:200px;
+    //     outline:none;
+    //     border:none;
+    //     background-color:rgb(156, 156, 156);
+    //     cursor: pointer;
+    //     }
+    //     input::placeholder{
+    //       color:#eaeaea;
+    //       font-size:17px;
+    //     }
+    //   }
+    //   .Login_button{
+    //     position: absolute;
+    //     left:210px;
+    //     padding-top:80px;
+    //     input{
+    //       width:100px;
+    //       height:60px;
+    //       margin:0 auto;
+    //       outline:none;
+    //       border:none;
+    //       background-color:rgb(156, 156, 156);
+    //       font:20px/60px "나눔고딕",sans-serif;
+    //       border-radius:15px;
+    //       cursor: pointer;
+    //       }
 
-          input:hover{
-            background-color:$dark-gray;
-            color: #fff;
-          }
-          
-
-      }
-  
-    }
+    //       input:hover{
+    //         background-color:$dark-gray;
+    //         color: #fff;
+    //       }
+    //   }
+    // }// form 
 
   }
 
+  /* 회원가입 박스 */ 
   .Signup_box{
     position: absolute;
     top:17.6%; 
@@ -497,143 +499,141 @@
     box-sizing: border-box;
     background-color:rgb(236, 236, 236);
     border-radius:15px;
-    form{
-      padding-top:50px;
-      width:570px;
-      margin:0 auto;
-      // height:600px;
+    // form {
+    //   padding-top:50px;
+    //   width:570px;
+    //   margin:0 auto;
+    //   // height:600px;
 
-      .first_bundle{
-        display: block;
-        li{
-          position: absolute;
-          margin-left:20px;
-          top:-50px;
-          width:300px;
-          height:60px;
-          margin-top: 20px;
-          background-color:rgb(156, 156, 156);
-          border-radius:15px;
-          img{
-            margin-left:10px;
-          }
-          input{
-            cursor: pointer;
-          }
+    //   .first_bundle{
+    //     display: block;
+    //     li{
+    //       position: absolute;
+    //       margin-left:20px;
+    //       top:-50px;
+    //       width:300px;
+    //       height:60px;
+    //       margin-top: 20px;
+    //       background-color:rgb(156, 156, 156);
+    //       border-radius:15px;
+    //       img{
+    //         margin-left:10px;
+    //       }
+    //       input{
+    //         cursor: pointer;
+    //       }
 
-        }
-        .Name_box{
-          position: relative;
-          margin-right:50px;
-          input{
-            position: absolute;
-            margin-top:22px;
-            margin-left:10px;  ; 
-            outline:none;
-            border:none;
-            background-color:rgb(156, 156, 156)     
-          }
-          img{
-            margin-top:6px;
-            width:50px;
-            height:50px;
-            }
-          }
+    //     }
+    //     .Name_box{
+    //       position: relative;
+    //       margin-right:50px;
+    //       input{
+    //         position: absolute;
+    //         margin-top:22px;
+    //         margin-left:10px;  ; 
+    //         outline:none;
+    //         border:none;
+    //         background-color:rgb(156, 156, 156)     
+    //       }
+    //       img{
+    //         margin-top:6px;
+    //         width:50px;
+    //         height:50px;
+    //         }
+    //       }
 
-        .gender_box{
-          input{
-            width:30px;
-            height:30px;
-          }
-          .man_box{
-            position: absolute;
-            left:40px;
-            img{
-              width:47px;
-              height:47px;
-            }
-          }
-          .woman_box{
-            position: absolute;
-            left:140px;
-            input{
-              margin-left:-15px;
-            }
-            img{
-              width:45px;
-              height:45px;
-            }
-          }
+    //     .gender_box{
+    //       input{
+    //         width:30px;
+    //         height:30px;
+    //       }
+    //       .man_box{
+    //         position: absolute;
+    //         left:40px;
+    //         img{
+    //           width:47px;
+    //           height:47px;
+    //         }
+    //       }
+    //       .woman_box{
+    //         position: absolute;
+    //         left:140px;
+    //         input{
+    //           margin-left:-15px;
+    //         }
+    //         img{
+    //           width:45px;
+    //           height:45px;
+    //         }
+    //       }
 
 
-        }
+    //     }
       
-      }
+    //   }
 
-      .second_bundle{
-        display: block;
-        position: relative;
-        margin-top:-45px;
+    //   .second_bundle{
+    //     display: block;
+    //     position: relative;
+    //     margin-top:-45px;
 
-        li{
-          margin-left:20px;
-          width:300px;
-          height:60px;
-          background-color:rgb(156, 156, 156);
-          border-radius: 15px;
-          margin-top: 20px;
+    //     li{
+    //       margin-left:20px;
+    //       width:300px;
+    //       height:60px;
+    //       background-color:rgb(156, 156, 156);
+    //       border-radius: 15px;
+    //       margin-top: 20px;
 
-        }
+    //     }
 
-        input{
-          position:absolute;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          margin-top:23px;
-          margin-left:10px;
-          cursor: pointer;
-        }
-        img{
-          margin-top:10px;
-          margin-left:10px;
-          width:42px;
-          height:42px;
-        }
+    //     input{
+    //       position:absolute;
+    //       outline:none;
+    //       border:none;
+    //       background-color:rgb(156, 156, 156);
+    //       margin-top:23px;
+    //       margin-left:10px;
+    //       cursor: pointer;
+    //     }
+    //     img{
+    //       margin-top:10px;
+    //       margin-left:10px;
+    //       width:42px;
+    //       height:42px;
+    //     }
 
-        .signup_tel_box{
-          img{
-            margin-top:12px;
-            width:40px;
-            height:40px;
-          }
-        }
+    //     .signup_tel_box{
+    //       img{
+    //         margin-top:12px;
+    //         width:40px;
+    //         height:40px;
+    //       }
+    //     }
 
       
-      }
+    //   }
 
-      .signup_button{
-        position: absolute;
-        margin-top: 15px;
-        margin-left: 210px;
-        input{
-        width:100px;
-        height:50px;
-        outline:none;
-        border:none;
-        background-color:rgb(156, 156, 156);
-        font:20px "나눔고딕",sans-serif;
-        border-radius:15px;
-        cursor: pointer;
-        }
-        input:hover{
-          background-color:$dark-gray;
-          color: #fff;
-        }
-      }
-
-
-    }
+    //   .signup_button{
+    //     position: absolute;
+    //     margin-top: 15px;
+    //     margin-left: 210px;
+    //     input{
+    //     width:100px;
+    //     height:50px;
+    //     outline:none;
+    //     border:none;
+    //     background-color:rgb(156, 156, 156);
+    //     font:20px "나눔고딕",sans-serif;
+    //     border-radius:15px;
+    //     cursor: pointer;
+    //     }
+    //     input:hover{
+    //       background-color:$dark-gray;
+    //       color: #fff;
+    //     }
+    //   }
+    // }// form 
   }
 
   .Content_none{
@@ -700,6 +700,7 @@
       }
     }
   
+    /* 로그인 박스 */ 
     .Login_box{
       position: absolute;
       top:12.3%; left:22%;
@@ -709,87 +710,85 @@
       background-color:rgb(236, 236, 236);
       border-radius:10px;
   
-      form{
-        padding-top:90px;
-        width:500px;
-        margin:0 auto;
-        height:500px;
-        .Login_Id_box{
-          padding-top: 25px;
-          width:500px;
-          height: 100px;
-          background-color:rgb(156, 156, 156);
-          display: flex;
-          margin-bottom: 20px;
-          border-radius:10px;
-          img{
-            margin-left: 20px;
-          }
-          input{
-          padding-left: 10px;
-          padding-top: 20px;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          cursor: pointer;
-          }
-          input::placeholder{
-            color:#eaeaea;
-            font-size:17px;
-          }
-        }
-        .Pw_Id_box{
-          padding-left: 10px;
-          padding-top: 20px;
-          width:500px;
-          height: 100px;
-          background-color:rgb(156, 156, 156);
-          display: flex;
-          border-radius:10px;
-          img{
-            margin-left:10px;
-          }
-          input{
-          padding-top: 23px;
-          padding-left:5px;
-          width:300px;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          cursor: pointer;
-          }
-          input::placeholder{
-            color:#eaeaea;
-            font-size:17px;
-          }
-        }
-        .Login_button{
-          float:right;
-          padding-top: 20px;
-          input{
-            width:100px;
-            height:80px;
-            margin:0 auto;
-            outline:none;
-            border:none;
-            background-color:rgb(156, 156, 156);
-            font:20px/65px "나눔고딕",sans-serif;
-            border-radius:15px;
-            cursor: pointer;
-            }
+      // form {
+      //   padding-top:90px;
+      //   width:500px;
+      //   margin:0 auto;
+      //   height:500px;
+      //   .Login_Id_box{
+      //     padding-top: 25px;
+      //     width:500px;
+      //     height: 100px;
+      //     background-color:rgb(156, 156, 156);
+      //     display: flex;
+      //     margin-bottom: 20px;
+      //     border-radius:10px;
+      //     img{
+      //       margin-left: 20px;
+      //     }
+      //     input{
+      //     padding-left: 10px;
+      //     padding-top: 20px;
+      //     outline:none;
+      //     border:none;
+      //     background-color:rgb(156, 156, 156);
+      //     cursor: pointer;
+      //     }
+      //     input::placeholder{
+      //       color:#eaeaea;
+      //       font-size:17px;
+      //     }
+      //   }
+      //   .Pw_Id_box{
+      //     padding-left: 10px;
+      //     padding-top: 20px;
+      //     width:500px;
+      //     height: 100px;
+      //     background-color:rgb(156, 156, 156);
+      //     display: flex;
+      //     border-radius:10px;
+      //     img{
+      //       margin-left:10px;
+      //     }
+      //     input{
+      //     padding-top: 23px;
+      //     padding-left:5px;
+      //     width:300px;
+      //     outline:none;
+      //     border:none;
+      //     background-color:rgb(156, 156, 156);
+      //     cursor: pointer;
+      //     }
+      //     input::placeholder{
+      //       color:#eaeaea;
+      //       font-size:17px;
+      //     }
+      //   }
+      //   .Login_button{
+      //     float:right;
+      //     padding-top: 20px;
+      //     input{
+      //       width:100px;
+      //       height:80px;
+      //       margin:0 auto;
+      //       outline:none;
+      //       border:none;
+      //       background-color:rgb(156, 156, 156);
+      //       font:20px/65px "나눔고딕",sans-serif;
+      //       border-radius:15px;
+      //       cursor: pointer;
+      //       }
   
-            input:hover{
-              background-color:$dark-gray;
-              color: #fff;
-            }
-            
-  
-        }
-    
-      }
+      //       input:hover{
+      //         background-color:$dark-gray;
+      //         color: #fff;
+      //       }
+      //   }
+      // }// form 
   
     }
   
+    /* 회원가입 박스 */ 
     .Signup_box{
       position: absolute;
       top:12.3%; left:22%;
@@ -799,145 +798,140 @@
       background-color:rgb(236, 236, 236);
       border-radius:15px;
   
-      form{
-        padding-top:50px;
-        width:550px;
-        margin:0 auto;
+      // form {
+      //   padding-top:50px;
+      //   width:550px;
+      //   margin:0 auto;
   
-        .first_bundle{
-          display: flex;
-          margin-left: 10px;
-          li{
-            position: relative;
-            width:260px;
-            height:70px;
-            background-color:rgb(156, 156, 156);
-            border-radius:15px;
-            img{
-              margin-left:10px;
-            }
-            input{
-              cursor: pointer;
-            }
+      //   .first_bundle{
+      //     display: flex;
+      //     margin-left: 10px;
+      //     li{
+      //       position: relative;
+      //       width:260px;
+      //       height:70px;
+      //       background-color:rgb(156, 156, 156);
+      //       border-radius:15px;
+      //       img{
+      //         margin-left:10px;
+      //       }
+      //       input{
+      //         cursor: pointer;
+      //       }
   
-          }
-          .Name_box{
-            position: relative;
-            margin-right:50px;
-            input{
-              position: absolute;
-              margin-top:24px;
-              margin-left:10px;  ; 
-              outline:none;
-              border:none;
-              background-color:rgb(156, 156, 156)     
-            }
-            img{
-              margin-top:9px;
-              width:50px;
-              height:50px;
-              }
-            }
+      //     }
+      //     .Name_box{
+      //       position: relative;
+      //       margin-right:50px;
+      //       input{
+      //         position: absolute;
+      //         margin-top:24px;
+      //         margin-left:10px;  ; 
+      //         outline:none;
+      //         border:none;
+      //         background-color:rgb(156, 156, 156)     
+      //       }
+      //       img{
+      //         margin-top:9px;
+      //         width:50px;
+      //         height:50px;
+      //         }
+      //       }
   
-          .gender_box{
+      //     .gender_box{
         
-            input{
-              width:30px;
-              height:30px;
-            }
-            .man_box{
-              position: absolute;
-              left:20px;
-              img{
-                width:47px;
-                height:47px;
-              }
-            }
-            .woman_box{
-              position: absolute;
-              left:120px;
-              input{
-                margin-left:-15px;
-              }
-              img{
-                width:45px;
-                height:45px;
-              }
-            }
+      //       input{
+      //         width:30px;
+      //         height:30px;
+      //       }
+      //       .man_box{
+      //         position: absolute;
+      //         left:20px;
+      //         img{
+      //           width:47px;
+      //           height:47px;
+      //         }
+      //       }
+      //       .woman_box{
+      //         position: absolute;
+      //         left:120px;
+      //         input{
+      //           margin-left:-15px;
+      //         }
+      //         img{
+      //           width:45px;
+      //           height:45px;
+      //         }
+      //       }
   
   
-          }
+      //     }
         
-        }
+      //   }
   
-        .second_bundle{
-          display: block;
-          position: relative;
+      //   .second_bundle{
+      //     display: block;
+      //     position: relative;
   
-          li{
-            width:540px;
-            height:70px;
-            background-color:rgb(156, 156, 156);
-            border-radius: 15px;
-            margin-top: 20px;
-            margin-left:10px;
+      //     li{
+      //       width:540px;
+      //       height:70px;
+      //       background-color:rgb(156, 156, 156);
+      //       border-radius: 15px;
+      //       margin-top: 20px;
+      //       margin-left:10px;
   
-          }
+      //     }
   
-          input{
-            position:absolute;
-            outline:none;
-            border:none;
-            background-color:rgb(156, 156, 156);
-            margin-top:25px;
-            margin-left:10px;
-            cursor: pointer;
-          }
-          img{
-            margin-top:10px;
-            margin-left:10px;
-            width:42px;
-            height:42px;
-          }
+      //     input{
+      //       position:absolute;
+      //       outline:none;
+      //       border:none;
+      //       background-color:rgb(156, 156, 156);
+      //       margin-top:25px;
+      //       margin-left:10px;
+      //       cursor: pointer;
+      //     }
+      //     img{
+      //       margin-top:10px;
+      //       margin-left:10px;
+      //       width:42px;
+      //       height:42px;
+      //     }
   
-          .signup_tel_box{
-            img{
-              margin-top:15px;
-              width:40px;
-              height:40px;
-            }
-          }
+      //     .signup_tel_box{
+      //       img{
+      //         margin-top:15px;
+      //         width:40px;
+      //         height:40px;
+      //       }
+      //     }
   
         
-        }
+      //   }
   
-        .signup_button{
-          float: right;
-          margin-top: 15px;
-          margin-right:10px;
-          input{
-          width:100px;
-          height:50px;
-          outline:none;
-          border:none;
-          background-color:rgb(156, 156, 156);
-          font:20px "나눔고딕",sans-serif;
-          border-radius:15px;
-          cursor: pointer;
-          }
-          input:hover{
-            background-color:$dark-gray;
-            color: #fff;
-          }
-        }
-  
-  
-      }
+      //   .signup_button{
+      //     float: right;
+      //     margin-top: 15px;
+      //     margin-right:10px;
+      //     input{
+      //     width:100px;
+      //     height:50px;
+      //     outline:none;
+      //     border:none;
+      //     background-color:rgb(156, 156, 156);
+      //     font:20px "나눔고딕",sans-serif;
+      //     border-radius:15px;
+      //     cursor: pointer;
+      //     }
+      //     input:hover{
+      //       background-color:$dark-gray;
+      //       color: #fff;
+      //     }
+      //   }
+      // }// form 
     }
   
-    // .Content_none{
-    //   display: none;
-    // }
     }
   }
   

@@ -2,12 +2,238 @@
 
 
 /* laptop & desktop */
+form {
+  padding-top:90px;
+  width:500px;
+  height:500px;
 
+  .Login_Id_box,
+  .Pw_Id_box {
+    width:500px;
+    height: 100px;
+    border-radius:10px;
+    background-color:rgb(156, 156, 156);
+    display: flex;
+    img {
+      margin-left: 20px;
+    }
+    input {
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      cursor: pointer;
+    }
+    input::placeholder {
+      color:#eaeaea;
+      font-size: 15px;
+    }
+  }// .Login_Id_box & .Pw_Id_box -> 공통
+
+  .Login_Id_box {
+    padding-top: 25px;
+    margin-bottom: 20px;
+    // img {}
+    input {
+    padding-left: 10px;
+    padding-top: 20px;
+    }
+  }// .Login_Id_box
+  .Pw_Id_box {
+    padding-left: 10px;
+    padding-top: 20px;
+    // img {}
+    input {
+    padding-top: 23px;
+    padding-left:5px;
+    width:300px;
+    }
+  }// .Pw_Id_box
+
+  .Login_button {
+    float:right;
+    padding-top: 40px;
+    input {
+      width:100px;
+      height:60px;
+      line-height: 60px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      font:20px/65px "나눔고딕",sans-serif;
+      border-radius:10px;
+      cursor: pointer;
+    }// input
+
+    input:hover {
+      background-color:$dark-gray;
+      color: #fff;
+    }
+  }// .Login_button
+}// form 
 
 
 /* mobile */
+@include mobile {
+  form {
+    padding-top:90px;
+    width:500px;
+    margin:0 auto;
+    height:500px;
+    .Login_Id_box{
+      margin-left:15px;
+      width:320px;
+      height:70px;
+      background-color:rgb(156, 156, 156);
+      display: flex;
+      margin-bottom: 20px;
+      border-radius:15px;
+      img{
+        margin-left: 20px;
+        margin-top:-10px;
+        width:42px;
+        height:42px;
+      }
+      input{
+      padding-left:10px;
+      padding-top: 5px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      cursor: pointer;
+      }
+      input::placeholder{
+        color:#eaeaea;
+        font-size:17px;
+      }
+    }
+    .Pw_Id_box{
+      padding-top: 20px;
+      margin-left:15px;
+      width:320px;
+      height:70px;
+      background-color:rgb(156, 156, 156);
+      display: flex;
+      border-radius:10px;
+      img{
+        width:45px;
+        height:45px;
+        margin-left:10px;
+        margin-top:-10px;
+      }
+      input{
+      padding-top: 11px;
+      padding-left:5px;
+      width:200px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      cursor: pointer;
+      }
+      input::placeholder{
+        color:#eaeaea;
+        font-size:17px;
+      }
+    }
+    .Login_button{
+      position: absolute;
+      left:210px;
+      padding-top:80px;
+      input{
+        width:100px;
+        height:60px;
+        margin:0 auto;
+        outline:none;
+        border:none;
+        background-color:rgb(156, 156, 156);
+        font:20px/60px "나눔고딕",sans-serif;
+        border-radius:15px;
+        cursor: pointer;
+        }
 
+        input:hover{
+          background-color:$dark-gray;
+          color: #fff;
+        }
+    }
+  }// form 
+}
 
 
 /* tablet */
+@include tablet {
+  form {
+    padding-top:90px;
+    width:500px;
+    margin:0 auto;
+    height:500px;
+    .Login_Id_box{
+      padding-top: 25px;
+      width:500px;
+      height: 100px;
+      background-color:rgb(156, 156, 156);
+      display: flex;
+      margin-bottom: 20px;
+      border-radius:10px;
+      img{
+        margin-left: 20px;
+      }
+      input{
+      padding-left: 10px;
+      padding-top: 20px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      cursor: pointer;
+      }
+      input::placeholder{
+        color:#eaeaea;
+        font-size:17px;
+      }
+    }
+    .Pw_Id_box{
+      padding-left: 10px;
+      padding-top: 20px;
+      width:500px;
+      height: 100px;
+      background-color:rgb(156, 156, 156);
+      display: flex;
+      border-radius:10px;
+      img{
+        margin-left:10px;
+      }
+      input{
+      padding-top: 23px;
+      padding-left:5px;
+      width:300px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      cursor: pointer;
+      }
+      input::placeholder{
+        color:#eaeaea;
+        font-size:17px;
+      }
+    }
+    .Login_button{
+      float:right;
+      padding-top: 20px;
+      input{
+        width:100px;
+        height:80px;
+        margin:0 auto;
+        outline:none;
+        border:none;
+        background-color:rgb(156, 156, 156);
+        font:20px/65px "나눔고딕",sans-serif;
+        border-radius:15px;
+        cursor: pointer;
+        }
 
+        input:hover{
+          background-color:$dark-gray;
+          color: #fff;
+        }
+    }
+  }// form 
+}
