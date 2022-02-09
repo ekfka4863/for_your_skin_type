@@ -41,7 +41,7 @@ public class MemberController {
         return new Result(collect);
     }
 
-    @PostMapping("mypage")
+    @GetMapping("mypage")
     public MemberDto readMyPage(HttpSession session){
         return new MemberDto(memberService.findByEmail(session.getAttribute("key").toString()));
     }
@@ -68,5 +68,10 @@ public class MemberController {
         Member findMember = memberService.findByEmail(memberLoginRequest.getUserId());
 
         return new Result(new MemberLoginResponse(findMember));
+    }
+    
+    @PostMapping("logout")
+    public void logout(HttpSession session){
+        session.invalidate();
     }
 }

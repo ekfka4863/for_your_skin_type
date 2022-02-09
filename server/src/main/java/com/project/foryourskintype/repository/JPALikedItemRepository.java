@@ -1,6 +1,8 @@
 package com.project.foryourskintype.repository;
 
+import com.project.foryourskintype.domain.Item;
 import com.project.foryourskintype.domain.LikedItem;
+import com.project.foryourskintype.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +48,14 @@ public class JPALikedItemRepository implements LikedItemRepository{
 
 
     @Override
-    public void delete(Long id) {
-        LikedItem likedItem = em.find(LikedItem.class, id);
+    public void delete(Item item, Member member) {
+        LikedItem likedItem = em.createQuery("select l from LikedItem l" +
+                " where l.item=:item" +
+                " and l.member=:member", LikedItem.class)
+                .setParameter("item", item)
+                .setParameter("member", member)
+                .getSingleResult();
+
         em.remove(likedItem);
     }
 }
