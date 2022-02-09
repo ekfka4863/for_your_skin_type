@@ -1,3 +1,4 @@
+import React, {Component} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';  
 
 // 공통 컴포넌트 

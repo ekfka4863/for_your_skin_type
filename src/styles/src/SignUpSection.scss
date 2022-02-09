@@ -1,0 +1,436 @@
+@import "../common/mixin";
+
+
+/* laptop & desktop */
+form {
+  padding-top:50px;
+  width:570px;
+
+  .first_bundle,
+  .second_bundle {
+    li {
+      input {
+        text-indent: 10px;
+        line-height: 20px;
+        // background-color: #ea1;
+      }
+      input::placeholder {
+        color: #eaeaea;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .first_bundle{
+    display: flex;
+    li{
+      position: relative;
+      width:260px;
+      height:70px;
+      background-color:rgb(156, 156, 156);
+      border-radius:15px;
+      img{
+        margin-left:10px;
+      }
+      input{
+        cursor: pointer;
+      }
+
+    }
+    .Name_box{
+      position: relative;
+      margin-right:50px;
+      input{
+        position: absolute;
+        margin-top:24px;
+        margin-left:10px;  
+        outline:none;
+        border:none;
+        background-color:rgb(156, 156, 156)     
+      }
+      img{
+        margin-top:9px;
+        width:50px;
+        height:50px;
+        }
+      }
+
+    .gender_box {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding-top:10px;
+      // background-color: #fff;
+      .man_box {
+        margin-right: 10px;
+        // background-color: #1a3;
+      }
+      .man_box, 
+      .woman_box {
+        display: flex;
+        position: absolute;
+        width: 100px;
+        // background-color: #5a1;
+        label {
+          // width: 100%;
+          // height: 100%;
+          margin: auto;
+          // background-color: #13a;
+          img {
+            width: 45px;
+            height: 45px;
+            margin: auto;
+            // background-color: #81a;
+            
+          }
+        }// label
+        input {
+          width:30px;
+          height:30px;
+        }// input
+      }
+      .man_box{
+        left:20px;
+      }// .man_box
+      .woman_box{
+        left:120px;
+        input{
+          margin-left:-15px;
+        }
+        // img {}
+      }// .woman_box
+    }// .gender_box
+  }
+
+  .second_bundle{
+    display: block;
+    position: relative;
+
+    li{
+      width:570px;
+      height:70px;
+      background-color:rgb(156, 156, 156);
+      border-radius: 15px;
+      margin-top: 20px;
+
+    }
+
+    input{
+      position:absolute;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      margin-top:25px;
+      margin-left:10px;
+      cursor: pointer;
+    }
+    img{
+      margin-top:10px;
+      margin-left:10px;
+      width:42px;
+      height:42px;
+    }
+
+    .signup_tel_box{
+      img{
+        margin-top:15px;
+        width:40px;
+        height:40px;
+      }
+    }
+
+  
+  }
+
+  .signup_button{
+    float: right;
+    margin-top: 15px;
+    input{
+    width:100px;
+    height:60px;
+    outline:none;
+    border:none;
+    background-color:rgb(156, 156, 156);
+    font:20px "나눔고딕",sans-serif;
+    border-radius:15px;
+    cursor: pointer;
+    }
+    input:hover{
+      background-color:$dark-gray;
+      color: #fff;
+    }
+  }
+
+
+}// form 
+
+
+/* mobile */
+@include mobile {
+  form {
+    padding-top:50px;
+    width:570px;
+    margin:0 auto;
+    // height:600px;
+
+    .first_bundle{
+      display: block;
+      li{
+        position: absolute;
+        margin-left:20px;
+        top:-50px;
+        width:300px;
+        height:60px;
+        margin-top: 20px;
+        background-color:rgb(156, 156, 156);
+        border-radius:15px;
+        img{
+          margin-left:10px;
+        }
+        input{
+          cursor: pointer;
+        }
+
+      }
+      .Name_box{
+        position: relative;
+        margin-right:50px;
+        input{
+          position: absolute;
+          margin-top:22px;
+          margin-left:10px;  ; 
+          outline:none;
+          border:none;
+          background-color:rgb(156, 156, 156)     
+        }
+        img{
+          margin-top:6px;
+          width:50px;
+          height:50px;
+          }
+        }
+
+      .gender_box{
+        input{
+          width:30px;
+          height:30px;
+        }
+        .man_box{
+          position: absolute;
+          left:40px;
+          img{
+            width:47px;
+            height:47px;
+          }
+        }
+        .woman_box{
+          position: absolute;
+          left:140px;
+          input{
+            margin-left:-15px;
+          }
+          img{
+            width:45px;
+            height:45px;
+          }
+        }
+
+
+      }
+    
+    }
+
+    .second_bundle{
+      display: block;
+      position: relative;
+      margin-top:-45px;
+
+      li{
+        margin-left:20px;
+        width:300px;
+        height:60px;
+        background-color:rgb(156, 156, 156);
+        border-radius: 15px;
+        margin-top: 20px;
+
+      }
+
+      input{
+        position:absolute;
+        outline:none;
+        border:none;
+        background-color:rgb(156, 156, 156);
+        margin-top:23px;
+        margin-left:10px;
+        cursor: pointer;
+      }
+      img{
+        margin-top:10px;
+        margin-left:10px;
+        width:42px;
+        height:42px;
+      }
+      .signup_tel_box{
+        img{
+          margin-top:12px;
+          width:40px;
+          height:40px;
+        }
+      }
+    }
+
+    .signup_button{
+      position: absolute;
+      margin-top: 15px;
+      margin-left: 210px;
+      input{
+      width:100px;
+      height:50px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      font:20px "나눔고딕",sans-serif;
+      border-radius:15px;
+      cursor: pointer;
+      }
+      input:hover{
+        background-color:$dark-gray;
+        color: #fff;
+      }
+    }
+  }// form 
+}
+
+
+/* tablet */
+@include tablet {
+  form {
+    padding-top:50px;
+    width:550px;
+    margin:0 auto;
+
+    .first_bundle{
+      display: flex;
+      margin-left: 10px;
+      li{
+        position: relative;
+        width:260px;
+        height:70px;
+        background-color:rgb(156, 156, 156);
+        border-radius:15px;
+        img{
+          margin-left:10px;
+        }
+        input{
+          cursor: pointer;
+        }
+
+      }
+      .Name_box{
+        position: relative;
+        margin-right:50px;
+        input{
+          position: absolute;
+          margin-top:24px;
+          margin-left:10px;  ; 
+          outline:none;
+          border:none;
+          background-color:rgb(156, 156, 156)     
+        }
+        img{
+          margin-top:9px;
+          width:50px;
+          height:50px;
+          }
+        }
+
+      .gender_box{
+    
+        input{
+          width:30px;
+          height:30px;
+        }
+        .man_box{
+          position: absolute;
+          left:20px;
+          img{
+            width:47px;
+            height:47px;
+          }
+        }
+        .woman_box{
+          position: absolute;
+          left:120px;
+          input{
+            margin-left:-15px;
+          }
+          img{
+            width:45px;
+            height:45px;
+          }
+        }
+
+
+      }
+    
+    }
+
+    .second_bundle{
+      display: block;
+      position: relative;
+
+      li{
+        width:540px;
+        height:70px;
+        background-color:rgb(156, 156, 156);
+        border-radius: 15px;
+        margin-top: 20px;
+        margin-left:10px;
+      }
+
+      input{
+        position:absolute;
+        outline:none;
+        border:none;
+        background-color:rgb(156, 156, 156);
+        margin-top:25px;
+        margin-left:10px;
+        cursor: pointer;
+      }
+      img{
+        margin-top:10px;
+        margin-left:10px;
+        width:42px;
+        height:42px;
+      }
+
+      .signup_tel_box{
+        img{
+          margin-top:15px;
+          width:40px;
+          height:40px;
+        }
+      }
+    }
+
+    .signup_button{
+      float: right;
+      margin-top: 15px;
+      margin-right:10px;
+      input{
+      width:100px;
+      height:50px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      font:20px "나눔고딕",sans-serif;
+      border-radius:15px;
+      cursor: pointer;
+      }
+      input:hover{
+        background-color:$dark-gray;
+        color: #fff;
+      }
+    }
+  }// form 
+}
