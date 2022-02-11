@@ -1,0 +1,95 @@
+@import "../common/mixin";
+
+
+/* #viewBox - laptop, desktop */ 
+#viewBox {
+  // padding-top: 80px;
+
+  // 테스트 버튼
+  .skin_type_test_btn {
+    position: fixed;
+    z-index: 9999;
+    top: 15%; left: 50%;
+    transform: translate(-50%, 320%);
+    width: 400px;
+    height: 110px;
+    border: 5px solid $white;
+    box-sizing: border-box;
+    filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
+    border-radius: 30px;
+    text-align: center;
+    line-height: 110px;
+
+    button {
+      width: 100%;
+      // background-color: #31a;
+      a {
+        transition: all 0.5s ease-in-out;
+
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: $white;
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 100px;
+        // background-color: #fff;
+      }
+    }
+  }// 테스트 버튼
+  .skin_type_test_btn:hover a {
+    transform: scale(1.1);
+  }
+
+}// #viewBox
+
+
+
+
+
+/* #viewBox - mobile */ 
+@include mobile { 
+  #viewBox {
+    padding-top: 70px;
+
+    .skin_type_test_btn {
+      position: fixed;
+      z-index: 999;
+      top:10%; left: 52%;
+      transform: translate(-50%, 320%);
+      width: 400px;
+      height: 110px;
+      border: 5px solid $white;
+      box-sizing: border-box;
+      filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
+      border-radius: 30px;
+      text-align: center;
+      line-height: 110px;
+    }
+  }// #viewBox
+}
+
+
+
+/* #viewBox - tablet */ 
+@include tablet { 
+  #viewBox {
+    // padding-top: 80px;
+    padding-left: 100px;
+
+    .skin_type_test_btn {
+      position: fixed;
+      z-index: 999;
+      top:10%; left: 52%;
+      transform: translate(-50%, 320%);
+      width: 400px;
+      height: 110px;
+      border: 5px solid $white;
+      box-sizing: border-box;
+      filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
+      border-radius: 30px;
+      text-align: center;
+      line-height: 110px;
+    }
+  }// #viewBox
+}

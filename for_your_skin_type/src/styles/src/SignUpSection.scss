@@ -1,0 +1,223 @@
+@import "../common/mixin";
+
+
+/* laptop & desktop */
+form {
+  width:570px;
+  
+  .first_bundle,
+  .second_bundle {
+    li {
+      input {
+        text-indent: 10px;
+        line-height: 20px;
+      }
+      input::placeholder {
+        color: #eaeaea;
+        font-size: 15px;
+      }// input 
+    }// li
+  }
+  
+
+  .first_bundle{
+    margin-top: 40px;
+    display: flex;
+    li{
+      // position: relative;
+      width: 260px;
+      height: 70px;
+      background-color:rgb(156, 156, 156);
+      border-radius: 15px;
+      img{
+        margin-left:10px;
+      }
+      input{
+        cursor: pointer;
+      }
+
+    }
+    .Name_box{
+      // position: relative;
+      margin-right:50px;
+      input{
+        position: absolute;
+        margin-top:24px;
+        margin-left:10px;  
+        outline:none;
+        border:none;
+        background-color:rgb(156, 156, 156)     
+      }
+      img{
+        margin-top: 9px;
+        width: 50px;
+        height: 50px;
+        }
+      }
+
+    .gender_box {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 35px 5px 25px;
+      .man_box, 
+      .woman_box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90px;
+        label {
+          width: 0;
+          img {
+            width: 45px;
+            height: 45px;
+          }
+        }// label
+        label:hover {
+          cursor: pointer;
+        }
+        input {
+          width: 26px;
+          height: 26px;
+          margin-bottom: 5px;
+        }// input
+      }
+    }// .gender_box
+  }
+
+  .second_bundle{
+    display: block;
+    position: relative;
+    li{
+      width:570px;
+      height:70px;
+      background-color:rgb(156, 156, 156);
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    input{
+      position:absolute;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      margin-top:25px;
+      margin-left:10px;
+      cursor: pointer;
+    }
+    img{
+      margin-top:10px;
+      margin-left:10px;
+      width:42px;
+      height:42px;
+    }
+
+    .signup_tel_box{
+      img{
+        margin-top:15px;
+        width:40px;
+        height:40px;
+      }
+    }
+  }
+
+  .signup_button{
+    float: right;
+    margin-top: 15px;
+    input{
+    width:100px;
+    height:60px;
+    outline:none;
+    border:none;
+    background-color:rgb(156, 156, 156);
+    font:20px "나눔고딕",sans-serif;
+    border-radius:15px;
+    cursor: pointer;
+    }
+  }
+}// form 
+
+
+
+/* mobile */
+@include mobile {
+  form {  
+    position: relative;
+    width: 350px;
+    height: 510px;
+    background-color: #eee;
+
+    .first_bundle{
+      margin-top: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // background-color: #a03;
+
+      .Name_box,  
+      .gender_box {
+        width: 300px;
+        height: 60px;
+      }// li
+      .Name_box {
+        margin: 0;
+        margin-bottom: 20px;
+        }
+      .gender_box {
+        padding: 5px 45px 5px 30px;
+      }
+    }
+
+    .second_bundle{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      li {
+        width: 300px;
+        height: 60px;
+      }
+      // .signup_tel_box{}
+    }// second_bundle
+
+    .signup_button {
+      position: absolute;
+      bottom: 20px;
+      right: 35px;
+    }
+  }// form 
+}
+
+
+/* tablet */
+@include tablet {
+  form {
+    width:550px;
+
+    .first_bundle{
+      margin-left: 10px;
+      // .Name_box {}
+      .gender_box {
+        label:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .second_bundle{
+      li{
+        width: 540px;
+        margin-left: 10px;
+      }
+      input{
+        cursor: pointer;
+      }
+      // .signup_tel_box{}
+    }
+
+    .signup_button{
+      margin-right: 2px;
+      input{
+        cursor: pointer;
+      }
+    }
+  }// form 
+}
