@@ -1,0 +1,158 @@
+@import "../common/mixin";
+
+
+/* laptop & desktop */
+#LoginSignup_wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  .LoginSignup_bind {
+    margin: 200px auto 0;
+    height: 570px;
+    filter: drop-shadow(15px 15px 4px rgba(0, 0, 0, 0.3));
+
+    .taps {
+      display: flex;
+      position: absolute;
+      top: 15px; 
+      left: 27.5%;
+      z-index: 99;
+      li {
+        width:130px; 
+        height:55px;
+        border-top-right-radius:15px;
+        border-top-left-radius:15px;
+        font: 20px/65px "나눔고딕",sans-serif;
+        text-align: center;
+      }
+      
+      .tap_active {
+        color: #fff;
+        background-color:$dark-gray;
+      }
+      .tap_none {
+        cursor: pointer;
+        background-color:rgb(236, 236, 236);
+      }
+      .tap_none:hover {
+        font-size: 22px;
+        font-weight: 500;
+        transition: all 0.5s ease-in-out;
+      }
+    }// .taps
+
+  .Login_box, 
+  .Signup_box {
+    position: absolute;
+    top: 12.3%; 
+    left: 27%;
+    width: 700px;
+    height: 500px;
+    box-sizing: border-box;
+    background-color:rgb(236, 236, 236);
+    border-radius: 10px;
+    
+    form {
+      margin: 0 auto;
+      padding-top: 30px;
+      border-radius: 10px;
+    }
+  }// .Login_box & .Signup_box -> 공통
+
+  /* 로그인 박스 */ 
+  .Login_box{
+    border-radius: 10px;
+  }
+
+  /* 회원가입 박스 */ 
+  .Signup_box{
+    border-radius: 15px;
+  }
+
+  .Content_none{
+    display: none;
+  }// .Content_none
+
+  }// .LoginSignup_bind
+}// #LoginSignup_wrap
+
+
+
+/* mobile */
+@include mobile {
+  #LoginSignup_wrap {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    .LoginSignup_bind { 
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: -10%;
+      left: -15%;
+
+      .taps {
+        top: 90px; 
+        left: 30%;
+        z-index: -1;
+
+        .tap_active {
+          width:140px; 
+          height:65px;
+        }
+
+        .tap_none {
+          width:140px;
+          height:65px;
+        }
+      }// .taps
+
+      /* 공통 */
+      .Login_box, 
+      .Signup_box {
+        width: 350px;
+        top:17.6%; 
+      }
+
+      // .Login_box {}
+      // .Signup_box {}
+
+    }// .LoginSignup_bind
+  }// #LoginSignup_wrap
+}
+
+
+
+/* tablet */
+@include tablet {
+  #LoginSignup_wrap {
+    .LoginSignup_bind { 
+      margin-top: 200px;
+
+      .taps {
+        top:1%; left:23%;
+        z-index: -1;
+        
+        .tap_active,
+        .tap_none {
+          width:150px; 
+          height:65px;
+          border-top-right-radius:15px;
+          border-top-left-radius:15px;
+          text-align: center;
+        }
+      }// .taps
+  
+      /* 공통 */ 
+      .Login_box,
+      .Signup_box {
+        left: 22%;
+        width: 570px;
+      }
+
+      // .Login_box {}
+      // .Signup_box {}
+    }
+  }// #LoginSignup_wrap
+}

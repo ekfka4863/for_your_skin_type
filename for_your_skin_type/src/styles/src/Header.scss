@@ -1,0 +1,387 @@
+@import "../common/mixin";
+
+
+/* #headBox - laptop, desktop */ 
+#headBox {
+  position: fixed;
+  top: 0;
+  left: 0; 
+  z-index: 1000;
+  width: 100%;
+  height: 80px;
+  background-color: $white2;
+  // background-color: #ea1;
+  border-bottom: 0.8px solid rgba(0, 0, 0, 0.3);
+  // h1 {}
+  .navigation {
+    display: flex;
+    .nav_open_btn {
+      display: none;
+    }
+    .nav_bar{
+      display: none;
+    }
+    .nav_bar_desktop {
+      position: absolute;
+      display: flex;
+      padding:0 10px;
+      width: 75%;
+      justify-content: space-between;
+      list-style: none;
+      // background-color: red;
+      li {
+        width: 200px;
+        padding: 10px 15px;
+        box-sizing: border-box;
+        a {
+          position: relative;
+          display: block;
+          width: 100%;
+          text-align: center;
+          text-decoration: none;
+          line-height: 60px;
+          color: $dark-gray;
+          font-size: 28px;
+          font-weight: 900;
+          text-shadow: 7px 9px 4px rgba(0, 0, 0, 0.2);
+          // background-color: #eea;
+        }
+        a:after{
+          position: absolute;
+          content:"";
+          background-color: rgba(0, 0, 0, 0.6);
+          height:5px;
+          width:0;
+          left:0;
+          bottom:-4px ;
+          border-radius: 2px;
+          transition:0.7s;
+          margin-left: 20px;
+          border-radius:5px;
+        }
+        a:hover:after{
+          width:80%;
+          border-radius:5px;
+        }
+      }
+     
+ 
+
+    }
+
+    .desktop_home_img{
+      position: absolute;
+      right:40px; top:20px;
+      width:42px; height:42px;
+    }
+          // 홈버튼 따로 
+    .unb {
+            position: absolute;
+            right:90px; top:20px;
+          
+            .desktop_log_img{
+            
+              width:45px; height:45px;
+              filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
+            }
+            .desktop_cart_img{
+              // position: absolute;
+              // right:97px; top:20px;
+              width:45px; height:45px;
+              filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.1));
+            }
+            // a {
+              button {
+                span {
+                  img {}
+                }
+              }
+            // }// a - router 
+    
+            // a {
+              img {}
+            // }// a - router 
+    
+            // LoginTap 시작부분 
+            .LoginTapWrapper {
+            position: relative;
+            left:-50px;
+              .LoginTap_none{
+                display: none;
+              }
+              .LoginTap {
+                background-color:rgb(156, 156, 156);
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 15px;
+                right: -28%;
+                width: auto;
+                height: auto;
+                text-align: center;
+                border-radius: 15px;
+                li {
+                  width: 90px;
+                  line-height: 50px;
+                  border-radius: 15px;
+                  font-size: 18px;
+                  font-weight: 500;
+                  color: #fff;
+                  // background-color: #ea1;
+                  a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                  }// a
+                }// li
+                li:first-child {
+                  position: relative;
+                  margin-bottom: 5px;
+                }
+                li:first-child::before {
+                  display: block;
+                  content: "";
+                  overflow: hidden;
+                  position: absolute;
+                  top: -20px; 
+                  right: 40%;
+                  // transform: translate(-50%);
+                  width: 15px;
+                  height: 20px;
+                  // background-color: #fff;
+                  background-color:rgb(156, 156, 156);
+                  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                }
+              }
+          
+            }// .LoginTapWrapper
+          }// .unb
+    
+  }
+}
+
+
+
+
+
+
+
+/* #headBox - mobile */ 
+@include mobile {
+  #headBox {
+    // z-index: -1;  // 나중에 체크하기 ... 
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    .navigation {
+      // display: none;
+      .nav_bar_desktop{
+        display: none;
+      }
+      .nav_open_btn {
+        display: block;
+
+        .openbutton{
+          position:absolute;
+          width: 55px;
+          height: 55px;
+          top:11%; right:5%;
+          }
+        .log_img{
+          position: absolute;
+          left:20px; top:15px;
+          width:40px; height:40px;
+
+        }
+        .cart_img{
+          position: absolute;
+          width:40px; height:40px;
+          left:70px; top:15px;
+        }
+
+        }
+      // 모달창
+      .nav_bar{
+        position: absolute;
+        z-index: 99999;
+
+        .close_button{
+          img{
+            position:absolute;
+            margin:0 auto;
+            width:50px; height: 50px;
+            top:7%; left:47.5%;
+          }
+        }
+          
+        .home_img{
+          position:absolute;
+          top:18%; left:47%;
+        }
+       
+        padding-top:230px;
+        box-sizing: content-box;
+        margin: 0 auto;
+        z-index:999;
+        display: block;
+        width: 100%;
+        height: 100vh;
+        justify-content: space-between;
+        list-style: none;
+        background-color: rgb(255, 255, 255);
+      
+       .nav_bar_close{
+        display:none;
+      }
+   
+        li {
+        
+          padding:20px 15px;
+          margin:0 auto;
+          box-sizing: border-box;
+          // background-color: #ae1;
+          // outline: 1px solid #333;
+          a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            line-height: 60px;
+            color: $dark-gray;
+            font-size: 28px;
+            font-weight: 900;
+            text-shadow: 7px 9px 4px rgba(0, 0, 0, 0.2);
+            // background-color: #eea;
+          }
+        }
+      
+      }
+    }
+    .desktop_log_img{
+      display: none;
+    }
+    .desktop_cart_img{
+      display: none;
+    }
+    .desktop_home_img{
+      display: none;
+    }
+  }
+};
+
+// .LoginTapWrapper {
+//   .LoginTap {
+//     li {}
+//   }
+// }
+
+
+
+/* #headBox - tablet */ 
+@include tablet {
+  #headBox {
+    // z-index: -1;  // 나중에 체크하기 ... 
+    width: 100px;
+    height: 100vh;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    .navigation {
+
+      .nav_bar_desktop{
+        display: none;
+      }
+      .nav_open_btn {
+        display: block;
+        position:absolute;
+        top:40%; left:22%;
+        .openbutton{
+          left:0; top:0;
+          width: 60px;
+          height: 60px;
+          }
+          .log_img{
+            position: absolute;
+            bottom:-250px; left:13px;
+            width:43px; height:43px;
+          }
+          .cart_img{
+            position: absolute;
+            bottom:-310px; left:10px;
+            width:43px; height: 43px;
+          }
+        }
+      // 모달창
+      .nav_bar{
+        position: fixed;
+        z-index: 99999;
+
+   
+          .close_button{
+            position:absolute;
+            top:40px; left:105px;
+            img{
+            width:50px; height: 50px;
+            }
+          }
+        
+          
+        .home_img{
+          position:absolute;
+          top:130px; left:100px;
+        }
+
+        padding-top:200px;
+        box-sizing: content-box;
+        position: absolute;
+        z-index:999;
+        display: block;
+        width: 250px;
+        height: 100vh;
+        justify-content: space-between;
+        list-style: none;
+        background-color: rgb(255, 255, 255);
+      
+      .nav_bar_close{
+        display:none;
+      }
+   
+        li {
+          width: 200px;
+          padding:20px 15px;
+          margin:0 auto;
+          box-sizing: border-box;
+          // background-color: #ae1;
+          // outline: 1px solid #333;
+          a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            line-height: 60px;
+            color: $dark-gray;
+            font-size: 28px;
+            font-weight: 900;
+            text-shadow: 7px 9px 4px rgba(0, 0, 0, 0.2);
+            // background-color: #eea;
+          }
+        }
+      }
+    }
+    .desktop_log_img{
+      display: none;
+    }
+    .desktop_cart_img{
+      display: none;
+    }
+    .desktop_home_img{
+      display: none;
+    }
+  }
+};
+
+// .LoginTapWrapper {
+//   .LoginTap {
+//     li {}
+//   }
+// }

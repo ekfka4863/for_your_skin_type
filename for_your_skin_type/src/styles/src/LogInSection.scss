@@ -1,0 +1,143 @@
+@import "../common/mixin";
+
+
+/* laptop & desktop */
+form {
+  .Login_Id_box,
+  .Pw_Id_box {
+    display: flex;
+    height: 100px;
+    border-radius:10px;
+    background-color:rgb(156, 156, 156);
+    img {
+      margin-left: 20px;
+    }
+    input {
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      cursor: pointer;
+    }
+    input::placeholder {
+      color:#eaeaea;
+      font-size: 15px;
+    }
+  }// .Login_Id_box & .Pw_Id_box -> 공통
+
+  .Login_Id_box {
+    padding-top: 25px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    // img {}
+    input {
+    padding-left: 10px;
+    padding-top: 20px;
+    }
+  }// .Login_Id_box
+  .Pw_Id_box {
+    padding-left: 10px;
+    padding-top: 20px;
+    // img {}
+    input {
+    padding-top: 23px;
+    padding-left:5px;
+    width:300px;
+    }
+  }// .Pw_Id_box
+
+  .Login_button {
+    float:right;
+    padding-top: 20px;
+    input {
+      width:100px;
+      height:60px;
+      line-height: 60px;
+      outline:none;
+      border:none;
+      background-color:rgb(156, 156, 156);
+      font:20px/65px "나눔고딕",sans-serif;
+      border-radius:10px;
+      cursor: pointer;
+    }// input
+
+    input:hover {
+      background-color:$dark-gray;
+      color: #fff;
+    }
+  }// .Login_button
+}// form 
+
+
+/* mobile */
+@include mobile {
+  form {
+    .Login_Id_box{
+      margin-left:15px;
+      width:320px;
+      height:70px;
+      img{
+        width:45px;
+        height:45px;
+        margin-top:-10px;
+      }
+      input{
+      padding-top: 5px;
+      }
+    }
+    .Pw_Id_box{
+      width:320px;
+      height:70px;
+      margin-left:15px;
+      img{
+        width:45px;
+        height:45px;
+        margin-left:10px;
+        margin-top:-10px;
+      }
+      input{
+      padding-top: 11px;
+      padding-left:5px;
+      width:200px;
+      }
+    }
+    .Login_button{
+      position: absolute;
+      right: 15px;
+      top: 230px;
+      // input {}
+    }
+  }// form 
+}
+
+
+/* tablet */
+@include tablet {
+  form {
+    .Login_Id_box{
+      margin-top: 40px;
+      // img {}
+      // input {}
+      input::placeholder{
+        color:#eaeaea;
+        font-size:17px;
+      }
+    }
+    .Pw_Id_box {
+      img {
+        margin-left:10px;
+      }
+      // input {}
+      input::placeholder{
+        color:#eaeaea;
+        font-size:17px;
+      }
+    }
+    .Login_button {
+      padding-top: 20px;
+      input {
+        height:70px;
+        border-radius:15px;
+      }
+    }
+  }// form 
+}
