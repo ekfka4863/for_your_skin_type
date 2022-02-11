@@ -1,5 +1,3 @@
-import React, {Component} from 'react';
-
 import { useState, useEffect } from "react";
 
 // 공통 컴포넌트 임포트 
@@ -9,13 +7,27 @@ import Card from "../components/Card";
 
 import "../styles/src/BestSellers.scss";
 
-import axios from "axios";
+// import axios from "axios";
 
 
 
 function DrJartBestSellers() {
-  const [apiData, setApiData] = useState([]);
+  // state
+  let userId = "";
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // 무한 루프가 되지 않게 ... useEffect 안에 넣기!
+    if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
+      setLoggedIn(true);
+      userId = localStorage.getItem("authenticatedId");
+      // console.log(userId);   // e.g. sj100@gmail.com
+    }
+  }, []);
+
+
+  const [apiData, setApiData] = useState([]);
   const [dataArr, setDataArr] = useState([]);
 
   let cardLen = 0; 
@@ -35,8 +47,10 @@ function DrJartBestSellers() {
   useEffect(() => {
     const asyncDrjartGet = async () => {
       try {
-        const response = await axios.get(url);
-        setApiData(response.data);
+        const response = await fetch(url);
+        const data = await response.json();
+        setApiData(data);
+        // console.log(apiData); // {data: Array(20)}
       } catch (error) {
         console.log("GET request XXXXXX - 닥터자르트!!");
       }
@@ -46,7 +60,7 @@ function DrJartBestSellers() {
   }, []);
 
   useEffect(() => {
-    setDataArr({...apiData});
+    setDataArr(apiData);
   }, [apiData]);
 
 

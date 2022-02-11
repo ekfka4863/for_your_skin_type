@@ -1,9 +1,11 @@
-import { useState} from "react";
-// import React,{ useRef, useEffect, useState} from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // components
 import Sidenavbar from "../pages/Sidenavbar";
+
+// styling
+import "../styles/src/Header.scss";
 
 // img 
 import openbutton from "../assets/img/tablet/nav_bar_tablet.png";
@@ -11,20 +13,34 @@ import user from "../assets/img/tablet/user.png";
 import cart from "../assets/img/tablet/cart.png";
 import home_img from "../assets/img/tablet/home_tablet.png";
 
-// styling
-import "../styles/src/Header.scss";
-
-
 
 function Header() {
+  // state
+  let userId = "";
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
+  const [clicktap, setClicktap] = useState(false);
+  
+  useEffect(() => {
+    // 무한 루프가 되지 않게 ... useEffect 안에 넣기!
+    if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
+      setLoggedIn(true);
+      userId = localStorage.getItem("authenticatedId");
+      // console.log(userId);   // e.g. sj100@gmail.com
+    } else {
+      setLoggedIn(false);
+    }
+  }, [setLoggedIn, loggedIn, setClicktap, clicktap]);
+  // }, [setLoggedIn, loggedIn, userId]);
+
+  // console.log(loggedIn);  // true
+
+
+  // function
   const scrollToTheTop = () => {
     window.scroll(0, 0);
   };
-
-  const [sidebar, setSidebar] = useState(false);
-  let loggedIn = false;
-
-  const [clicktap, setClicktap] = useState(false);
 
 
   const openSidebar = () =>{
@@ -34,6 +50,39 @@ function Header() {
   const closeSidebar = () => {
     setSidebar(false);
   }
+
+
+  // 로그아웃 기능
+  const onClickLogOut = () => {
+    localStorage.removeItem("authenticatedId");
+    alert("정상적으로 로그아웃 되었습니다!");
+  };
+
+  // logout api
+  // const url = 'http://localhost:9090/logout';
+  const url = '/logout';
+  const onClickLogOutPost = async () => {
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify({
+          userId
+        })
+      });
+
+      const data = await response.json(); 
+      console.log(data); 
+
+    } catch (error) {
+      console.log("POST request XXXXXX!! - Header.js ");
+    }
+    onClickLogOut();
+  };
+
 
 
   
@@ -70,15 +119,13 @@ function Header() {
           </Link>
 
           <div className="unb">
-            <Link to="/login-signup" onClick={scrollToTheTop}>
-              <button 
-                onClick={()=> {
-                  setClicktap(!clicktap);
-                }}
-              > 
-                <span><img src={user} alt="로그인이미지" className="desktop_log_img"></img></span>
-              </button>
-            </Link>
+            <button 
+              onClick={()=> {
+                setClicktap(!clicktap);
+              }}
+            > 
+              <img src={user} alt="로그인이미지" className="desktop_log_img"></img>
+            </button>
 
             <Link to="/my-cart" onClick={scrollToTheTop}>
               <img src={cart} alt="장바구니이미지" className="desktop_cart_img"></img>
@@ -91,11 +138,48 @@ function Header() {
           <div className="nav_open_btn">
             <button onClick={openSidebar}>
               <span className="blind">메뉴바 열기버튼</span>
-              <img className="openbutton"src={openbutton} alt="메뉴 열기 버튼" ></img>
+              <img className="openbutton" src={openbutton} alt="메뉴 열기 버튼" ></img>
             </button>
-            <Link to="/login-signup" onClick={scrollToTheTop}>
-            <span><img src={user} alt="로그인이미지" className="log_img"></img></span>
-            </Link>
+            <button 
+              className="tablet_sidebar_tabmenu"
+              onClick={()=> {
+                setClicktap(!clicktap);
+              }}
+            > 
+              <img src={user} alt="로그인이미지" className="tablet_log_img"></img>
+              {/* 태블릿을 위한 탭메뉴 작성하기 */}
+              <div 
+                className="tablet_tabmenu" 
+                onClick={()=> {
+                  setClicktap(!clicktap);
+                }}
+                style={(clicktap === false) ? {display: "none"} : {display: "block"}}
+              >
+                <ul className="tablet_tabmenu_inner">
+                  {
+                      (loggedIn === false) 
+                    ?
+                      <>
+                        <li>
+                          <Link to="/login-signup">로그인</Link>
+                        </li>
+                        <li>
+                          <Link to="/login-signup">회원가입</Link>
+                        </li>
+                      </>
+                    :
+                      <>
+                        <li>
+                          <Link to="/my-page">마이페이지</Link>
+                        </li>
+                        <li onClick={onClickLogOutPost}>
+                          <Link to="/" onClick={scrollToTheTop}>로그아웃</Link>
+                        </li>       
+                      </>
+                  }
+                </ul>
+              </div>
+            </button>
             <Link to="/my-cart" onClick={scrollToTheTop}>
               <img src={cart} alt="장바구니이미지" className="cart_img"></img>
             </Link>
@@ -126,10 +210,10 @@ function Header() {
             :
               <>
                 <li>
-                  <Link to="/login-signup" onClick={scrollToTheTop}>마이페이지</Link>
+                  <Link to="/my-page" onClick={scrollToTheTop}>마이페이지</Link>
                 </li> 
-                <li onClick={() => alert("정상적으로 로그아웃 되었습니다!")}>
-                  <Link to="/login-signup" onClick={scrollToTheTop}>로그아웃</Link>
+                <li onClick={onClickLogOutPost}>
+                  <Link to="/" onClick={scrollToTheTop}>로그아웃</Link>
                 </li> 
               </>
           }

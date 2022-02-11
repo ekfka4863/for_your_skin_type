@@ -19,10 +19,40 @@
 // GET: 로그인을 완료한 회원이 장바구니에 갔을 때, 아이템을 보여주게 하는 api   
 // http://localhost:9090/items/favorites 
 
-// POST: 장바구니 버튼을 클릭하면 -> user의 "이메일"을 POST 한다 -> 상품을 api에 추가한다 
+// POST: (old one) 장바구니 버튼을 클릭하면 -> user의 "이메일"을 POST 한다 -> 상품을 api에 추가한다 
+// POST: (new one) 장바구니 버튼을 클릭하면 -> user가 방금 선택한 아이템을 아래의 형태로 POST 한다  
+/*
+  "item": {
+    "id": 14,
+    "name": "세라마이딘 리퀴드",
+    "price": "35000",
+    "priceSign": "원",
+    "brand": "drjart",
+    "imageLink": "https://image.drjart.com/img/001/1642119824629.png",
+    "productLink": "https://www.drjart.co.kr/ko/prd/view/832?activeTopGnb=all",
+    "websiteLink": "https://www.drjart.co.kr/ko/main/index",
+    "itemFeature": "물형",
+    "skinType": "민감성"
+  }
+*/
 // http://localhost:9090/items/favoritesAdd 
 
-// POST: 장바구니 버튼을 다시 클릭하면 -> user의 "이메일"을  POST 한다 -> 상품을 api에서 제거한다 
+// POST: (old one) 장바구니 버튼을 다시 클릭하면 -> user의 "이메일"을  POST 한다 -> 상품을 api에서 제거한다 
+// POST: (new one) 장바구니 버튼을 클릭하면 -> user가 방금 선택한 아이템을 아래의 형태로 POST 한다  
+/*
+  "item": {
+    "id": 14,
+    "name": "세라마이딘 리퀴드",
+    "price": "35000",
+    "priceSign": "원",
+    "brand": "drjart",
+    "imageLink": "https://image.drjart.com/img/001/1642119824629.png",
+    "productLink": "https://www.drjart.co.kr/ko/prd/view/832?activeTopGnb=all",
+    "websiteLink": "https://www.drjart.co.kr/ko/main/index",
+    "itemFeature": "물형",
+    "skinType": "민감성"
+  }
+*/
 // http://localhost:9090/items/favoritesDelete 
 
 

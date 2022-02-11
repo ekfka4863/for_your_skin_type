@@ -1,15 +1,17 @@
-import React, {Component} from 'react';
 import { useEffect, useState } from "react";
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+// components
 import Card from "../components/Card";
+import data from "../pages/LoginSignup"; 
 
+
+// styling 
 import "../styles/src/MyCart.scss";
 
-import data from "../pages/LoginSignup"; 
 
 
 
@@ -23,17 +25,6 @@ const user1 = {
   phoneNumber: '01012345678',
   sessionId: "~~~~",
 };
-
-
-// // for signup api to bring data of certain user's favorite items
-// // const url = 'http://localhost:9090/login';
-// // import data from "../pages/LoginSignup"; 
-
-// console.log("data => ", data);
-
-// // const sessionId = sessionStorage.getItem(data).sessionId;
-// // console.log("sessionId in MyCart.js => ", sessionId);
-// // 저희가 원하는 것: 세션아이디가 지금 로그인 된 아이디의 유저에게 있는지 확인하고, 
 
 
 // 상품을 장바구니에 추가하고 싶을 때 보내는 POST request
@@ -128,6 +119,22 @@ if (user1.loggedIn === true) {
 
 // 진짜 컴포넌트 
 function MyCart () {
+  // 로그인 됐는지 확인
+  let userId = "";
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // 무한 루프가 되지 않게 ... useEffect 안에 넣기!
+    if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
+      setLoggedIn(true);
+      userId = localStorage.getItem("authenticatedId");
+      // console.log(userId);   // e.g. sj100@gmail.com
+    }
+  }, []);
+  
+
+
   let myFavoriteItems = [];
 
   const [myFavoritesNum, setMyFavoritesNum] = useState(0); 
@@ -166,7 +173,7 @@ function MyCart () {
               ? 
             <div className="empty_cart">장바구니가 비어있습니다</div>
               : 
-              // renderItemCard()
+              // renderItemCard() 
             // <Card />
             <Card />
           }

@@ -1,8 +1,4 @@
-import { useState, useContext } from "react";
-
-// import React,{ useState, useRef } from "react";
-// import React,{ useState, useRef, useEffect } from "react";
-
+import { useState, useContext, useEffect } from "react";
 
 // 공통 컴포넌트 임포트 
 import Header from "../components/Header";
@@ -27,15 +23,23 @@ function LoginSignup () {
   }
 
   
-  // Context API 
+  // // Context API 
   let userLoggedIn = useContext(AuthContext); 
-  console.log("userLoggedIn in LoginSignUp.js => ", userLoggedIn);
-  
-  if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
-    userLoggedIn = true;
-  }
-  
-  console.log("userLoggedIn in LoginSignUp.js => ", userLoggedIn);
+
+
+  useEffect(() => {
+    console.log("effect here!");
+
+    if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
+      userLoggedIn = true;
+    } else {
+      
+    }
+
+    console.log("effect here!");
+
+    }, []);
+
 
   return(
     <>

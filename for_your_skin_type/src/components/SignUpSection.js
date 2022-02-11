@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
+// import { useState, useContext } from "react";
 // import React,{ useState, useRef } from "react";
 
 // styling 
@@ -14,11 +15,15 @@ function SignUpSection () {
   const [userPwSignup, setUserPwSignup] = useState("");
   const [userTel, setUserTel] = useState("");
 
+  // api
+  // const url = 'http://localhost:9090/signup';
+  const url = '/signup';
+  
   const submitToSignUp = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:9090/signup', {
+      const response = await fetch(url, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'
@@ -63,20 +68,20 @@ function SignUpSection () {
       <form onSubmit={submitToSignUp}>
         <ul className="first_bundle">
           <li className="Name_box">
-            <label for="userName">
+            <label htmlFor="userName">
               <img src={require('../assets/img/laptop/user_name.png')} alt="비밀번호 이미지"></img>
             </label>
             <input id="userName" type="text" placeholder="이름" minLength={2} onChange={e => setUserName(e.target.value)} required></input>
           </li>
           <li className="gender_box">
             <div className="man_box">
-              <label for="userGenderMan">
+              <label htmlFor="userGenderMan">
                 <img src={require('../assets/img/laptop/man.png')} alt="남자 이미지"></img>
               </label>
               <input id="userGenderMan" type="radio" name="userGender" value="man" onChange={e => setUserGender(e.target.value)}></input>
             </div>
             <div className="woman_box">
-              <label for="userGenderWoman">
+              <label htmlFor="userGenderWoman">
                 <img src={require('../assets/img/laptop/woman.png')} alt="여자 이미지"></img>
               </label>
               <input id="userGenderWoman" type="radio" name="userGender" value="woman" onChange={e => setUserGender(e.target.value)} ></input>
@@ -86,21 +91,21 @@ function SignUpSection () {
 
         <ul className="second_bundle">
           <li className="signup_email_box">
-            <label for="userEmail">
+            <label htmlFor="userEmail">
               <img src={require('../assets/img/laptop/user_email.png')} alt="이메일 이미지"></img>
             </label>
             <input id="userEmail" type="email" placeholder="아이디(이메일)" required onChange={e => setUserEmail(e.target.value)}></input>
           </li>
 
           <li className="signup_pw_box">
-            <label for="userPw">
+            <label htmlFor="userPw">
               <img src={require('../assets/img/laptop/user_pw.png')} alt="비밀번호 이미지"></img>
             </label>
             <input id="userPw" type="password" placeholder="비밀번호" required onChange={e => setUserPwSignup(e.target.value)} maxLength={15}  autocomplete="off"></input>
           </li>
 
           <li className="signup_tel_box">
-            <label for="userTel">
+            <label htmlFor="userTel">
               <img src={require('../assets/img/laptop/phone.png')} alt="전화번호 이미지"></img>
             </label>
             <input id="userTel"  type="tel" placeholder="전화번호" required maxLength={11} onChange={e => setUserTel(e.target.value)}></input>

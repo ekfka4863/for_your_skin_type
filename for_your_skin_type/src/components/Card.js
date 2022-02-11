@@ -1,90 +1,145 @@
-import React, {Component} from 'react';
+import { useRef, useState, useEffect } from "react";
 
-import { useRef, useState } from "react";
+// styling 
 import "../styles/src/Card.scss";
 
 
-// function Card () {
-function Card ({ skinTypes, itemNames, itemPrices, itemFeatures, imageLink, productLink }) {
-  const priceSign = "원";
 
+function Card ({ skinTypes, itemNames, itemPrices, itemFeatures, imageLink, productLink }) {
+
+  // 상품 구매하러 가기 
+  const priceSign = "원";
   const goToBuyProduct = () => {
     window.location = `${productLink}`;
   };
 
 
   // login 유무 
+  let userId = "";
+
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [loggedIn, setLoggedIn] = useState(true);
+
+  useEffect(() => {
+    // 무한 루프가 되지 않게 ... useEffect 안에 넣기!
+    if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
+      setLoggedIn(true);
+      userId = localStorage.getItem("authenticatedId");
+      // console.log(userId);   // e.g. sj100@gmail.com
+    }
+  }, []);
+  // ====================================================
+
   
 
-  // let f_ItemsTotalNum = useRef(0);
-  let [f_ItemsTotalNum , setF_ItemsTotalNum ] = useState(0);
 
-  let favoriteItemEach = useRef({});
-  let favoriteItems = useRef([]);
-  
+
+  // let [f_ItemsTotalNum , setF_ItemsTotalNum ] = useState(0);
   let favoriteItemCurr = useRef(false);
   const [favoriteItem, setFavoriteItem] = useState(favoriteItemCurr.current);
+  // const [clickedItemData, setClickItemData] = useState({
+  //   "item": {
+  //     name: itemNames,
+  //     price: itemPrices,
+  //     priceSign: priceSign,
+  //     brand: "",
+  //     // brand: "",
+  //     imageLink: imageLink,
+  //     productLink: productLink,
+  //     websiteLink: "",
+  //     // websiteLink: "",
+  //     itemFeature: itemFeatures,
+  //     skinType: skinTypes
+  //   }
+  // });
 
-  const onClickFavorite = (e) => {
-    favoriteItemCurr.current = !favoriteItemCurr.current;
-    setFavoriteItem(favoriteItemCurr.current);
+  // api
+  // const urlAdd = '/favoritesAdd';
+  const urlAdd = 'http://localhost:9090/items/favoritesAdd';
+  // const urlDelete = '/favoritesDelete';
+  const urlDelete = 'http://localhost:9090/items/favoritesDelete';
 
-    // favoriteItemsCurr.current.push(______); // 해당 카드 컴포넌트 api 데이터 넣어주기 ...!?
+  const onClickFavoritePostAdd = async (e) => {
+    e.preventDefault();
+    setFavoriteItem(true);
 
-    // console.log("button clicked!!", favoriteItemCurr.current);
-    // console.log(document.querySelector(".to_favorite_item"));
-    // console.log(favoriteItem);
-
-
-    // console.log(e.target.classList.value);
-    // console.log(e.target);
-
+    try {
+      const response = await fetch(urlAdd, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "item": {
+            name: itemNames,
+            price: itemPrices,
+            priceSign: priceSign,
+            brand: "",
+            // brand: "",
+            imageLink: imageLink,
+            productLink: productLink,
+            websiteLink: "",
+            // websiteLink: "",
+            itemFeature: itemFeatures,
+            skinType: skinTypes
+          }
+        })
+      });
   
+      const data = await response.json(); 
+      console.log("data when want to add items as favorite items to cart => ", data);
 
-    if (e.target.classList.value !== "to_favorite_item in_cart") {
-      console.log(e.target.classList.value);
-      // console.log(f_ItemsTotalNum);
-      // console.log(typeof f_ItemsTotalNum);
-      setF_ItemsTotalNum(f_ItemsTotalNum++);
-      favoriteItemEach.current["sequence"] = f_ItemsTotalNum;
-      favoriteItemEach.current["skintype"] = skinTypes; 
-      favoriteItemEach.current["name"] = itemNames; 
-      favoriteItemEach.current["price"] = itemPrices; 
-      favoriteItemEach.current["itemFeatures"] = itemFeatures; 
-      favoriteItemEach.current["imageLink"] = imageLink; 
-      favoriteItemEach.current["productLink"] = productLink; 
-      console.log(favoriteItemEach.current);
-      favoriteItems.current.push(favoriteItemEach);
-      console.log(favoriteItems.current);
-      
-    } 
-    
-    // if (e.target.classList.value !== "to_favorite_item") {
-      
-    //   favoriteItemEach.current.skintype(skinTypes); 
-    //   favoriteItemEach.current.name(itemNames); 
-    //   favoriteItemEach.current.price(itemPrices); 
-    //   favoriteItemEach.current.itemFeatures(itemFeatures); 
-    //   favoriteItemEach.current.imageLink(imageLink); 
-    //   favoriteItemEach.current.productLink(productLink); 
-    //   console.log(favoriteItemEach);
-    // }
+    } catch (error) {
+      console.log("해당 상품은 장바구니에 담을 수 없습니다. 죄송합니다.");
+      // alert("해당 상품은 장바구니에 담을 수 없습니다. 죄송합니다.");
+    }
+  };
+
+  const onClickFavoritePostDelete = async (e) => {
+    e.preventDefault();
+    setFavoriteItem(false);
+
+    try {
+      const response = await fetch(urlDelete, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "item": {
+            name: "",
+            price: "",
+            priceSign: "",
+            brand: "",
+            imageLink: "",
+            productLink: "",
+            websiteLink: "",
+            itemFeature: "",
+            skinType: ""
+          }
+        })
+      });
+  
+      const data = await response.json(); 
+      // console.log(data);
+      console.log("data when want to delete items from cart => ", data);
+
+    } catch (error) {
+      console.log("해당 상품과 관련하여 장바구니 서비스를 이용할 수 없습니다. 죄송합니다.");
+      // alert("해당 상품과 관련하여 장바구니 서비스를 이용할 수 없습니다. 죄송합니다.");
+    }
   };
 
   return (
+    // <div className="card" onClick={}>
     <div className="card">
       <div className="card_detail_part">
         <div className="item_img" style={{backgroundImage: "url(" + `${imageLink}`+ ")"}}></div>
         <div className="item_name">{itemNames}</div>
         <div className="item_price">{itemPrices + priceSign}</div>
-        {/* <div className="item_feature">{`#${skinTypes}`} {(itemFeatures !== "상관없음") ? `#${itemFeatures}` : null}</div> */}
         <div className="item_feature">{`#${skinTypes}`} {(itemFeatures !== "상관없음") ? `#${itemFeatures}` : `#멀티제형`}</div>
       </div>
       <div className="card_cover_part">
         <button type="button" className="go_to_shopping_btn" onClick={goToBuyProduct} >
-        {/* <button type="button" className="go_9to_shopping_btn" onClick={location.href = {}}> */}
           <span className="cart_icon"></span>
           <span>바로구매</span>
         </button>
@@ -92,11 +147,10 @@ function Card ({ skinTypes, itemNames, itemPrices, itemFeatures, imageLink, prod
           // 로그인 했을 때만 버튼 보여주기!? 아니면 보여주기는 계속 보여주는데 로그인하고 서비스 이용하라고 알러트!?
             (loggedIn) 
           ? 
-            <button onClick={onClickFavorite} className={(favoriteItem === false) ? "to_favorite_item" : "to_favorite_item in_cart"}></button>
-            :
-            null
+            <button onClick={(favoriteItem === false) ? onClickFavoritePostAdd : onClickFavoritePostDelete} className={(favoriteItem === false) ? "to_favorite_item" : "to_favorite_item in_cart"}></button>
+            : 
+            <></>
         }
-        {/* <button onClick={onClickFavorite} className={(favoriteItem === false) ? "to_favorite_item" : "to_favorite_item in_cart"}></button> */}
       </div>
     </div>
   )

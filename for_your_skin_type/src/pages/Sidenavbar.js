@@ -1,13 +1,16 @@
+import { Link } from "react-router-dom";
+
+// styling 
 import "../styles/src/Header.scss";
 import "../styles/src/Main.scss";
-import React from "react";
-import { Link } from "react-router-dom";
+
+// img 
 import home_img from "../assets/img/tablet/home_tablet.png";
 import closebutton from "../assets/img/tablet/close_btn_tablet.png";
 
 
 
-export default function Sidenavbar ({sidebar,setSidebar,closeSidebar}) {
+function Sidenavbar ({sidebar, setSidebar, closeSidebar}) {
   return ( 
     <>
       { 
@@ -44,3 +47,6 @@ export default function Sidenavbar ({sidebar,setSidebar,closeSidebar}) {
     </>
   )
 }
+
+
+export default Sidenavbar;

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // components 
-import LoggedInPage from "../pages/LoggedInPage";
+// import LoggedInPage from "../pages/LoggedInPage";
 
 // styling 
 import "../styles/src/LogInSection.scss";
@@ -81,6 +81,8 @@ function LogInSection () {
   if (localStorage.getItem("authenticatedId") !== "" && localStorage.getItem("authenticatedId") !== null) {
     userLoggedIn.userId = localStorage.getItem("authenticatedId");
     userLoggedIn.isLoggedIn = true;
+  } else {
+    userLoggedIn.isLoggedIn = false;
   }
 
   // console.log(userLoggedIn);  // e.g.{userId: 'sj1@gmail.com', isLoggedIn: true}
