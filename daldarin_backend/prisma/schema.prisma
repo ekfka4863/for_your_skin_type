@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id              Int         @id @default(autoincrement())
+  email           String      @unique
+  password        String
+  fullName        String      @map("full_name")
+  birthday        DateTime    @db.Date
+  phoneNumber     String      @map("phone_number")
+  gender          Gender
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @default(now()) @map("updated_at")
+
+  @@map ("users")
+}
+
+enum Gender {
+  male
+  female
+}
+
+model Products {
+  id              Int         @id @default(autoincrement())
+  name            String
+  details         String      
+  imgUrl          String      @db.LongText @map("image_url")
+  originalPrice   Int         @db.UnsignedInt @map("original_price")
+  discountRate    Int?        @db.UnsignedTinyInt @map("discount_rate")
+  stockQuantity   Int         @db.UnsignedInt @map("stock_quantity")
+  createdAt       DateTime    @default(now()) @map("created_at")
+
+  @@map ("products")
+}

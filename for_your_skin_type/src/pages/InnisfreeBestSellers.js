@@ -41,8 +41,8 @@ function InnisfreeBestSellers() {
 
 
   // API 
-  // const url = 'http://localhost:9090/items/innisfree';
-  const url = '/items/innisfree';
+  const url = 'http://localhost:9090/items/innisfree';
+  // const url = '/items/innisfree';
 
   useEffect(() => {
     const asyncInnisfreeGet = async () => {

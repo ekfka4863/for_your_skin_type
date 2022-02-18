@@ -41,8 +41,8 @@ function DrJartBestSellers() {
 
 
   // API 
-  // const url = 'http://localhost:9090/items/drjart';
-  const url = '/items/drjart';
+  const url = 'http://localhost:9090/items/drjart';
+  // const url = '/items/drjart';
 
   useEffect(() => {
     const asyncDrjartGet = async () => {

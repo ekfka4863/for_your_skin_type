@@ -41,8 +41,8 @@ function SidmoolBestSellers() {
 
 
   // API 
-  // const url = 'http://localhost:9090/items/sidmool';
-  const url = '/items/sidmool';
+  const url = 'http://localhost:9090/items/sidmool';
+  // const url = '/items/sidmool';
 
   useEffect(() => {
     const asyncSidmoolGet = async () => {

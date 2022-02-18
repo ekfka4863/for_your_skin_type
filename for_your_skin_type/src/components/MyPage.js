@@ -20,8 +20,8 @@ function MyPage() {
   
 
   // API 
-  // const url = 'http://localhost:9090/mypage';
-  const url = '/mypage';
+  const url = 'http://localhost:9090/mypage';
+  // const url = '/mypage';
   
   useEffect(() => {
     // 무한 루프가 되지 않게 ... useEffect 안에 넣기!

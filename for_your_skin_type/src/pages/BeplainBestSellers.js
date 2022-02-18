@@ -40,8 +40,8 @@ function BeplainBestSellers() {
 
 
   // API 
-  // const url = 'http://localhost:9090/items/beplain';
-  const url = '/items/beplain';
+  const url = 'http://localhost:9090/items/beplain';
+  // const url = '/items/beplain';
 
   useEffect(() => {
     const asyncBeplainGet = async () => {
