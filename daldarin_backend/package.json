@@ -1,29 +1,31 @@
 {
-  "name": "daldarin_backend",
-  "description": "",
-  "version": "1.0.0",
-  "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ekfka4863/daldarin_backend.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ekfka4863/daldarin_backend/issues"
-  },
-  "homepage": "https://github.com/ekfka4863/daldarin_backend#readme",
-  "devDependencies": {
-    "@prisma/client": "^3.9.1",
-    "dotenv": "^16.0.0",
-    "nodemon": "^2.0.15",
-    "prisma": "^3.9.1"
-  },
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "express": "^4.17.2"
-  },
-  "scripts": {
-    "start": "nodemon server.js"
-  }
+	"name": "daldarin_backend",
+	"description": "",
+	"version": "1.0.0",
+	"main": "server.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ekfka4863/daldarin_backend.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ekfka4863/daldarin_backend/issues"
+	},
+	"homepage": "https://github.com/ekfka4863/daldarin_backend#readme",
+	"devDependencies": {
+		"@prisma/client": "^3.9.1",
+		"dotenv": "^16.0.0",
+		"nodemon": "^2.0.15",
+		"prisma": "^3.9.1"
+	},
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"cors": "^2.8.5",
+		"express": "^4.17.2"
+	},
+	"scripts": {
+		"start": "nodemon server.js",
+		"distribute": "npm i && npx prisma generate && pm2 start --name daldarin -i max npm -- run start"
+	}
 }
